@@ -2,19 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="518b4cb2-17f1-4a9a-891e-8d92d65a8605" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/db/DBOper.java" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/CarBean.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/Comsumer.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/DemoCallBack.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/KafkaGpsDemo.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/KafkaProperties.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/ProduceGPSData.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/Producer.class" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/data/CarData.class" afterPath="$PROJECT_DIR$/target/classes/data/CarData.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/db/DBOper.class" afterPath="$PROJECT_DIR$/target/classes/db/DBOper.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/kafkaDemo.iml" afterPath="$PROJECT_DIR$/kafkaDemo.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/Main.java" afterPath="$PROJECT_DIR$/src/main/java/Main.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/data/CarData.java" afterPath="$PROJECT_DIR$/src/main/java/data/CarData.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/data/GPSData.java" afterPath="$PROJECT_DIR$/src/main/java/data/GPSData.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/db/DBOper.java" afterPath="$PROJECT_DIR$/src/main/java/db/DBOper.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -38,11 +30,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="CarData.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="CarData.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/data/CarData.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1257">
-              <caret line="14" column="63" lean-forward="true" selection-start-line="14" selection-start-column="63" selection-end-line="14" selection-end-column="63" />
+            <state relative-caret-position="-22">
+              <caret line="79" column="43" lean-forward="false" selection-start-line="79" selection-start-column="43" selection-end-line="79" selection-end-column="43" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#1883#1892#0" expanded="true" />
@@ -51,29 +43,31 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="DBOper.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="DBOper.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/db/DBOper.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1843">
-              <caret line="97" column="0" lean-forward="true" selection-start-line="97" selection-start-column="0" selection-end-line="97" selection-end-column="0" />
+            <state relative-caret-position="130">
+              <caret line="133" column="50" lean-forward="false" selection-start-line="133" selection-start-column="50" selection-end-line="133" selection-end-column="50" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#333#341#0" expanded="true" />
-                <element signature="e#395#403#0" expanded="true" />
-                <element signature="e#428#429#0" expanded="true" />
-                <element signature="e#476#477#0" expanded="true" />
-                <marker date="1531972768425" expanded="true" signature="1247:1607" ph="insert into car... " />
-                <marker date="1531972768425" expanded="true" signature="2086:2110" ph="INSERT INTO gps... " />
-                <marker date="1531972768425" expanded="true" signature="2086:2141" ph="INSERT INTO gps... " />
-                <marker date="1531972768425" expanded="true" signature="2086:2152" ph="INSERT INTO gps... " />
-                <marker date="1531972768425" expanded="true" signature="2086:2182" ph="INSERT INTO gps... " />
-                <marker date="1531972768425" expanded="true" signature="2693:2723" ph="INSERT INTO cardevice... " />
-                <marker date="1531972768425" expanded="true" signature="2693:2754" ph="INSERT INTO cardevice... " />
-                <marker date="1531972768425" expanded="true" signature="2693:2780" ph="INSERT INTO cardevice... " />
-                <marker date="1531972768425" expanded="true" signature="2693:2786" ph="INSERT INTO cardevice... " />
-                <marker date="1531972768425" expanded="true" signature="2693:2817" ph="INSERT INTO cardevice... " />
-                <marker date="1531972768425" expanded="true" signature="2693:2843" ph="INSERT INTO cardevice... " />
-                <marker date="1531972768425" expanded="true" signature="2693:2873" ph="INSERT INTO cardevice... " />
+                <element signature="e#341#349#0" expanded="true" />
+                <element signature="e#403#411#0" expanded="true" />
+                <element signature="e#436#437#0" expanded="true" />
+                <element signature="e#484#485#0" expanded="true" />
+                <marker date="1531980755087" expanded="true" signature="845:906" ph="INSERT INTO car... " />
+                <marker date="1531980755087" expanded="true" signature="2813:2843" ph="INSERT INTO gps... " />
+                <marker date="1531980755087" expanded="true" signature="2993:2994" ph="INSERT INTO gps... " />
+                <marker date="1531980755087" expanded="true" signature="2993:3025" ph="INSERT INTO gps... " />
+                <marker date="1531980755087" expanded="true" signature="2993:3036" ph="INSERT INTO gps... " />
+                <marker date="1531980755087" expanded="true" signature="2993:3066" ph="INSERT INTO gps... " />
+                <marker date="1531980755087" expanded="true" signature="3918:3960" ph="INSERT INTO cardevice... " />
+                <marker date="1531980755087" expanded="true" signature="4116:4117" ph="INSERT INTO cardevice... " />
+                <marker date="1531980755087" expanded="true" signature="4116:4148" ph="INSERT INTO cardevice... " />
+                <marker date="1531980755087" expanded="true" signature="4116:4174" ph="INSERT INTO cardevice... " />
+                <marker date="1531980755087" expanded="true" signature="4116:4180" ph="INSERT INTO cardevice... " />
+                <marker date="1531980755087" expanded="true" signature="4116:4211" ph="INSERT INTO cardevice... " />
+                <marker date="1531980755087" expanded="true" signature="4116:4237" ph="INSERT INTO cardevice... " />
+                <marker date="1531980755087" expanded="true" signature="4116:4267" ph="INSERT INTO cardevice... " />
               </folding>
             </state>
           </provider>
@@ -117,8 +111,8 @@
       <file leaf-file-name="Main.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="247">
-              <caret line="16" column="57" lean-forward="true" selection-start-line="16" selection-start-column="57" selection-end-line="16" selection-end-column="57" />
+            <state relative-caret-position="114">
+              <caret line="12" column="37" lean-forward="true" selection-start-line="12" selection-start-column="37" selection-end-line="12" selection-end-column="37" />
               <folding />
             </state>
           </provider>
@@ -221,8 +215,8 @@
         <option value="$PROJECT_DIR$/src/main/java/bean/GpsBean.java" />
         <option value="$PROJECT_DIR$/src/main/java/bean/CarBean.java" />
         <option value="$PROJECT_DIR$/src/main/java/data/GPSData.java" />
-        <option value="$PROJECT_DIR$/src/main/java/data/CarData.java" />
         <option value="$PROJECT_DIR$/src/main/java/Main.java" />
+        <option value="$PROJECT_DIR$/src/main/java/data/CarData.java" />
         <option value="$PROJECT_DIR$/src/main/java/db/DBOper.java" />
       </list>
     </option>
@@ -916,12 +910,12 @@
       <workItem from="1531793959681" duration="403000" />
       <workItem from="1531813317256" duration="5398000" />
       <workItem from="1531874971352" duration="9987000" />
-      <workItem from="1531899754624" duration="11987000" />
+      <workItem from="1531899754624" duration="14173000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="43744000" />
+    <option name="totallyTimeSpent" value="45930000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -946,7 +940,7 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.39784947" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.39784947" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32872504" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -1429,45 +1423,47 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="247">
-          <caret line="16" column="57" lean-forward="true" selection-start-line="16" selection-start-column="57" selection-end-line="16" selection-end-column="57" />
+        <state relative-caret-position="114">
+          <caret line="12" column="37" lean-forward="true" selection-start-line="12" selection-start-column="37" selection-end-line="12" selection-end-column="37" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/db/DBOper.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1843">
-          <caret line="97" column="0" lean-forward="true" selection-start-line="97" selection-start-column="0" selection-end-line="97" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#333#341#0" expanded="true" />
-            <element signature="e#395#403#0" expanded="true" />
-            <element signature="e#428#429#0" expanded="true" />
-            <element signature="e#476#477#0" expanded="true" />
-            <marker date="1531972768425" expanded="true" signature="1247:1607" ph="insert into car... " />
-            <marker date="1531972768425" expanded="true" signature="2086:2110" ph="INSERT INTO gps... " />
-            <marker date="1531972768425" expanded="true" signature="2086:2141" ph="INSERT INTO gps... " />
-            <marker date="1531972768425" expanded="true" signature="2086:2152" ph="INSERT INTO gps... " />
-            <marker date="1531972768425" expanded="true" signature="2086:2182" ph="INSERT INTO gps... " />
-            <marker date="1531972768425" expanded="true" signature="2693:2723" ph="INSERT INTO cardevice... " />
-            <marker date="1531972768425" expanded="true" signature="2693:2754" ph="INSERT INTO cardevice... " />
-            <marker date="1531972768425" expanded="true" signature="2693:2780" ph="INSERT INTO cardevice... " />
-            <marker date="1531972768425" expanded="true" signature="2693:2786" ph="INSERT INTO cardevice... " />
-            <marker date="1531972768425" expanded="true" signature="2693:2817" ph="INSERT INTO cardevice... " />
-            <marker date="1531972768425" expanded="true" signature="2693:2843" ph="INSERT INTO cardevice... " />
-            <marker date="1531972768425" expanded="true" signature="2693:2873" ph="INSERT INTO cardevice... " />
-          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/data/CarData.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1257">
-          <caret line="14" column="63" lean-forward="true" selection-start-line="14" selection-start-column="63" selection-end-line="14" selection-end-column="63" />
+        <state relative-caret-position="-22">
+          <caret line="79" column="43" lean-forward="false" selection-start-line="79" selection-start-column="43" selection-end-line="79" selection-end-column="43" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#1883#1892#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/db/DBOper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="130">
+          <caret line="133" column="50" lean-forward="false" selection-start-line="133" selection-start-column="50" selection-end-line="133" selection-end-column="50" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#341#349#0" expanded="true" />
+            <element signature="e#403#411#0" expanded="true" />
+            <element signature="e#436#437#0" expanded="true" />
+            <element signature="e#484#485#0" expanded="true" />
+            <marker date="1531980755087" expanded="true" signature="845:906" ph="INSERT INTO car... " />
+            <marker date="1531980755087" expanded="true" signature="2813:2843" ph="INSERT INTO gps... " />
+            <marker date="1531980755087" expanded="true" signature="2993:2994" ph="INSERT INTO gps... " />
+            <marker date="1531980755087" expanded="true" signature="2993:3025" ph="INSERT INTO gps... " />
+            <marker date="1531980755087" expanded="true" signature="2993:3036" ph="INSERT INTO gps... " />
+            <marker date="1531980755087" expanded="true" signature="2993:3066" ph="INSERT INTO gps... " />
+            <marker date="1531980755087" expanded="true" signature="3918:3960" ph="INSERT INTO cardevice... " />
+            <marker date="1531980755087" expanded="true" signature="4116:4117" ph="INSERT INTO cardevice... " />
+            <marker date="1531980755087" expanded="true" signature="4116:4148" ph="INSERT INTO cardevice... " />
+            <marker date="1531980755087" expanded="true" signature="4116:4174" ph="INSERT INTO cardevice... " />
+            <marker date="1531980755087" expanded="true" signature="4116:4180" ph="INSERT INTO cardevice... " />
+            <marker date="1531980755087" expanded="true" signature="4116:4211" ph="INSERT INTO cardevice... " />
+            <marker date="1531980755087" expanded="true" signature="4116:4237" ph="INSERT INTO cardevice... " />
+            <marker date="1531980755087" expanded="true" signature="4116:4267" ph="INSERT INTO cardevice... " />
           </folding>
         </state>
       </provider>
