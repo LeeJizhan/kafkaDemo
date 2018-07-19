@@ -47,43 +47,43 @@ public class CarData {
     private List<CarBean> carBeans = new ArrayList<CarBean>();
 
     public List<CarBean> getCarData() {
-        for (int i = 1; i <= 1000; i++) {
+        for (int i = 1; i <= 10000; i++) {
             CarBean carBean = new CarBean();
-            if (i <= 200) {
+            if (i <= 2000) {
                 carBean.setCarID(Integer.toString(i));
                 carBean.setBrand(ZHU_HAI_CAR_BRAND);
                 carBean.setModel(ZHU_HAI_CAR_MODEL);
                 carBean.setNumber(ZHU_HAI_CAR_NUMBER);
                 carBean.setOwner(ZHU_HAI_CAR_OWNER);
                 carBean.setPhone(ZHU_HAI_CAR_PHONE);
-            } else if (i > 200 && i <= 400) {
+            } else if (i > 2000 && i <= 4000) {
                 carBean.setCarID(Integer.toString(i));
                 carBean.setBrand(SHANG_HAI_CAR_BRAND);
                 carBean.setModel(SHANG_HAI_CAR_MODEL);
                 carBean.setNumber(SHANG_HAI_CAR_NUMBER);
                 carBean.setOwner(SHANG_HAI_CAR_OWNER);
                 carBean.setPhone(SHANG_HAI_CAR_PHONE);
-            } else if (i > 400 && i <= 600) {
+            } else if (i > 4000 && i <= 6000) {
                 carBean.setCarID(Integer.toString(i));
                 carBean.setBrand(BEI_JING_CAR_BRAND);
                 carBean.setModel(BEI_JING_CAR_MODEL);
                 carBean.setNumber(BEI_JING_CAR_NUMBER);
                 carBean.setOwner(BEI_JING_CAR_OWNER);
                 carBean.setPhone(BEI_JING_CAR_PHONE);
-            } else if (i > 600 && i <= 800) {
+            } else if (i > 6000 && i <= 8000) {
                 carBean.setCarID(Integer.toString(i));
                 carBean.setBrand(GUANG_ZHOU_CAR_BRAND);
                 carBean.setModel(GUANG_ZHOU_CAR_MODEL);
                 carBean.setNumber(GUANG_ZHOU_CAR_NUMBER);
                 carBean.setOwner(GUANG_ZHOU_CAR_OWNER);
                 carBean.setPhone(GUANG_ZHOU_CAR_PHONE);
-            } else if (i > 800 && i <= 1000) {
+            } else if (i > 8000 && i <= 10000) {
                 carBean.setCarID(Integer.toString(i));
                 carBean.setBrand(SHEN_ZHEN_CAR_BRAND);
                 carBean.setModel(SHEN_ZHEN_CAR_MODEL);
                 carBean.setNumber(SHEN_ZHEN_CAR_NUMBER);
-                carBean.setOwner(SHANG_HAI_CAR_OWNER);
-                carBean.setPhone(SHANG_HAI_CAR_PHONE);
+                carBean.setOwner(SHEN_ZHEN_CAR_OWNER);
+                carBean.setPhone(SHEN_ZHEN_CAR_PHONE);
             }
             carBeans.add(carBean);
         }
