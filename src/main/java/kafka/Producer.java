@@ -1,9 +1,11 @@
+package kafka;
+
+import data.GPSData;
 import org.apache.kafka.clients.producer.*;
 import org.apache.kafka.common.serialization.IntegerSerializer;
 import org.apache.kafka.common.serialization.StringSerializer;
+import properties.KafkaProperties;
 
-import java.io.IOException;
-import java.io.InputStream;
 import java.util.List;
 import java.util.Properties;
 
@@ -42,14 +44,14 @@ public class Producer extends Thread {
     }
 
     public void run() {
-        int count = 10;
+        int count = 20;
         int messageNo = 0;
         long startTime = System.currentTimeMillis();
 
         while (count > 0) {
             List<String> data = null;
             try {
-                data = new ProduceGPSData().getData();
+                data = new GPSData().getData();
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
@@ -61,9 +63,9 @@ public class Producer extends Thread {
             if (isAsync) {
                 //发送信息，包括topic和键值对
                 for (String messageStr : data) {
-//                    producer.send(new ProducerRecord<Integer, String>(topic,
-//                            messageNo,
-//                            messageStr), new DemoCallBack(startTime, messageNo, messageStr));
+                    producer.send(new ProducerRecord<Integer, String>(topic,
+                            messageNo,
+                            messageStr), new DemoCallBack(startTime, messageNo, messageStr));
                     System.out.println("Sent message:" + messageStr);
                 }
             }

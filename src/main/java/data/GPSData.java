@@ -1,6 +1,8 @@
-/**
+package data; /**
  * Created by Asus- on 2018/7/17.
  */
+
+import bean.GpsBean;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -8,18 +10,18 @@ import java.util.Date;
 import java.util.List;
 import java.util.Random;
 
-public class ProduceGPSData {
+public class GPSData {
 
     private static int sigDigits = 8;
     //地球半径
     private static double radiusEarth = 6372.796924d;
 
-    private static List<CarBean> carBeanList;
+    private static List<GpsBean> gpsBeanList;
 
     private List<String> gpsJsons = new ArrayList<String>();
 
-    public ProduceGPSData() throws InterruptedException {
-        this.carBeanList = calculate(10, 34.259516, 109.003784, 0.1);
+    public GPSData() throws InterruptedException {
+        this.gpsBeanList = calculate(10, 34.259516, 109.003784, 0.1);
     }
 
     public List<String> getData() {
@@ -27,11 +29,11 @@ public class ProduceGPSData {
         if (!gpsJsons.isEmpty()){
             gpsJsons.clear();
         }
-        for (CarBean bean : carBeanList){
+        for (GpsBean bean : gpsBeanList){
             msg = "{"
-                    + "\"cargps\"" + ":"
+                    + "\"gps\"" + ":"
                     + "{"
-                    + "\"carid\"" + ":" + "\"" + bean.getCarID() + "\"" + ","
+                    + "\"gpsid\"" + ":" + "\"" + bean.getGpsID() + "\"" + ","
                     + "\"time\"" + ":" + "\"" + bean.getTime() + "\"" + ","
                     + "\"lon\"" + ":" + "\"" + bean.getLongitude() + "\"" + ","
                     + "\"lat\"" + ":" + "\"" + bean.getLatitude() + "\"" + ","
@@ -44,8 +46,8 @@ public class ProduceGPSData {
         return gpsJsons;
     }
 
-    public List<CarBean> calculate(int p, double startlat, double startlon, double maxdist) throws InterruptedException {
-        List<CarBean> rtnList = new ArrayList<CarBean>();
+    public List<GpsBean> calculate(int p, double startlat, double startlon, double maxdist) throws InterruptedException {
+        List<GpsBean> rtnList = new ArrayList<GpsBean>();
         double finalLat;
         double finalLon;
         double[] brg = new double[]{0, 180, 0};
@@ -70,8 +72,8 @@ public class ProduceGPSData {
         //点数
         for (int k = 0; k < p; k++) {
             //模拟车辆停止
-            int randomSleepTime = (int) Math.round(Math.random() * 100);
-            Thread.sleep(randomSleepTime);
+//            int randomSleepTime = (int) Math.round(Math.random() * 100);
+//            Thread.sleep(randomSleepTime);
             //生成0-1的随机数
             double rand1 = new Random().nextDouble();
             distance = Math.acos(rand1 * (Math.cos(maxdist) - 1) + 1);//随机数
@@ -85,14 +87,14 @@ public class ProduceGPSData {
             distance = (double) Math.round(distance * radiusEarth * 10000) / 10000.0;
             brg[0] = Math.round(deg(brg[0]) * 1000) / 1000;//随机距离
             String time = getTime();
-            CarBean carBean = new CarBean();
-            carBean.setCarID(cardID);
-            carBean.setTime(time);
-            carBean.setLongitude(padZeroRight(finalLon));
-            carBean.setLatitude(padZeroRight(finalLat));
-            carBean.setBearing(brg[j] + "");
-            carBean.setDistance(distance + "");
-            rtnList.add(carBean);
+            GpsBean gpsBean = new GpsBean();
+            gpsBean.setGpsID(cardID);
+            gpsBean.setTime(time);
+            gpsBean.setLongitude(padZeroRight(finalLon));
+            gpsBean.setLatitude(padZeroRight(finalLat));
+            gpsBean.setBearing(brg[j] + "");
+            gpsBean.setDistance(distance + "");
+            rtnList.add(gpsBean);
         }
         return rtnList;
     }

@@ -1,7 +1,11 @@
+import kafka.Comsumer;
+import kafka.Producer;
+import properties.KafkaProperties;
+
 /**
  * Created by Asus- on 2018/7/12.
  */
-public class KafkaGpsDemo {
+public class Main {
     public static void main(String[] args) throws InterruptedException {
         KafkaProperties kafkaProperties = KafkaProperties.getInstance();
         //通过键值对的方式读取kafka配置文件的值
@@ -10,7 +14,7 @@ public class KafkaGpsDemo {
         Producer producer = new Producer(topic, isAsync);
         producer.start();
         //producerThread.stop();
-//        Comsumer comsumer = new Comsumer(topic);
-//        comsumer.start();
+        Comsumer comsumer = new Comsumer(topic);
+        comsumer.start();
     }
 }

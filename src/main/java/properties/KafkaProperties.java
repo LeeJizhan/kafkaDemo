@@ -1,3 +1,5 @@
+package properties;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
@@ -34,7 +36,7 @@ public class KafkaProperties {
         //新建一个Properties类来做相关配置
         Properties props = new Properties();
         //当前类通过输入流来读取配置文件
-        InputStream inputStream = Comsumer.class.getResourceAsStream("/kafka.properties");
+        InputStream inputStream = KafkaProperties.class.getResourceAsStream("/kafka.properties");
 
         try {
             /**

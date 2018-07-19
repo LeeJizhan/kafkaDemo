@@ -1,0 +1,8 @@
+package data;
+
+/**
+ * Created by Asus- on 2018/7/19.
+ */
+public class CarData {
+
+}

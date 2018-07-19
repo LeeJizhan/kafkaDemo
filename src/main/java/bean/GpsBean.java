@@ -1,9 +1,11 @@
+package bean;
+
 /**
  * Created by Asus- on 2018/7/17.
  */
-public class CarBean {
+public class GpsBean {
     //车ID
-    private String carID;
+    private String gpsID;
     //记录时间
     private String time;
     //经度
@@ -15,12 +17,12 @@ public class CarBean {
     //单次运动的距离
     private String distance;
 
-    public String getCarID() {
-        return carID;
+    public String getGpsID() {
+        return gpsID;
     }
 
-    public void setCarID(String carID) {
-        this.carID = carID;
+    public void setGpsID(String gpsID) {
+        this.gpsID = gpsID;
     }
 
     public String getTime() {
