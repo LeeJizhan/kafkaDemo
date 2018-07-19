@@ -31,7 +31,7 @@ public class GPSData {
         }
         for (GpsBean bean : gpsBeanList){
             msg = "{"
-                    + "\"gps\"" + ":"
+                    + "\"gpsdata\"" + ":"
                     + "{"
                     + "\"gpsid\"" + ":" + "\"" + bean.getGpsID() + "\"" + ","
                     + "\"time\"" + ":" + "\"" + bean.getTime() + "\"" + ","
