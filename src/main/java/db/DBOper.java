@@ -17,9 +17,11 @@ public class DBOper {
     private DBCon dbCon;
     private List<String> carIDList = new ArrayList<String>();
     private List<String> gpsIDList = new ArrayList<String>();
+    private Connection conn;
 
     public DBOper() {
         this.dbCon = DBCon.getInstance();
+        this.conn = dbCon.getConnection();
     }
 
     /**
@@ -29,7 +31,7 @@ public class DBOper {
         CarData carData = new CarData();
         List<CarBean> carBeanList = carData.getCarData();
         //创建数据库连接
-        Connection conn = dbCon.getConnection();
+//        Connection conn = dbCon.getConnection();
         try {
             //关闭自动连接
             conn.setAutoCommit(false);
@@ -80,7 +82,7 @@ public class DBOper {
         Connection conn = dbCon.getConnection();
         try {
             //关闭自动连接
-            conn.setAutoCommit(false);
+//            conn.setAutoCommit(false);
             //使用PreparedStatement代替Statement，可以大大提高效率
             PreparedStatement preparedStatement = conn.prepareStatement("");
             //sql前缀
@@ -95,6 +97,7 @@ public class DBOper {
             }
             String gpsSql = preSql + stringBuffer.substring(0, stringBuffer.length() - 1);
             preparedStatement.addBatch(gpsSql);
+            preparedStatement.executeBatch();
             //提交事务
             conn.commit();
             System.out.println("gps设备数据完成");
@@ -109,7 +112,7 @@ public class DBOper {
      * 将车的信息和gps设备信息关联
      */
     public void updateCarAndGpsData() {
-        Connection conn = dbCon.getConnection();
+//        Connection conn = dbCon.getConnection();
         try {
             //关闭自动连接
             conn.setAutoCommit(false);
