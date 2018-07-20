@@ -2,10 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="518b4cb2-17f1-4a9a-891e-8d92d65a8605" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/data/CarData.class" afterPath="$PROJECT_DIR$/target/classes/data/CarData.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_logging_log4j_log4j_api_2_11_0.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_logging_log4j_log4j_core_2_11_0.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/utils/LoggerUtil.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/Main.class" afterPath="$PROJECT_DIR$/target/classes/Main.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/db/DBOper.class" afterPath="$PROJECT_DIR$/target/classes/db/DBOper.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/data/CarData.java" afterPath="$PROJECT_DIR$/src/main/java/data/CarData.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/kafkaDemo.iml" afterPath="$PROJECT_DIR$/kafkaDemo.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pom.xml" afterPath="$PROJECT_DIR$/pom.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/Main.java" afterPath="$PROJECT_DIR$/src/main/java/Main.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/db/DBOper.java" afterPath="$PROJECT_DIR$/src/main/java/db/DBOper.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -20,54 +25,26 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="Producer.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/kafka/Producer.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1330">
-              <caret line="77" column="6" lean-forward="false" selection-start-line="77" selection-start-column="6" selection-end-line="77" selection-end-column="6" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="CarData.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/data/CarData.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-22">
-              <caret line="79" column="43" lean-forward="false" selection-start-line="79" selection-start-column="43" selection-end-line="79" selection-end-column="43" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#1883#1892#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="DBOper.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="DBOper.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/db/DBOper.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="130">
-              <caret line="133" column="50" lean-forward="false" selection-start-line="133" selection-start-column="50" selection-end-line="133" selection-end-column="50" />
+            <state relative-caret-position="2223">
+              <caret line="124" column="36" lean-forward="false" selection-start-line="124" selection-start-column="36" selection-end-line="124" selection-end-column="36" />
               <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#341#349#0" expanded="true" />
-                <element signature="e#403#411#0" expanded="true" />
-                <element signature="e#436#437#0" expanded="true" />
-                <element signature="e#484#485#0" expanded="true" />
-                <marker date="1531980755087" expanded="true" signature="845:906" ph="INSERT INTO car... " />
-                <marker date="1531980755087" expanded="true" signature="2813:2843" ph="INSERT INTO gps... " />
-                <marker date="1531980755087" expanded="true" signature="2993:2994" ph="INSERT INTO gps... " />
-                <marker date="1531980755087" expanded="true" signature="2993:3025" ph="INSERT INTO gps... " />
-                <marker date="1531980755087" expanded="true" signature="2993:3036" ph="INSERT INTO gps... " />
-                <marker date="1531980755087" expanded="true" signature="2993:3066" ph="INSERT INTO gps... " />
-                <marker date="1531980755087" expanded="true" signature="3918:3960" ph="INSERT INTO cardevice... " />
-                <marker date="1531980755087" expanded="true" signature="4116:4117" ph="INSERT INTO cardevice... " />
-                <marker date="1531980755087" expanded="true" signature="4116:4148" ph="INSERT INTO cardevice... " />
-                <marker date="1531980755087" expanded="true" signature="4116:4174" ph="INSERT INTO cardevice... " />
-                <marker date="1531980755087" expanded="true" signature="4116:4180" ph="INSERT INTO cardevice... " />
-                <marker date="1531980755087" expanded="true" signature="4116:4211" ph="INSERT INTO cardevice... " />
-                <marker date="1531980755087" expanded="true" signature="4116:4237" ph="INSERT INTO cardevice... " />
-                <marker date="1531980755087" expanded="true" signature="4116:4267" ph="INSERT INTO cardevice... " />
+                <marker date="1531981959176" expanded="true" signature="919:980" ph="INSERT INTO car... " />
+                <marker date="1531981959176" expanded="true" signature="2889:2919" ph="INSERT INTO gps... " />
+                <marker date="1531981959176" expanded="true" signature="3069:3070" ph="INSERT INTO gps... " />
+                <marker date="1531981959176" expanded="true" signature="3069:3101" ph="INSERT INTO gps... " />
+                <marker date="1531981959176" expanded="true" signature="3069:3112" ph="INSERT INTO gps... " />
+                <marker date="1531981959176" expanded="true" signature="3069:3142" ph="INSERT INTO gps... " />
+                <marker date="1531981959176" expanded="true" signature="4042:4084" ph="INSERT INTO cardevice... " />
+                <marker date="1531981959176" expanded="true" signature="4240:4241" ph="INSERT INTO cardevice... " />
+                <marker date="1531981959176" expanded="true" signature="4240:4272" ph="INSERT INTO cardevice... " />
+                <marker date="1531981959176" expanded="true" signature="4240:4298" ph="INSERT INTO cardevice... " />
+                <marker date="1531981959176" expanded="true" signature="4240:4304" ph="INSERT INTO cardevice... " />
+                <marker date="1531981959176" expanded="true" signature="4240:4335" ph="INSERT INTO cardevice... " />
+                <marker date="1531981959176" expanded="true" signature="4240:4361" ph="INSERT INTO cardevice... " />
+                <marker date="1531981959176" expanded="true" signature="4240:4391" ph="INSERT INTO cardevice... " />
               </folding>
             </state>
           </provider>
@@ -76,43 +53,77 @@
       <file leaf-file-name="CarBean.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/bean/CarBean.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="114">
+            <state relative-caret-position="171">
               <caret line="9" column="25" lean-forward="false" selection-start-line="9" selection-start-column="25" selection-end-line="9" selection-end-column="25" />
               <folding>
-                <element signature="e#293#294#0" expanded="true" />
-                <element signature="e#321#322#0" expanded="true" />
-                <element signature="e#363#364#0" expanded="true" />
-                <element signature="e#397#398#0" expanded="true" />
-                <element signature="e#429#430#0" expanded="true" />
-                <element signature="e#457#458#0" expanded="true" />
-                <element signature="e#499#500#0" expanded="true" />
-                <element signature="e#533#534#0" expanded="true" />
-                <element signature="e#565#566#0" expanded="true" />
-                <element signature="e#593#594#0" expanded="true" />
-                <element signature="e#635#636#0" expanded="true" />
-                <element signature="e#669#670#0" expanded="true" />
-                <element signature="e#702#703#0" expanded="true" />
-                <element signature="e#731#732#0" expanded="true" />
-                <element signature="e#775#776#0" expanded="true" />
-                <element signature="e#811#812#0" expanded="true" />
-                <element signature="e#843#844#0" expanded="true" />
-                <element signature="e#871#872#0" expanded="true" />
-                <element signature="e#913#914#0" expanded="true" />
-                <element signature="e#947#948#0" expanded="true" />
-                <element signature="e#979#980#0" expanded="true" />
-                <element signature="e#1007#1008#0" expanded="true" />
-                <element signature="e#1049#1050#0" expanded="true" />
-                <element signature="e#1083#1084#0" expanded="true" />
+                <element signature="e#293#294#0" expanded="false" />
+                <element signature="e#321#322#0" expanded="false" />
+                <element signature="e#363#364#0" expanded="false" />
+                <element signature="e#397#398#0" expanded="false" />
+                <element signature="e#429#430#0" expanded="false" />
+                <element signature="e#457#458#0" expanded="false" />
+                <element signature="e#499#500#0" expanded="false" />
+                <element signature="e#533#534#0" expanded="false" />
+                <element signature="e#565#566#0" expanded="false" />
+                <element signature="e#593#594#0" expanded="false" />
+                <element signature="e#635#636#0" expanded="false" />
+                <element signature="e#669#670#0" expanded="false" />
+                <element signature="e#702#703#0" expanded="false" />
+                <element signature="e#731#732#0" expanded="false" />
+                <element signature="e#775#776#0" expanded="false" />
+                <element signature="e#811#812#0" expanded="false" />
+                <element signature="e#843#844#0" expanded="false" />
+                <element signature="e#871#872#0" expanded="false" />
+                <element signature="e#913#914#0" expanded="false" />
+                <element signature="e#947#948#0" expanded="false" />
+                <element signature="e#979#980#0" expanded="false" />
+                <element signature="e#1007#1008#0" expanded="false" />
+                <element signature="e#1049#1050#0" expanded="false" />
+                <element signature="e#1083#1084#0" expanded="false" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Main.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Main.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="114">
-              <caret line="12" column="37" lean-forward="true" selection-start-line="12" selection-start-column="37" selection-end-line="12" selection-end-column="37" />
+            <state relative-caret-position="95">
+              <caret line="11" column="39" lean-forward="true" selection-start-line="11" selection-start-column="39" selection-end-line="11" selection-end-column="39" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="LoggerUtil.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/utils/LoggerUtil.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="111">
+              <caret line="68" column="5" lean-forward="false" selection-start-line="68" selection-start-column="5" selection-end-line="68" selection-end-column="5" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#1607#1608#0" expanded="true" />
+                <element signature="e#1642#1643#0" expanded="true" />
+                <element signature="e#1685#1686#0" expanded="true" />
+                <element signature="e#1719#1720#0" expanded="true" />
+                <element signature="e#1762#1763#0" expanded="true" />
+                <element signature="e#1796#1797#0" expanded="true" />
+                <element signature="e#1840#1841#0" expanded="true" />
+                <element signature="e#1875#1876#0" expanded="true" />
+                <element signature="e#1920#1921#0" expanded="true" />
+                <element signature="e#1955#1956#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="db.properties" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/resources/db.properties">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="19">
+              <caret line="1" column="12" lean-forward="false" selection-start-line="1" selection-start-column="12" selection-end-line="1" selection-end-column="12" />
               <folding />
             </state>
           </provider>
@@ -121,13 +132,21 @@
       <file leaf-file-name="DBCon.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/db/DBCon.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-544">
-              <caret line="12" column="13" lean-forward="false" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#445#446#0" expanded="true" />
-                <element signature="e#478#479#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="kafka.properties" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/resources/kafka.properties">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="15" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -135,30 +154,8 @@
       <file leaf-file-name="pom.xml" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/pom.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="342">
-              <caret line="18" column="40" lean-forward="true" selection-start-line="18" selection-start-column="40" selection-end-line="18" selection-end-column="40" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="GPSData.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/data/GPSData.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2470">
-              <caret line="142" column="21" lean-forward="false" selection-start-line="142" selection-start-column="21" selection-end-line="142" selection-end-column="21" />
-              <folding>
-                <element signature="e#14#55#0" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="GpsBean.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/bean/GpsBean.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="133">
-              <caret line="7" column="22" lean-forward="false" selection-start-line="7" selection-start-column="22" selection-end-line="7" selection-end-column="22" />
+            <state relative-caret-position="268">
+              <caret line="28" column="20" lean-forward="true" selection-start-line="28" selection-start-column="20" selection-end-line="28" selection-end-column="20" />
               <folding />
             </state>
           </provider>
@@ -195,7 +192,6 @@
         <option value="$PROJECT_DIR$/src/main/java/MyProducer.java" />
         <option value="$PROJECT_DIR$/src/main/java/MyCustomer.java" />
         <option value="$PROJECT_DIR$/src/main/java/MyFactory.java" />
-        <option value="$PROJECT_DIR$/pom.xml" />
         <option value="$PROJECT_DIR$/src/main/java/My.java" />
         <option value="$PROJECT_DIR$/src/main/java/CarBean.java" />
         <option value="$PROJECT_DIR$/src/main/java/Customer.java" />
@@ -205,8 +201,6 @@
         <option value="$PROJECT_DIR$/src/main/java/Comsumer.java" />
         <option value="$PROJECT_DIR$/src/main/java/KafkaGpsDemo.java" />
         <option value="$PROJECT_DIR$/src/main/java/Producer.java" />
-        <option value="$PROJECT_DIR$/src/main/java/db/DBCon.java" />
-        <option value="$PROJECT_DIR$/src/main/resources/db.properties" />
         <option value="$PROJECT_DIR$/src/main/java/ProduceGPSData.java" />
         <option value="$PROJECT_DIR$/src/main/java/data/ProduceGPSData.java" />
         <option value="$PROJECT_DIR$/src/main/java/properties/KafkaProperties.java" />
@@ -215,9 +209,14 @@
         <option value="$PROJECT_DIR$/src/main/java/bean/GpsBean.java" />
         <option value="$PROJECT_DIR$/src/main/java/bean/CarBean.java" />
         <option value="$PROJECT_DIR$/src/main/java/data/GPSData.java" />
-        <option value="$PROJECT_DIR$/src/main/java/Main.java" />
         <option value="$PROJECT_DIR$/src/main/java/data/CarData.java" />
         <option value="$PROJECT_DIR$/src/main/java/db/DBOper.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/db.properties" />
+        <option value="$PROJECT_DIR$/src/main/java/db/DBCon.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/log4j.properties" />
+        <option value="$PROJECT_DIR$/pom.xml" />
+        <option value="$PROJECT_DIR$/src/main/java/utils/LoggerUtil.java" />
+        <option value="$PROJECT_DIR$/src/main/java/Main.java" />
       </list>
     </option>
   </component>
@@ -248,9 +247,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
       <pane id="Scratches" />
-      <pane id="Scope" />
+      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -423,22 +421,9 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="kafkaDemo" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="kafkaDemo" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value=".idea" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -910,12 +895,14 @@
       <workItem from="1531793959681" duration="403000" />
       <workItem from="1531813317256" duration="5398000" />
       <workItem from="1531874971352" duration="9987000" />
-      <workItem from="1531899754624" duration="14173000" />
+      <workItem from="1531899754624" duration="14528000" />
+      <workItem from="1531981201506" duration="2476000" />
+      <workItem from="1532050635913" duration="6888000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="45930000" />
+    <option name="totallyTimeSpent" value="55649000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -937,17 +924,18 @@
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39784947" sideWeight="0.5030257" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.39784947" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32872504" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.39784947" sideWeight="0.4969743" order="2" side_tool="false" content_ui="tabs" x="38" y="253" width="1322" height="259" />
       <window_info id="Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32872504" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.19969743" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.20574887" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24962178" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
@@ -958,7 +946,6 @@
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
     <layout-to-restore>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -1009,32 +996,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/java/properties/KafkaProperties.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="76">
-          <caret line="4" column="31" lean-forward="false" selection-start-line="4" selection-start-column="31" selection-end-line="4" selection-end-column="31" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/kafka/Comsumer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1007">
-          <caret line="62" column="26" lean-forward="false" selection-start-line="62" selection-start-column="26" selection-end-line="62" selection-end-column="26" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/kafka/Producer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="304">
-          <caret line="22" column="0" lean-forward="true" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/pom.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="171">
@@ -1047,7 +1008,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1007">
           <caret line="62" column="26" lean-forward="false" selection-start-line="62" selection-start-column="26" selection-end-line="62" selection-end-column="26" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1055,7 +1015,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1786">
           <caret line="100" column="76" lean-forward="true" selection-start-line="100" selection-start-column="76" selection-end-line="100" selection-end-column="76" />
-          <folding />
+          <folding>
+            <element signature="imports" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1071,7 +1033,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="675">
           <caret line="31" column="49" lean-forward="false" selection-start-line="31" selection-start-column="49" selection-end-line="31" selection-end-column="49" />
-          <folding />
+          <folding>
+            <element signature="imports" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1079,7 +1043,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="75">
           <caret line="10" column="33" lean-forward="true" selection-start-line="10" selection-start-column="33" selection-end-line="10" selection-end-column="33" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1087,7 +1050,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="200">
           <caret line="8" column="30" lean-forward="false" selection-start-line="8" selection-start-column="30" selection-end-line="8" selection-end-column="30" />
-          <folding />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1096,7 +1061,7 @@
         <state relative-caret-position="300">
           <caret line="12" column="0" lean-forward="true" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="imports" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1113,7 +1078,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="675">
           <caret line="31" column="49" lean-forward="false" selection-start-line="31" selection-start-column="49" selection-end-line="31" selection-end-column="49" />
-          <folding />
+          <folding>
+            <element signature="imports" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1121,7 +1088,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="625">
           <caret line="32" column="26" lean-forward="true" selection-start-line="32" selection-start-column="26" selection-end-line="32" selection-end-column="26" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1129,7 +1095,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="200">
           <caret line="8" column="30" lean-forward="true" selection-start-line="8" selection-start-column="30" selection-end-line="8" selection-end-column="30" />
-          <folding />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1138,7 +1106,7 @@
         <state relative-caret-position="100">
           <caret line="4" column="46" lean-forward="false" selection-start-line="4" selection-start-column="40" selection-end-line="4" selection-end-column="46" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="imports" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1155,7 +1123,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="775">
           <caret line="31" column="49" lean-forward="false" selection-start-line="31" selection-start-column="49" selection-end-line="31" selection-end-column="49" />
-          <folding />
+          <folding>
+            <element signature="imports" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1163,7 +1133,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="900">
           <caret line="36" column="40" lean-forward="false" selection-start-line="36" selection-start-column="32" selection-end-line="36" selection-end-column="40" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1172,7 +1141,7 @@
         <state relative-caret-position="150">
           <caret line="6" column="52" lean-forward="false" selection-start-line="6" selection-start-column="48" selection-end-line="6" selection-end-column="52" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="imports" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1181,7 +1150,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="275">
           <caret line="11" column="30" lean-forward="true" selection-start-line="11" selection-start-column="30" selection-end-line="11" selection-end-column="30" />
-          <folding />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1197,7 +1168,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="775">
           <caret line="31" column="49" lean-forward="true" selection-start-line="31" selection-start-column="49" selection-end-line="31" selection-end-column="49" />
-          <folding />
+          <folding>
+            <element signature="imports" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1205,7 +1178,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="900">
           <caret line="36" column="40" lean-forward="false" selection-start-line="36" selection-start-column="32" selection-end-line="36" selection-end-column="40" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1214,7 +1186,7 @@
         <state relative-caret-position="150">
           <caret line="6" column="52" lean-forward="false" selection-start-line="6" selection-start-column="48" selection-end-line="6" selection-end-column="52" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="imports" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1223,14 +1195,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="275">
           <caret line="11" column="30" lean-forward="false" selection-start-line="11" selection-start-column="30" selection-end-line="11" selection-end-column="30" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://D:/Java/jdk1.8.0_102/src.zip!/java/lang/Thread.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="129">
-          <caret line="834" column="22" lean-forward="false" selection-start-line="834" selection-start-column="22" selection-end-line="834" selection-end-column="22" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1260,7 +1227,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="45">
           <caret line="321" column="17" lean-forward="true" selection-start-line="320" selection-start-column="7" selection-end-line="321" selection-end-column="18" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1300,28 +1266,12 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/kafka.properties">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="19">
-          <caret line="1" column="30" lean-forward="false" selection-start-line="1" selection-start-column="27" selection-end-line="1" selection-end-column="30" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/db.properties">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="38">
-          <caret line="2" column="16" lean-forward="false" selection-start-line="2" selection-start-column="16" selection-end-line="2" selection-end-column="16" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/properties/KafkaProperties.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-110">
           <caret line="39" column="0" lean-forward="true" selection-start-line="39" selection-start-column="0" selection-end-line="39" selection-end-column="0" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="imports" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1330,7 +1280,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="133">
           <caret line="15" column="13" lean-forward="false" selection-start-line="15" selection-start-column="13" selection-end-line="15" selection-end-column="13" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1338,7 +1287,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="133">
           <caret line="7" column="22" lean-forward="false" selection-start-line="7" selection-start-column="22" selection-end-line="7" selection-end-column="22" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1346,70 +1294,25 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1330">
           <caret line="77" column="6" lean-forward="false" selection-start-line="77" selection-start-column="6" selection-end-line="77" selection-end-column="6" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/bean/CarBean.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="114">
-          <caret line="9" column="25" lean-forward="false" selection-start-line="9" selection-start-column="25" selection-end-line="9" selection-end-column="25" />
           <folding>
-            <element signature="e#293#294#0" expanded="true" />
-            <element signature="e#321#322#0" expanded="true" />
-            <element signature="e#363#364#0" expanded="true" />
-            <element signature="e#397#398#0" expanded="true" />
-            <element signature="e#429#430#0" expanded="true" />
-            <element signature="e#457#458#0" expanded="true" />
-            <element signature="e#499#500#0" expanded="true" />
-            <element signature="e#533#534#0" expanded="true" />
-            <element signature="e#565#566#0" expanded="true" />
-            <element signature="e#593#594#0" expanded="true" />
-            <element signature="e#635#636#0" expanded="true" />
-            <element signature="e#669#670#0" expanded="true" />
-            <element signature="e#702#703#0" expanded="true" />
-            <element signature="e#731#732#0" expanded="true" />
-            <element signature="e#775#776#0" expanded="true" />
-            <element signature="e#811#812#0" expanded="true" />
-            <element signature="e#843#844#0" expanded="true" />
-            <element signature="e#871#872#0" expanded="true" />
-            <element signature="e#913#914#0" expanded="true" />
-            <element signature="e#947#948#0" expanded="true" />
-            <element signature="e#979#980#0" expanded="true" />
-            <element signature="e#1007#1008#0" expanded="true" />
-            <element signature="e#1049#1050#0" expanded="true" />
-            <element signature="e#1083#1084#0" expanded="true" />
+            <element signature="imports" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/data/GPSData.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2470">
+        <state relative-caret-position="2508">
           <caret line="142" column="21" lean-forward="false" selection-start-line="142" selection-start-column="21" selection-end-line="142" selection-end-column="21" />
           <folding>
-            <element signature="e#14#55#0" expanded="false" />
+            <element signature="imports" expanded="false" />
+            <element signature="e#438#446#0" expanded="false" />
+            <element signature="e#1614#1623#0" expanded="false" />
+            <element signature="e#4041#4042#0" expanded="false" />
+            <element signature="e#4082#4083#0" expanded="false" />
+            <element signature="e#4364#4365#0" expanded="false" />
+            <element signature="e#4407#4408#0" expanded="false" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/db/DBCon.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-544">
-          <caret line="12" column="13" lean-forward="false" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#445#446#0" expanded="true" />
-            <element signature="e#478#479#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pom.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="342">
-          <caret line="18" column="40" lean-forward="true" selection-start-line="18" selection-start-column="40" selection-end-line="18" selection-end-column="40" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1417,53 +1320,159 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="8">
           <caret line="1221" column="0" lean-forward="false" selection-start-line="1221" selection-start-column="0" selection-end-line="1221" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/Main.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="114">
-          <caret line="12" column="37" lean-forward="true" selection-start-line="12" selection-start-column="37" selection-end-line="12" selection-end-column="37" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/data/CarData.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-22">
+        <state relative-caret-position="1444">
           <caret line="79" column="43" lean-forward="false" selection-start-line="79" selection-start-column="43" selection-end-line="79" selection-end-column="43" />
           <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#1883#1892#0" expanded="true" />
+            <element signature="imports" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/bean/CarBean.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="171">
+          <caret line="9" column="25" lean-forward="false" selection-start-line="9" selection-start-column="25" selection-end-line="9" selection-end-column="25" />
+          <folding>
+            <element signature="e#293#294#0" expanded="false" />
+            <element signature="e#321#322#0" expanded="false" />
+            <element signature="e#363#364#0" expanded="false" />
+            <element signature="e#397#398#0" expanded="false" />
+            <element signature="e#429#430#0" expanded="false" />
+            <element signature="e#457#458#0" expanded="false" />
+            <element signature="e#499#500#0" expanded="false" />
+            <element signature="e#533#534#0" expanded="false" />
+            <element signature="e#565#566#0" expanded="false" />
+            <element signature="e#593#594#0" expanded="false" />
+            <element signature="e#635#636#0" expanded="false" />
+            <element signature="e#669#670#0" expanded="false" />
+            <element signature="e#702#703#0" expanded="false" />
+            <element signature="e#731#732#0" expanded="false" />
+            <element signature="e#775#776#0" expanded="false" />
+            <element signature="e#811#812#0" expanded="false" />
+            <element signature="e#843#844#0" expanded="false" />
+            <element signature="e#871#872#0" expanded="false" />
+            <element signature="e#913#914#0" expanded="false" />
+            <element signature="e#947#948#0" expanded="false" />
+            <element signature="e#979#980#0" expanded="false" />
+            <element signature="e#1007#1008#0" expanded="false" />
+            <element signature="e#1049#1050#0" expanded="false" />
+            <element signature="e#1083#1084#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/db/DBOper.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="130">
-          <caret line="133" column="50" lean-forward="false" selection-start-line="133" selection-start-column="50" selection-end-line="133" selection-end-column="50" />
+        <state relative-caret-position="2223">
+          <caret line="124" column="36" lean-forward="false" selection-start-line="124" selection-start-column="36" selection-end-line="124" selection-end-column="36" />
+          <folding>
+            <marker date="1531981959176" expanded="true" signature="919:980" ph="INSERT INTO car... " />
+            <marker date="1531981959176" expanded="true" signature="2889:2919" ph="INSERT INTO gps... " />
+            <marker date="1531981959176" expanded="true" signature="3069:3070" ph="INSERT INTO gps... " />
+            <marker date="1531981959176" expanded="true" signature="3069:3101" ph="INSERT INTO gps... " />
+            <marker date="1531981959176" expanded="true" signature="3069:3112" ph="INSERT INTO gps... " />
+            <marker date="1531981959176" expanded="true" signature="3069:3142" ph="INSERT INTO gps... " />
+            <marker date="1531981959176" expanded="true" signature="4042:4084" ph="INSERT INTO cardevice... " />
+            <marker date="1531981959176" expanded="true" signature="4240:4241" ph="INSERT INTO cardevice... " />
+            <marker date="1531981959176" expanded="true" signature="4240:4272" ph="INSERT INTO cardevice... " />
+            <marker date="1531981959176" expanded="true" signature="4240:4298" ph="INSERT INTO cardevice... " />
+            <marker date="1531981959176" expanded="true" signature="4240:4304" ph="INSERT INTO cardevice... " />
+            <marker date="1531981959176" expanded="true" signature="4240:4335" ph="INSERT INTO cardevice... " />
+            <marker date="1531981959176" expanded="true" signature="4240:4361" ph="INSERT INTO cardevice... " />
+            <marker date="1531981959176" expanded="true" signature="4240:4391" ph="INSERT INTO cardevice... " />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/log4j.properties">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="253">
+          <caret line="23" column="94" lean-forward="false" selection-start-line="23" selection-start-column="94" selection-end-line="23" selection-end-column="94" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://D:/Java/jdk1.8.0_102/src.zip!/java/lang/Thread.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="122">
+          <caret line="1555" column="0" lean-forward="false" selection-start-line="1555" selection-start-column="0" selection-end-line="1555" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/jxl.log">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="38">
+          <caret line="2" column="33" lean-forward="false" selection-start-line="2" selection-start-column="33" selection-end-line="2" selection-end-column="33" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="268">
+          <caret line="28" column="20" lean-forward="true" selection-start-line="28" selection-start-column="20" selection-end-line="28" selection-end-column="20" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/kafka.properties">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="15" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/db/DBCon.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#341#349#0" expanded="true" />
-            <element signature="e#403#411#0" expanded="true" />
-            <element signature="e#436#437#0" expanded="true" />
-            <element signature="e#484#485#0" expanded="true" />
-            <marker date="1531980755087" expanded="true" signature="845:906" ph="INSERT INTO car... " />
-            <marker date="1531980755087" expanded="true" signature="2813:2843" ph="INSERT INTO gps... " />
-            <marker date="1531980755087" expanded="true" signature="2993:2994" ph="INSERT INTO gps... " />
-            <marker date="1531980755087" expanded="true" signature="2993:3025" ph="INSERT INTO gps... " />
-            <marker date="1531980755087" expanded="true" signature="2993:3036" ph="INSERT INTO gps... " />
-            <marker date="1531980755087" expanded="true" signature="2993:3066" ph="INSERT INTO gps... " />
-            <marker date="1531980755087" expanded="true" signature="3918:3960" ph="INSERT INTO cardevice... " />
-            <marker date="1531980755087" expanded="true" signature="4116:4117" ph="INSERT INTO cardevice... " />
-            <marker date="1531980755087" expanded="true" signature="4116:4148" ph="INSERT INTO cardevice... " />
-            <marker date="1531980755087" expanded="true" signature="4116:4174" ph="INSERT INTO cardevice... " />
-            <marker date="1531980755087" expanded="true" signature="4116:4180" ph="INSERT INTO cardevice... " />
-            <marker date="1531980755087" expanded="true" signature="4116:4211" ph="INSERT INTO cardevice... " />
-            <marker date="1531980755087" expanded="true" signature="4116:4237" ph="INSERT INTO cardevice... " />
-            <marker date="1531980755087" expanded="true" signature="4116:4267" ph="INSERT INTO cardevice... " />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/db.properties">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="19">
+          <caret line="1" column="12" lean-forward="false" selection-start-line="1" selection-start-column="12" selection-end-line="1" selection-end-column="12" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/utils/LoggerUtil.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="111">
+          <caret line="68" column="5" lean-forward="false" selection-start-line="68" selection-start-column="5" selection-end-line="68" selection-end-column="5" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#1607#1608#0" expanded="true" />
+            <element signature="e#1642#1643#0" expanded="true" />
+            <element signature="e#1685#1686#0" expanded="true" />
+            <element signature="e#1719#1720#0" expanded="true" />
+            <element signature="e#1762#1763#0" expanded="true" />
+            <element signature="e#1796#1797#0" expanded="true" />
+            <element signature="e#1840#1841#0" expanded="true" />
+            <element signature="e#1875#1876#0" expanded="true" />
+            <element signature="e#1920#1921#0" expanded="true" />
+            <element signature="e#1955#1956#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/Main.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="95">
+          <caret line="11" column="39" lean-forward="true" selection-start-line="11" selection-start-column="39" selection-end-line="11" selection-end-column="39" />
+          <folding>
+            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
