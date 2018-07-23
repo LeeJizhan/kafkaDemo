@@ -1,3 +1,5 @@
+import kafka.Comsumer;
+import kafka.Producer;
 import properties.KafkaProperties;
 import utils.LoggerUtil;
 
@@ -15,10 +17,10 @@ public class Main {
         String topic = kafkaProperties.getKafkaTopic();
         boolean isAsync = true;
         LoggerUtil.info(topic);
-//        Producer producer = new Producer(topic, isAsync);
-//        producer.start();
-//        //producerThread.stop();
-//        Comsumer comsumer = new Comsumer(topic);
-//        comsumer.start();
+        Producer producer = new Producer(topic, isAsync);
+        producer.start();
+        //producerThread.stop();
+        Comsumer comsumer = new Comsumer(topic);
+        comsumer.start();
     }
 }

@@ -6,6 +6,7 @@ import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.apache.kafka.clients.consumer.ConsumerRecords;
 import org.apache.kafka.clients.consumer.KafkaConsumer;
 import properties.KafkaProperties;
+import utils.LoggerUtil;
 
 import java.util.Arrays;
 import java.util.Properties;
@@ -14,7 +15,7 @@ import java.util.Properties;
  * Created by Asus- on 2018/7/12.
  */
 public class Comsumer extends ShutdownableThread {
-    private final KafkaConsumer<Integer, String> consumer;
+    private final KafkaConsumer<String, String> consumer;
     private final String topic;
 
     //构造方法
@@ -26,6 +27,8 @@ public class Comsumer extends ShutdownableThread {
         Properties props = new Properties();
         KafkaProperties kafkaProperties = KafkaProperties.getInstance();
 
+        LoggerUtil.info(kafkaProperties.getKafkaServerUrl() + ":" + kafkaProperties.getKafkaServerPort());
+        LoggerUtil.info(kafkaProperties.getKafkaGroupID());
         //BOOTSTRAP_SERVERS_CONFIG - ip地址和端口号配置
         props.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, kafkaProperties.getKafkaServerUrl() + ":" + kafkaProperties.getKafkaServerPort());
         //GroupID配置
@@ -37,14 +40,14 @@ public class Comsumer extends ShutdownableThread {
         //session timeout 30000ms
         props.put(ConsumerConfig.SESSION_TIMEOUT_MS_CONFIG, "30000");
         //key值的序列化方式
-        props.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, "org.apache.kafka.common.serialization.IntegerDeserializer");
+        props.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, "org.apache.kafka.common.serialization.StringDeserializer");
         //value的序列化方式
         props.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, "org.apache.kafka.common.serialization.StringDeserializer");
         /**
          * 新建一个KafkaConsumer实例
          * 用于从Kafka集群接收记录。
          */
-        consumer = new KafkaConsumer<Integer, String>(props);
+        consumer = new KafkaConsumer<String, String>(props);
         this.topic = topic;
     }
 
@@ -53,9 +56,10 @@ public class Comsumer extends ShutdownableThread {
         //消费者通过订阅来进行消费，this.topic表示当前主题
         consumer.subscribe(Arrays.asList(this.topic));
         //ConsumerRecords作为ConsumerRecord的容器，用于保存特定主题的每个分区的ConsumerRecord列表
-        ConsumerRecords<Integer, String> records = consumer.poll(1000);
-        for (ConsumerRecord<Integer, String> record : records) {
-            System.out.println("Received message:" + record.value() + ". At offset " + record.offset());
+        //poll():使用预订/分配API之一获取指定的主题或分区的数据。 如果在轮询数据之前未预订主题，这将返回错误。
+        ConsumerRecords<String, String> records = consumer.poll(1000);
+        for (ConsumerRecord<String, String> record : records) {
+            LoggerUtil.info("Received message:" + record.value() + ". At offset " + record.offset());
         }
     }
 }

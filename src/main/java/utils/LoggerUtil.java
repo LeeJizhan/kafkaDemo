@@ -64,7 +64,7 @@ public class LoggerUtil {
         logger().error(msg);
     }
 
-    public static void wran(String msg) {
+    public static void warn(String msg) {
         logger().warn(msg);
     }
 

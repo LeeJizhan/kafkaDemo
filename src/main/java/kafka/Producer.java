@@ -5,16 +5,18 @@ import org.apache.kafka.clients.producer.*;
 import org.apache.kafka.common.serialization.IntegerSerializer;
 import org.apache.kafka.common.serialization.StringSerializer;
 import properties.KafkaProperties;
+import utils.LoggerUtil;
 
 import java.util.List;
 import java.util.Properties;
+import java.util.logging.Logger;
 
 /**
  * Created by Asus- on 2018/7/12.
  */
 public class Producer extends Thread {
 
-    private final KafkaProducer<Integer, String> producer;
+    private final KafkaProducer<String, String> producer;
     private final String topic;
     private final Boolean isAsync;
 
@@ -22,15 +24,16 @@ public class Producer extends Thread {
         Properties props = new Properties();
 
         KafkaProperties kafkaProperties = KafkaProperties.getInstance();
-        System.out.println("server : " + kafkaProperties.getKafkaServerUrl() + ":" + kafkaProperties.getKafkaServerPort());
-        System.out.println("groupId : " + kafkaProperties.getKafkaGroupID());
+        LoggerUtil.info("server : " + kafkaProperties.getKafkaServerUrl() + ":" + kafkaProperties.getKafkaServerPort());
+        LoggerUtil.info("groupId : " + kafkaProperties.getKafkaGroupID());
+        LoggerUtil.info("topic : " + kafkaProperties.getKafkaTopic());
 
         //BOOTSTRAP_SERVERS_CONFIG - ip地址和端口号配置
         props.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, kafkaProperties.getKafkaServerUrl() + ":" + kafkaProperties.getKafkaServerPort());
         //GroupID配置
         props.put(ProducerConfig.CLIENT_ID_CONFIG, kafkaProperties.getKafkaGroupID());
         //key值的序列化方式
-        props.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, IntegerSerializer.class.getName());
+        props.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, StringSerializer.class.getName());
         //value的序列化方式
         props.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, StringSerializer.class.getName());
 
@@ -38,7 +41,7 @@ public class Producer extends Thread {
          * 新建一个KafkaProducer对象实例
          * ProducerRecord是发送到Kafka cluster.ProducerRecord类构造函数的键/值对
          */
-        producer = new KafkaProducer<Integer, String>(props);
+        producer = new KafkaProducer<String, String>(props);
         this.topic = topic;
         this.isAsync = isAsync;
     }
@@ -63,18 +66,23 @@ public class Producer extends Thread {
             if (isAsync) {
                 //发送信息，包括topic和键值对
                 for (String messageStr : data) {
-                    producer.send(new ProducerRecord<Integer, String>(topic,
-                            messageNo,
+                    producer.send(new ProducerRecord<String, String>(topic,
+                            Integer.toString(messageNo),
                             messageStr), new DemoCallBack(startTime, messageNo, messageStr));
-                    System.out.println("Sent message:" + messageStr);
+                    LoggerUtil.info("Sent message:" + messageStr);
                 }
             }
             count--;
             messageNo++;
         }
+        //关闭
+        producer.close();
     }
 }
 
+/**
+ * 发送成功回调
+ */
 class DemoCallBack implements Callback {
     private final long startTime;
     private final int key;
@@ -98,7 +106,7 @@ class DemoCallBack implements Callback {
     public void onCompletion(RecordMetadata metadata, Exception exception) {
         long elapsedTime = System.currentTimeMillis() - startTime;
         if (metadata != null) {
-            System.out.println(
+            LoggerUtil.info(
                     "message(" + key + ", " + message + ") sent to partition(" + metadata.partition() +
                             "), " +
                             "offset(" + metadata.offset() + ") in " + elapsedTime + " ms");
