@@ -1,5 +1,6 @@
 import bean.CarBean;
 import data.CarData;
+import db.DBOper;
 import kafka.Comsumer;
 import kafka.Producer;
 import properties.KafkaProperties;
