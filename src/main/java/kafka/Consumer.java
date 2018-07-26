@@ -14,12 +14,12 @@ import java.util.Properties;
 /**
  * Created by Asus- on 2018/7/12.
  */
-public class Comsumer extends ShutdownableThread {
+public class Consumer extends ShutdownableThread {
     private final KafkaConsumer<String, String> consumer;
     private final String topic;
 
     //构造方法
-    public Comsumer(String topic) {
+    public Consumer(String topic) {
 
         super("KafkaConsumerExample", false);
 

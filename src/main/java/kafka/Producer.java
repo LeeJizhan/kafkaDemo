@@ -2,14 +2,12 @@ package kafka;
 
 import data.GPSData;
 import org.apache.kafka.clients.producer.*;
-import org.apache.kafka.common.serialization.IntegerSerializer;
 import org.apache.kafka.common.serialization.StringSerializer;
 import properties.KafkaProperties;
 import utils.LoggerUtil;
 
 import java.util.List;
 import java.util.Properties;
-import java.util.logging.Logger;
 
 /**
  * Created by Asus- on 2018/7/12.
@@ -24,19 +22,21 @@ public class Producer extends Thread {
         Properties props = new Properties();
 
         KafkaProperties kafkaProperties = KafkaProperties.getInstance();
-        LoggerUtil.info("server : " + kafkaProperties.getKafkaServerUrl() + ":" + kafkaProperties.getKafkaServerPort());
-        LoggerUtil.info("groupId : " + kafkaProperties.getKafkaGroupID());
-        LoggerUtil.info("topic : " + kafkaProperties.getKafkaTopic());
+        LoggerUtil.info("server:" + kafkaProperties.getKafkaServerUrl() + ":" + kafkaProperties.getKafkaServerPort());
+        LoggerUtil.info("groupId:" + kafkaProperties.getKafkaGroupID());
+        LoggerUtil.info("topic:" + kafkaProperties.getKafkaTopic());
 
         //BOOTSTRAP_SERVERS_CONFIG - ip地址和端口号配置
         props.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, kafkaProperties.getKafkaServerUrl() + ":" + kafkaProperties.getKafkaServerPort());
-        //GroupID配置
-        props.put(ProducerConfig.CLIENT_ID_CONFIG, kafkaProperties.getKafkaGroupID());
+        //ClientID配置
+        props.put(ProducerConfig.CLIENT_ID_CONFIG, "DemoProducer");
         //key值的序列化方式
         props.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, StringSerializer.class.getName());
         //value的序列化方式
         props.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, StringSerializer.class.getName());
 
+        props.put("acks", "1");
+        props.put("retries", 0);
         /**
          * 新建一个KafkaProducer对象实例
          * ProducerRecord是发送到Kafka cluster.ProducerRecord类构造函数的键/值对
@@ -58,18 +58,18 @@ public class Producer extends Thread {
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-            try {
-                Thread.sleep(100);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
+//            try {
+//                Thread.sleep(100);
+//            } catch (InterruptedException e) {
+//                e.printStackTrace();
+//            }
             if (isAsync) {
                 //发送信息，包括topic和键值对
                 for (String messageStr : data) {
                     producer.send(new ProducerRecord<String, String>(topic,
                             Integer.toString(messageNo),
                             messageStr), new DemoCallBack(startTime, messageNo, messageStr));
-                    LoggerUtil.info("Sent message:" + messageStr);
+                    //LoggerUtil.info("Sent message:" + messageStr);
                 }
             }
             count--;
