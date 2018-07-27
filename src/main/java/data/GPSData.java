@@ -5,10 +5,7 @@ package data; /**
 import bean.GpsBean;
 
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.Random;
+import java.util.*;
 
 public class GPSData {
 
@@ -16,20 +13,124 @@ public class GPSData {
     //地球半径
     private static double radiusEarth = 6372.796924d;
 
-    private static List<GpsBean> gpsBeanList;
+    private static List<GpsBean> gpsBeanList = new ArrayList<GpsBean>();
 
     private List<String> gpsJsons = new ArrayList<String>();
 
-    public GPSData() throws InterruptedException {
-        this.gpsBeanList = calculate(10, 34.259516, 109.003784, 0.1);
+    //carNum,地图上显示的车辆数量 0<carNum<=10000
+    private static final int carNum = 10;
+    //依次为北京经纬度,上海经纬度,广州经纬度,深圳经纬度,珠海经纬度
+    private static final String[] LatAndLon = {
+            "39.911066,116.413610",
+            "31.236342,121.480329",
+            "23.135166,113.270813",
+            "22.608554,114.066134",
+            "22.261019,113.563614",
+    };
+
+    private static Map<Integer, Double> latMap = new HashMap<Integer, Double>();
+    private static Map<Integer, Double> lonMap = new HashMap<Integer, Double>();
+    private static Map<Integer, Double> bearingMap = new HashMap<Integer, Double>();
+
+    public GPSData() {
+        initData();
     }
 
-    public List<String> getData() {
-        String msg = null;
-        if (!gpsJsons.isEmpty()){
+    /**
+     * 初始化数据
+     */
+    private void initData() {
+        for (int i = 1; i <= carNum; i++) {
+            double[] start = setStart();
+            latMap.put(i, start[0]);
+            lonMap.put(i, start[1]);
+            bearingMap.put(i, 0.0);
+        }
+    }
+
+    /**
+     * 设置初始的经纬度
+     *
+     * @return
+     */
+    private double[] setStart() {
+        double[] result = new double[2];
+        String gps = getLatAndLon();
+        String[] latAndLon = gps.split(",");
+        double lat = Double.valueOf(latAndLon[0]);
+        double lon = Double.valueOf(latAndLon[1]);
+        //纬度变化0-0.02
+        double latRand = new Random().nextDouble() / 50.0;
+        int plus2 = new Random().nextInt(65535) % 2;
+        if (plus2 == 0) {
+            result[0] = lat - latRand;
+        } else {
+            result[0] = lat + latRand;
+        }
+        //经度变化在0-0.025
+        double lonRand = new Random().nextDouble() / 40.0;
+        int plus = new Random().nextInt(65535) % 2;
+        if (plus == 0) {
+            result[1] = lon - lonRand;
+        } else {
+            result[1] = lon + lonRand;
+        }
+        return result;
+    }
+
+    /**
+     * 计算每辆车的位置信息
+     *
+     * @throws InterruptedException
+     */
+    private void fitData() throws InterruptedException {
+        if (!gpsBeanList.isEmpty()) {
+            lonMap.clear();
+            latMap.clear();
+            bearingMap.clear();
+            //更新汽车位置信息
+            for (GpsBean bean : gpsBeanList) {
+                lonMap.put(Integer.valueOf(bean.getGpsID()), Double.valueOf(bean.getLongitude()));
+                latMap.put(Integer.valueOf(bean.getGpsID()), Double.valueOf(bean.getLatitude()));
+                bearingMap.put(Integer.valueOf(bean.getGpsID()), Double.valueOf(bean.getBearing()));
+            }
+            gpsBeanList.clear();
+        }
+        boolean isRun;
+        //重新计算车辆位置
+        for (int i = 1; i <= carNum; i++) {
+            double percent = new Random().nextDouble();
+            //5%的概率停车
+            if (percent >= 0.95) {
+                isRun = false;
+            } else {
+                isRun = true;
+            }
+            double startLat = latMap.get(i);
+            double startLon = lonMap.get(i);
+            double bearing = bearingMap.get(i);
+
+            if (isRun) {
+                gpsBeanList.add(carRun(Integer.toString(i), startLat, startLon, 0.1));
+            } else {
+                gpsBeanList.add(carStop(Integer.toString(i), startLat, startLon, bearing));
+            }
+        }
+    }
+
+    /**
+     * 对外接口，得到json数据集
+     *
+     * @return
+     * @throws InterruptedException
+     */
+    public List<String> getData() throws InterruptedException {
+        fitData();
+        String msg;
+        if (!gpsJsons.isEmpty()) {
             gpsJsons.clear();
         }
-        for (GpsBean bean : gpsBeanList){
+        for (GpsBean bean : gpsBeanList) {
             msg = "{"
                     + "\"gpsdata\"" + ":"
                     + "{"
@@ -46,8 +147,17 @@ public class GPSData {
         return gpsJsons;
     }
 
-    public List<GpsBean> calculate(int p, double startlat, double startlon, double maxdist) throws InterruptedException {
-        List<GpsBean> rtnList = new ArrayList<GpsBean>();
+    /**
+     * 车辆运动
+     *
+     * @param gpsID
+     * @param startlat
+     * @param startlon
+     * @param maxdist
+     * @return
+     * @throws InterruptedException
+     */
+    private GpsBean carRun(String gpsID, double startlat, double startlon, double maxdist) throws InterruptedException {
         double finalLat;
         double finalLon;
         double[] brg = new double[]{0, 180, 0};
@@ -65,38 +175,51 @@ public class GPSData {
         double cosstartlat = Math.cos(startlat);
         double distance;
         double rad360 = 2 * Math.PI;//圆周率
-        String cardID = getCarID();
-        if (!rtnList.isEmpty()) {
-            rtnList.clear();
-        }
-        //点数
-        for (int k = 0; k < p; k++) {
-            //模拟车辆停止
+        //模拟车辆停止
 //            int randomSleepTime = (int) Math.round(Math.random() * 100);
 //            Thread.sleep(randomSleepTime);
-            //生成0-1的随机数
-            double rand1 = new Random().nextDouble();
-            distance = Math.acos(rand1 * (Math.cos(maxdist) - 1) + 1);//随机数
-            brg[0] = rad360 * new Random().nextDouble();
-            //最终点的经纬度
-            finalLat = Math.asin(sinstartlat * Math.cos(distance) + cosstartlat * Math.sin(distance) * Math.cos(brg[0]));
-            finalLon = deg(normalizeLongitude(startlon * 1 + Math.atan2(Math.sin(brg[0])
-                    * Math.sin(distance) * cosstartlat, Math.cos(distance) - sinstartlat * Math.sin(distance))));
-            finalLat = deg(finalLat);
+        //生成0-1的随机数
+        double rand1 = new Random().nextDouble();
+        distance = Math.acos(rand1 * (Math.cos(maxdist) - 1) + 1);//随机数
+        brg[0] = rad360 * new Random().nextDouble();
+        //最终点的经纬度
+        finalLat = Math.asin(sinstartlat * Math.cos(distance) + cosstartlat * Math.sin(distance) * Math.cos(brg[0]));
+        finalLon = deg(normalizeLongitude(startlon * 1 + Math.atan2(Math.sin(brg[0])
+                * Math.sin(distance) * cosstartlat, Math.cos(distance) - sinstartlat * Math.sin(distance))));
+        finalLat = deg(finalLat);
 
-            distance = (double) Math.round(distance * radiusEarth * 10000) / 10000.0;
-            brg[0] = Math.round(deg(brg[0]) * 1000) / 1000;//随机距离
-            String time = getTime();
-            GpsBean gpsBean = new GpsBean();
-            gpsBean.setGpsID(cardID);
-            gpsBean.setTime(time);
-            gpsBean.setLongitude(padZeroRight(finalLon));
-            gpsBean.setLatitude(padZeroRight(finalLat));
-            gpsBean.setBearing(brg[j] + "");
-            gpsBean.setDistance(distance + "");
-            rtnList.add(gpsBean);
-        }
-        return rtnList;
+        distance = (double) Math.round(distance * radiusEarth * 10000) / 10000.0;
+        brg[0] = Math.round(deg(brg[0]) * 1000) / 1000;//随机距离
+        String time = getTime();
+        GpsBean gpsBean = new GpsBean();
+        gpsBean.setGpsID(gpsID);
+        gpsBean.setTime(time);
+        gpsBean.setLongitude(padZeroRight(finalLon));
+        gpsBean.setLatitude(padZeroRight(finalLat));
+        gpsBean.setBearing(brg[j] + "");
+        gpsBean.setDistance(distance + "");
+        return gpsBean;
+    }
+
+    /**
+     * 车辆停止
+     *
+     * @param gpsID
+     * @param startLat
+     * @param startLon
+     * @param bearing
+     * @return
+     */
+    private GpsBean carStop(String gpsID, double startLat, double startLon, double bearing) {
+        String time = getTime();
+        GpsBean gpsBean = new GpsBean();
+        gpsBean.setGpsID(gpsID);
+        gpsBean.setTime(time);
+        gpsBean.setLongitude(String.valueOf(startLon));
+        gpsBean.setLatitude(String.valueOf(startLat));
+        gpsBean.setBearing(String.valueOf(bearing));
+        gpsBean.setDistance("0.0000");
+        return gpsBean;
     }
 
     public static String padZeroRight(double s) {
@@ -130,6 +253,11 @@ public class GPSData {
         return (dg * Math.PI / 180);
     }
 
+    /**
+     * 获取当前时间
+     *
+     * @return
+     */
     public static String getTime() {
         Date now = new Date();
         //设置日期格式
@@ -138,8 +266,13 @@ public class GPSData {
         return time;
     }
 
-    public static String getCarID() {
-        String carID = Math.round(Math.random() * 1000) + "";
-        return carID;
+    /**
+     * 城市经纬度
+     *
+     * @return
+     */
+    public String getLatAndLon() {
+        int index = new Random().nextInt(LatAndLon.length);
+        return LatAndLon[index];
     }
 }
