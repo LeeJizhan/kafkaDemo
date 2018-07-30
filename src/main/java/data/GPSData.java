@@ -13,12 +13,14 @@ public class GPSData {
     //地球半径
     private static double radiusEarth = 6372.796924d;
 
+    private static boolean isRun;
+
     private static List<GpsBean> gpsBeanList = new ArrayList<GpsBean>();
 
     private List<String> gpsJsons = new ArrayList<String>();
 
     //carNum,地图上显示的车辆数量 0<carNum<=10000
-    private static final int carNum = 10;
+    private static final int carNum = 6;
     //依次为北京经纬度,上海经纬度,广州经纬度,深圳经纬度,珠海经纬度
     private static final String[] LatAndLon = {
             "39.911066,116.413610",
@@ -31,6 +33,7 @@ public class GPSData {
     private static Map<Integer, Double> latMap = new HashMap<Integer, Double>();
     private static Map<Integer, Double> lonMap = new HashMap<Integer, Double>();
     private static Map<Integer, Double> bearingMap = new HashMap<Integer, Double>();
+    private static Map<Integer, Double> distanceMap = new HashMap<Integer, Double>();
 
     public GPSData() {
         initData();
@@ -45,6 +48,7 @@ public class GPSData {
             latMap.put(i, start[0]);
             lonMap.put(i, start[1]);
             bearingMap.put(i, 0.0);
+            distanceMap.put(i, 0.001);
         }
     }
 
@@ -88,32 +92,54 @@ public class GPSData {
             lonMap.clear();
             latMap.clear();
             bearingMap.clear();
+            distanceMap.clear();
             //更新汽车位置信息
             for (GpsBean bean : gpsBeanList) {
                 lonMap.put(Integer.valueOf(bean.getGpsID()), Double.valueOf(bean.getLongitude()));
                 latMap.put(Integer.valueOf(bean.getGpsID()), Double.valueOf(bean.getLatitude()));
                 bearingMap.put(Integer.valueOf(bean.getGpsID()), Double.valueOf(bean.getBearing()));
+                distanceMap.put(Integer.valueOf(bean.getGpsID()), Double.valueOf(bean.getDistance()));
             }
             gpsBeanList.clear();
         }
-        boolean isRun;
         //重新计算车辆位置
         for (int i = 1; i <= carNum; i++) {
-            double percent = new Random().nextDouble();
-            //5%的概率停车
-            if (percent >= 0.95) {
-                isRun = false;
-            } else {
+            double distance = distanceMap.get(i);
+            if (distance != 0.0) {
                 isRun = true;
-            }
-            double startLat = latMap.get(i);
-            double startLon = lonMap.get(i);
-            double bearing = bearingMap.get(i);
-
-            if (isRun) {
-                gpsBeanList.add(carRun(Integer.toString(i), startLat, startLon, 0.1));
             } else {
-                gpsBeanList.add(carStop(Integer.toString(i), startLat, startLon, bearing));
+                isRun = false;
+            }
+            if (isRun) {//如果是运动的车，那么5%的概率停车
+                double percent = new Random().nextDouble();
+                if (percent >= 0.95) {
+                    isRun = false;
+                } else {
+                    isRun = true;
+                }
+                double startLat = latMap.get(i);
+                double startLon = lonMap.get(i);
+                double bearing = bearingMap.get(i);
+                if (isRun) {
+                    gpsBeanList.add(carRun(Integer.toString(i), startLat, startLon, 0.1));
+                } else {
+                    gpsBeanList.add(carStop(Integer.toString(i), startLat, startLon, bearing));
+                }
+            } else {//如果是静止的车，那么5%的概率开车
+                double percent = new Random().nextDouble();
+                if (percent <= 0.95) {
+                    isRun = false;
+                } else {
+                    isRun = true;
+                }
+                double startLat = latMap.get(i);
+                double startLon = lonMap.get(i);
+                double bearing = bearingMap.get(i);
+                if (isRun) {
+                    gpsBeanList.add(carRun(Integer.toString(i), startLat, startLon, 0.1));
+                } else {
+                    gpsBeanList.add(carStop(Integer.toString(i), startLat, startLon, bearing));
+                }
             }
         }
     }
