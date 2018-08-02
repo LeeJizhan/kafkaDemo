@@ -1,6 +1,7 @@
 package kafka;
 
 import data.GPSData;
+import db.DBOper;
 import org.apache.kafka.clients.producer.*;
 import org.apache.kafka.common.serialization.StringSerializer;
 import properties.KafkaProperties;
@@ -47,37 +48,33 @@ public class Producer extends Thread {
     }
 
     public void run() {
-        int count = 10;
+        int index = 1;
+        int count = 10000;
         int messageNo = 0;
         long startTime = System.currentTimeMillis();
-
-        while (count > 0) {
-            List<String> data = null;
-            try {
-                data = new GPSData().getData();
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
+        DBOper dbOper = new DBOper();
+        while (true) {
+            List<String> data = dbOper.search(index, count);
+            index += count;
             if (isAsync) {
                 //发送信息，包括topic和键值对
                 for (String messageStr : data) {
                     producer.send(new ProducerRecord<String, String>(topic,
                             Integer.toString(messageNo),
                             messageStr), new DemoCallBack(startTime, messageNo, messageStr));
+                    messageNo++;
                     //LoggerUtil.info("Sent message:" + messageStr);
                 }
             }
-            count--;
-            messageNo++;
-            //LoggerUtil.info("----------------停一下-------------");
+            LoggerUtil.info("------------------停一下-----------------------");
             try {
-                Thread.sleep(2000);
+                Thread.sleep(5000);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
         }
-        //关闭
-        producer.close();
+//        //关闭
+//        producer.close();
     }
 }
 

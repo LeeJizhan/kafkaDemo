@@ -5,6 +5,7 @@ import data.CarData;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
@@ -141,5 +142,60 @@ public class DBOper {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+    }
+
+    /**
+     * 查询车辆数据
+     *
+     * @param index 开始查询的坐标
+     * @param perCount 一次查询的总数
+     */
+    public List<String> search(int index, int perCount) {
+        if (index < 0){
+            try {
+                throw new Exception("index应该大于0");
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        if (perCount > 1000000){
+            try {
+                throw new Exception("perCount不要大于1000000");
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        List<String> messages = new ArrayList<String>();
+        try {
+            PreparedStatement preparedStatement = conn.prepareStatement("");
+            ResultSet resultSet;
+            String sql = "select * FROM gpsdata ORDER BY time LIMIT " + index + "," + perCount;
+            resultSet = preparedStatement.executeQuery(sql);
+            String msg;
+            while (resultSet.next()) {
+                String gpsid = resultSet.getString("gpsid");
+                String time = resultSet.getString("time");
+                String lon = resultSet.getString("lon");
+                String lat = resultSet.getString("lat");
+                String bearing = resultSet.getString("bearing");
+                String speed = resultSet.getString("speed");
+                msg = "{"
+                        + "\"gpsdata\"" + ":"
+                        + "{"
+                        + "\"gpsid\"" + ":" + "\"" + gpsid + "\"" + ","
+                        + "\"time\"" + ":" + "\"" + time + "\"" + ","
+                        + "\"lon\"" + ":" + "\"" + lon + "\"" + ","
+                        + "\"lat\"" + ":" + "\"" + lat + "\"" + ","
+                        + "\"bearing\"" + ":" + "\"" + bearing + "\"" + ","
+                        + "\"speed\"" + ":" + "\"" + speed + "\""
+                        + "}"
+                        + "}";
+                messages.add(msg);
+            }
+            preparedStatement.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return messages;
     }
 }
