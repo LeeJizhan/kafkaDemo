@@ -1,6 +1,7 @@
 import kafka.Consumer;
 import kafka.Producer;
 import properties.KafkaProperties;
+import spark.SparkMain;
 
 /**
  * Created by Asus- on 2018/7/12.
@@ -17,6 +18,7 @@ public class Main {
         boolean isAsync = true;
         Producer producer = new Producer(topic, isAsync);
         producer.start();
+        SparkMain main = new SparkMain();
 //        Consumer consumer = new Consumer(topic);
 //        consumer.start();
 //        CarData carData = new CarData();

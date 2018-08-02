@@ -1,31 +1,288 @@
-2018-08-02 14:07:24,887 [ERROR] org.apache.hadoop.util.Shell  - Failed to locate the winutils binary in the hadoop binary path
+2018-08-02 17:59:50,361 [INFO ] kafka.Producer.<init>() Line: 26  - server:10.2.17.201:9092
+2018-08-02 17:59:50,362 [INFO ] kafka.Producer.<init>() Line: 27  - groupId:icbc
+2018-08-02 17:59:50,367 [INFO ] kafka.Producer.<init>() Line: 28  - topic:gpstest
+2018-08-02 17:59:50,466 [INFO ] org.apache.kafka.clients.producer.ProducerConfig  - ProducerConfig values: 
+	acks = 1
+	batch.size = 16384
+	bootstrap.servers = [10.2.17.201:9092]
+	buffer.memory = 33554432
+	client.id = DemoProducer
+	compression.type = none
+	connections.max.idle.ms = 540000
+	enable.idempotence = false
+	interceptor.classes = []
+	key.serializer = class org.apache.kafka.common.serialization.StringSerializer
+	linger.ms = 0
+	max.block.ms = 60000
+	max.in.flight.requests.per.connection = 5
+	max.request.size = 1048576
+	metadata.max.age.ms = 300000
+	metric.reporters = []
+	metrics.num.samples = 2
+	metrics.recording.level = INFO
+	metrics.sample.window.ms = 30000
+	partitioner.class = class org.apache.kafka.clients.producer.internals.DefaultPartitioner
+	receive.buffer.bytes = 32768
+	reconnect.backoff.max.ms = 1000
+	reconnect.backoff.ms = 50
+	request.timeout.ms = 30000
+	retries = 0
+	retry.backoff.ms = 100
+	sasl.jaas.config = null
+	sasl.kerberos.kinit.cmd = /usr/bin/kinit
+	sasl.kerberos.min.time.before.relogin = 60000
+	sasl.kerberos.service.name = null
+	sasl.kerberos.ticket.renew.jitter = 0.05
+	sasl.kerberos.ticket.renew.window.factor = 0.8
+	sasl.mechanism = GSSAPI
+	security.protocol = PLAINTEXT
+	send.buffer.bytes = 131072
+	ssl.cipher.suites = null
+	ssl.enabled.protocols = [TLSv1.2, TLSv1.1, TLSv1]
+	ssl.endpoint.identification.algorithm = null
+	ssl.key.password = null
+	ssl.keymanager.algorithm = SunX509
+	ssl.keystore.location = null
+	ssl.keystore.password = null
+	ssl.keystore.type = JKS
+	ssl.protocol = TLS
+	ssl.provider = null
+	ssl.secure.random.implementation = null
+	ssl.trustmanager.algorithm = PKIX
+	ssl.truststore.location = null
+	ssl.truststore.password = null
+	ssl.truststore.type = JKS
+	transaction.timeout.ms = 60000
+	transactional.id = null
+	value.serializer = class org.apache.kafka.common.serialization.StringSerializer
+
+2018-08-02 17:59:50,634 [DEBUG] org.apache.kafka.common.metrics.Metrics  - Added sensor with name bufferpool-wait-time
+2018-08-02 17:59:50,650 [DEBUG] org.apache.kafka.common.metrics.Metrics  - Added sensor with name buffer-exhausted-records
+2018-08-02 17:59:50,662 [DEBUG] org.apache.kafka.clients.Metadata  - Updated cluster metadata version 1 to Cluster(id = null, nodes = [10.2.17.201:9092 (id: -1 rack: null)], partitions = [])
+2018-08-02 17:59:50,683 [DEBUG] org.apache.kafka.common.metrics.Metrics  - Added sensor with name produce-throttle-time
+2018-08-02 17:59:51,504 [DEBUG] org.apache.kafka.common.metrics.Metrics  - Added sensor with name connections-closed:
+2018-08-02 17:59:51,505 [DEBUG] org.apache.kafka.common.metrics.Metrics  - Added sensor with name connections-created:
+2018-08-02 17:59:51,505 [DEBUG] org.apache.kafka.common.metrics.Metrics  - Added sensor with name successful-authentication:
+2018-08-02 17:59:51,506 [DEBUG] org.apache.kafka.common.metrics.Metrics  - Added sensor with name failed-authentication:
+2018-08-02 17:59:51,507 [DEBUG] org.apache.kafka.common.metrics.Metrics  - Added sensor with name bytes-sent-received:
+2018-08-02 17:59:51,507 [DEBUG] org.apache.kafka.common.metrics.Metrics  - Added sensor with name bytes-sent:
+2018-08-02 17:59:51,509 [DEBUG] org.apache.kafka.common.metrics.Metrics  - Added sensor with name bytes-received:
+2018-08-02 17:59:51,510 [DEBUG] org.apache.kafka.common.metrics.Metrics  - Added sensor with name select-time:
+2018-08-02 17:59:51,512 [DEBUG] org.apache.kafka.common.metrics.Metrics  - Added sensor with name io-time:
+2018-08-02 17:59:51,525 [DEBUG] org.apache.kafka.common.metrics.Metrics  - Added sensor with name batch-size
+2018-08-02 17:59:51,526 [DEBUG] org.apache.kafka.common.metrics.Metrics  - Added sensor with name compression-rate
+2018-08-02 17:59:51,526 [DEBUG] org.apache.kafka.common.metrics.Metrics  - Added sensor with name queue-time
+2018-08-02 17:59:51,526 [DEBUG] org.apache.kafka.common.metrics.Metrics  - Added sensor with name request-time
+2018-08-02 17:59:51,527 [DEBUG] org.apache.kafka.common.metrics.Metrics  - Added sensor with name records-per-request
+2018-08-02 17:59:51,527 [DEBUG] org.apache.kafka.common.metrics.Metrics  - Added sensor with name record-retries
+2018-08-02 17:59:51,528 [DEBUG] org.apache.kafka.common.metrics.Metrics  - Added sensor with name errors
+2018-08-02 17:59:51,528 [DEBUG] org.apache.kafka.common.metrics.Metrics  - Added sensor with name record-size
+2018-08-02 17:59:51,531 [DEBUG] org.apache.kafka.common.metrics.Metrics  - Added sensor with name batch-split-rate
+2018-08-02 17:59:51,533 [DEBUG] org.apache.kafka.clients.producer.internals.Sender  - [Producer clientId=DemoProducer] Starting Kafka producer I/O thread.
+2018-08-02 17:59:51,540 [INFO ] org.apache.kafka.common.utils.AppInfoParser  - Kafka version : 1.1.0
+2018-08-02 17:59:51,541 [INFO ] org.apache.kafka.common.utils.AppInfoParser  - Kafka commitId : fdcf75ea326b8e07
+2018-08-02 17:59:51,545 [DEBUG] org.apache.kafka.clients.producer.KafkaProducer  - [Producer clientId=DemoProducer] Kafka producer started
+2018-08-02 17:59:53,546 [DEBUG] org.apache.kafka.clients.NetworkClient  - [Producer clientId=DemoProducer] Initialize connection to node 10.2.17.201:9092 (id: -1 rack: null) for sending metadata request
+2018-08-02 17:59:53,546 [DEBUG] org.apache.kafka.clients.NetworkClient  - [Producer clientId=DemoProducer] Initiating connection to node 10.2.17.201:9092 (id: -1 rack: null)
+2018-08-02 17:59:53,562 [DEBUG] org.apache.kafka.common.metrics.Metrics  - Added sensor with name node--1.bytes-sent
+2018-08-02 17:59:53,563 [DEBUG] org.apache.kafka.common.metrics.Metrics  - Added sensor with name node--1.bytes-received
+2018-08-02 17:59:53,564 [DEBUG] org.apache.kafka.common.metrics.Metrics  - Added sensor with name node--1.latency
+2018-08-02 17:59:53,564 [DEBUG] org.apache.kafka.common.network.Selector  - [Producer clientId=DemoProducer] Created socket with SO_RCVBUF = 32768, SO_SNDBUF = 131072, SO_TIMEOUT = 0 to node -1
+2018-08-02 17:59:53,779 [DEBUG] org.apache.kafka.clients.NetworkClient  - [Producer clientId=DemoProducer] Completed connection to node -1. Fetching API versions.
+2018-08-02 17:59:53,779 [DEBUG] org.apache.kafka.clients.NetworkClient  - [Producer clientId=DemoProducer] Initiating API versions fetch from node -1.
+2018-08-02 17:59:53,796 [DEBUG] org.apache.kafka.clients.NetworkClient  - [Producer clientId=DemoProducer] Recorded API versions for node -1: (Produce(0): 0 to 5 [usable: 5], Fetch(1): 0 to 7 [usable: 7], ListOffsets(2): 0 to 2 [usable: 2], Metadata(3): 0 to 5 [usable: 5], LeaderAndIsr(4): 0 to 1 [usable: 1], StopReplica(5): 0 [usable: 0], UpdateMetadata(6): 0 to 4 [usable: 4], ControlledShutdown(7): 0 to 1 [usable: 1], OffsetCommit(8): 0 to 3 [usable: 3], OffsetFetch(9): 0 to 3 [usable: 3], FindCoordinator(10): 0 to 1 [usable: 1], JoinGroup(11): 0 to 2 [usable: 2], Heartbeat(12): 0 to 1 [usable: 1], LeaveGroup(13): 0 to 1 [usable: 1], SyncGroup(14): 0 to 1 [usable: 1], DescribeGroups(15): 0 to 1 [usable: 1], ListGroups(16): 0 to 1 [usable: 1], SaslHandshake(17): 0 to 1 [usable: 1], ApiVersions(18): 0 to 1 [usable: 1], CreateTopics(19): 0 to 2 [usable: 2], DeleteTopics(20): 0 to 1 [usable: 1], DeleteRecords(21): 0 [usable: 0], InitProducerId(22): 0 [usable: 0], OffsetForLeaderEpoch(23): 0 [usable: 0], AddPartitionsToTxn(24): 0 [usable: 0], AddOffsetsToTxn(25): 0 [usable: 0], EndTxn(26): 0 [usable: 0], WriteTxnMarkers(27): 0 [usable: 0], TxnOffsetCommit(28): 0 [usable: 0], DescribeAcls(29): 0 [usable: 0], CreateAcls(30): 0 [usable: 0], DeleteAcls(31): 0 [usable: 0], DescribeConfigs(32): 0 to 1 [usable: 1], AlterConfigs(33): 0 [usable: 0], AlterReplicaLogDirs(34): 0 [usable: 0], DescribeLogDirs(35): 0 [usable: 0], SaslAuthenticate(36): 0 [usable: 0], CreatePartitions(37): 0 [usable: 0], CreateDelegationToken(38): 0 [usable: 0], RenewDelegationToken(39): 0 [usable: 0], ExpireDelegationToken(40): 0 [usable: 0], DescribeDelegationToken(41): 0 [usable: 0], DeleteGroups(42): 0 [usable: 0])
+2018-08-02 17:59:53,796 [DEBUG] org.apache.kafka.clients.NetworkClient  - [Producer clientId=DemoProducer] Sending metadata request (type=MetadataRequest, topics=gpstest) to node 10.2.17.201:9092 (id: -1 rack: null)
+2018-08-02 17:59:53,806 [INFO ] org.apache.kafka.clients.Metadata  - Cluster ID: 2fjoCIZWRn6iNtkUee0Bcg
+2018-08-02 17:59:53,807 [DEBUG] org.apache.kafka.clients.Metadata  - Updated cluster metadata version 2 to Cluster(id = 2fjoCIZWRn6iNtkUee0Bcg, nodes = [10.2.17.201:9092 (id: 0 rack: null)], partitions = [Partition(topic = gpstest, partition = 0, leader = 0, replicas = [0], isr = [0], offlineReplicas = [])])
+2018-08-02 17:59:53,831 [DEBUG] org.apache.kafka.clients.NetworkClient  - [Producer clientId=DemoProducer] Initiating connection to node 10.2.17.201:9092 (id: 0 rack: null)
+2018-08-02 17:59:53,835 [INFO ] kafka.Producer.run() Line: 69  - ------------------停一下-----------------------
+2018-08-02 17:59:53,837 [DEBUG] org.apache.kafka.common.metrics.Metrics  - Added sensor with name node-0.bytes-sent
+2018-08-02 17:59:53,838 [DEBUG] org.apache.kafka.common.metrics.Metrics  - Added sensor with name node-0.bytes-received
+2018-08-02 17:59:53,839 [DEBUG] org.apache.kafka.common.metrics.Metrics  - Added sensor with name node-0.latency
+2018-08-02 17:59:53,839 [DEBUG] org.apache.kafka.common.network.Selector  - [Producer clientId=DemoProducer] Created socket with SO_RCVBUF = 32768, SO_SNDBUF = 131072, SO_TIMEOUT = 0 to node 0
+2018-08-02 17:59:53,839 [DEBUG] org.apache.kafka.clients.NetworkClient  - [Producer clientId=DemoProducer] Completed connection to node 0. Fetching API versions.
+2018-08-02 17:59:53,839 [DEBUG] org.apache.kafka.clients.NetworkClient  - [Producer clientId=DemoProducer] Initiating API versions fetch from node 0.
+2018-08-02 17:59:53,842 [DEBUG] org.apache.kafka.clients.NetworkClient  - [Producer clientId=DemoProducer] Recorded API versions for node 0: (Produce(0): 0 to 5 [usable: 5], Fetch(1): 0 to 7 [usable: 7], ListOffsets(2): 0 to 2 [usable: 2], Metadata(3): 0 to 5 [usable: 5], LeaderAndIsr(4): 0 to 1 [usable: 1], StopReplica(5): 0 [usable: 0], UpdateMetadata(6): 0 to 4 [usable: 4], ControlledShutdown(7): 0 to 1 [usable: 1], OffsetCommit(8): 0 to 3 [usable: 3], OffsetFetch(9): 0 to 3 [usable: 3], FindCoordinator(10): 0 to 1 [usable: 1], JoinGroup(11): 0 to 2 [usable: 2], Heartbeat(12): 0 to 1 [usable: 1], LeaveGroup(13): 0 to 1 [usable: 1], SyncGroup(14): 0 to 1 [usable: 1], DescribeGroups(15): 0 to 1 [usable: 1], ListGroups(16): 0 to 1 [usable: 1], SaslHandshake(17): 0 to 1 [usable: 1], ApiVersions(18): 0 to 1 [usable: 1], CreateTopics(19): 0 to 2 [usable: 2], DeleteTopics(20): 0 to 1 [usable: 1], DeleteRecords(21): 0 [usable: 0], InitProducerId(22): 0 [usable: 0], OffsetForLeaderEpoch(23): 0 [usable: 0], AddPartitionsToTxn(24): 0 [usable: 0], AddOffsetsToTxn(25): 0 [usable: 0], EndTxn(26): 0 [usable: 0], WriteTxnMarkers(27): 0 [usable: 0], TxnOffsetCommit(28): 0 [usable: 0], DescribeAcls(29): 0 [usable: 0], CreateAcls(30): 0 [usable: 0], DeleteAcls(31): 0 [usable: 0], DescribeConfigs(32): 0 to 1 [usable: 1], AlterConfigs(33): 0 [usable: 0], AlterReplicaLogDirs(34): 0 [usable: 0], DescribeLogDirs(35): 0 [usable: 0], SaslAuthenticate(36): 0 [usable: 0], CreatePartitions(37): 0 [usable: 0], CreateDelegationToken(38): 0 [usable: 0], RenewDelegationToken(39): 0 [usable: 0], ExpireDelegationToken(40): 0 [usable: 0], DescribeDelegationToken(41): 0 [usable: 0], DeleteGroups(42): 0 [usable: 0])
+2018-08-02 17:59:53,848 [DEBUG] org.apache.kafka.common.metrics.Metrics  - Added sensor with name topic.gpstest.records-per-batch
+2018-08-02 17:59:53,849 [DEBUG] org.apache.kafka.common.metrics.Metrics  - Added sensor with name topic.gpstest.bytes
+2018-08-02 17:59:53,849 [DEBUG] org.apache.kafka.common.metrics.Metrics  - Added sensor with name topic.gpstest.compression-rate
+2018-08-02 17:59:53,849 [DEBUG] org.apache.kafka.common.metrics.Metrics  - Added sensor with name topic.gpstest.record-retries
+2018-08-02 17:59:53,849 [DEBUG] org.apache.kafka.common.metrics.Metrics  - Added sensor with name topic.gpstest.record-errors
+2018-08-02 17:59:53,868 [INFO ] kafka.DemoCallBack.onCompletion() Line: 98  - message(0, {"gpsdata":{"gpsid":"453","time":"2007-02-20 00:00:03","lon":"121.522800","lat":"31.222100","bearing":"22","speed":"0"}}) sent to partition(0), offset(65468) in 2322 ms
+2018-08-02 17:59:53,869 [INFO ] kafka.DemoCallBack.onCompletion() Line: 98  - message(1, {"gpsdata":{"gpsid":"579","time":"2007-02-20 00:00:04","lon":"121.432600","lat":"31.219800","bearing":"157","speed":"32"}}) sent to partition(0), offset(65469) in 2322 ms
+2018-08-02 17:59:53,869 [INFO ] kafka.DemoCallBack.onCompletion() Line: 98  - message(2, {"gpsdata":{"gpsid":"2079","time":"2007-02-20 00:00:11","lon":"121.514000","lat":"31.295800","bearing":"0","speed":"0"}}) sent to partition(0), offset(65470) in 2323 ms
+2018-08-02 17:59:53,869 [INFO ] kafka.DemoCallBack.onCompletion() Line: 98  - message(3, {"gpsdata":{"gpsid":"1848","time":"2007-02-20 00:00:12","lon":"121.685800","lat":"31.216500","bearing":"90","speed":"64"}}) sent to partition(0), offset(65471) in 2323 ms
+2018-08-02 17:59:53,869 [INFO ] kafka.DemoCallBack.onCompletion() Line: 98  - message(4, {"gpsdata":{"gpsid":"1035","time":"2007-02-20 00:00:12","lon":"121.466800","lat":"31.256100","bearing":"22","speed":"52"}}) sent to partition(0), offset(65472) in 2323 ms
+2018-08-02 17:59:53,869 [INFO ] kafka.DemoCallBack.onCompletion() Line: 98  - message(5, {"gpsdata":{"gpsid":"947","time":"2007-02-20 00:00:12","lon":"121.550300","lat":"31.252100","bearing":"22","speed":"60"}}) sent to partition(0), offset(65473) in 2323 ms
+2018-08-02 17:59:53,869 [INFO ] kafka.DemoCallBack.onCompletion() Line: 98  - message(6, {"gpsdata":{"gpsid":"1302","time":"2007-02-20 00:00:13","lon":"121.485600","lat":"31.314100","bearing":"0","speed":"0"}}) sent to partition(0), offset(65474) in 2323 ms
+2018-08-02 17:59:53,869 [INFO ] kafka.DemoCallBack.onCompletion() Line: 98  - message(7, {"gpsdata":{"gpsid":"1262","time":"2007-02-20 00:00:13","lon":"121.725800","lat":"30.934600","bearing":"67","speed":"74"}}) sent to partition(0), offset(65475) in 2323 ms
+2018-08-02 17:59:53,869 [INFO ] kafka.DemoCallBack.onCompletion() Line: 98  - message(8, {"gpsdata":{"gpsid":"196","time":"2007-02-20 00:00:13","lon":"121.522600","lat":"31.319600","bearing":"45","speed":"0"}}) sent to partition(0), offset(65476) in 2323 ms
+2018-08-02 17:59:53,869 [INFO ] kafka.DemoCallBack.onCompletion() Line: 98  - message(9, {"gpsdata":{"gpsid":"1298","time":"2007-02-20 00:00:15","lon":"121.528100","lat":"31.231000","bearing":"67","speed":"0"}}) sent to partition(0), offset(65477) in 2323 ms
+2018-08-02 17:59:53,869 [INFO ] kafka.DemoCallBack.onCompletion() Line: 98  - message(10, {"gpsdata":{"gpsid":"1664","time":"2007-02-20 00:00:15","lon":"121.579300","lat":"31.089100","bearing":"67","speed":"68"}}) sent to partition(0), offset(65478) in 2323 ms
+2018-08-02 17:59:53,869 [INFO ] kafka.DemoCallBack.onCompletion() Line: 98  - message(11, {"gpsdata":{"gpsid":"1097","time":"2007-02-20 00:00:15","lon":"121.805300","lat":"30.940300","bearing":"157","speed":"0"}}) sent to partition(0), offset(65479) in 2323 ms
+2018-08-02 17:59:53,869 [INFO ] kafka.DemoCallBack.onCompletion() Line: 98  - message(12, {"gpsdata":{"gpsid":"1353","time":"2007-02-20 00:00:16","lon":"121.463500","lat":"31.227000","bearing":"67","speed":"64"}}) sent to partition(0), offset(65480) in 2323 ms
+2018-08-02 17:59:53,869 [INFO ] kafka.DemoCallBack.onCompletion() Line: 98  - message(13, {"gpsdata":{"gpsid":"1782","time":"2007-02-20 00:00:16","lon":"121.479100","lat":"31.341000","bearing":"67","speed":"0"}}) sent to partition(0), offset(65481) in 2323 ms
+2018-08-02 17:59:53,869 [INFO ] kafka.DemoCallBack.onCompletion() Line: 98  - message(14, {"gpsdata":{"gpsid":"534","time":"2007-02-20 00:00:16","lon":"121.461500","lat":"31.295500","bearing":"0","speed":"36"}}) sent to partition(0), offset(65482) in 2323 ms
+2018-08-02 17:59:53,870 [INFO ] kafka.DemoCallBack.onCompletion() Line: 98  - message(15, {"gpsdata":{"gpsid":"546","time":"2007-02-20 00:00:16","lon":"121.426300","lat":"31.237000","bearing":"0","speed":"4"}}) sent to partition(0), offset(65483) in 2324 ms
+2018-08-02 17:59:53,870 [INFO ] kafka.DemoCallBack.onCompletion() Line: 98  - message(16, {"gpsdata":{"gpsid":"1096","time":"2007-02-20 00:00:17","lon":"121.387800","lat":"31.124500","bearing":"112","speed":"68"}}) sent to partition(0), offset(65484) in 2324 ms
+2018-08-02 17:59:53,870 [INFO ] kafka.DemoCallBack.onCompletion() Line: 98  - message(17, {"gpsdata":{"gpsid":"1070","time":"2007-02-20 00:00:17","lon":"121.396800","lat":"31.133300","bearing":"112","speed":"54"}}) sent to partition(0), offset(65485) in 2324 ms
+2018-08-02 17:59:53,870 [INFO ] kafka.DemoCallBack.onCompletion() Line: 98  - message(18, {"gpsdata":{"gpsid":"1351","time":"2007-02-20 00:00:17","lon":"121.562500","lat":"31.265000","bearing":"22","speed":"60"}}) sent to partition(0), offset(65486) in 2324 ms
+2018-08-02 17:59:53,870 [INFO ] kafka.DemoCallBack.onCompletion() Line: 98  - message(19, {"gpsdata":{"gpsid":"1007","time":"2007-02-20 00:00:17","lon":"121.455500","lat":"31.194600","bearing":"45","speed":"42"}}) sent to partition(0), offset(65487) in 2324 ms
+2018-08-02 17:59:53,870 [INFO ] kafka.DemoCallBack.onCompletion() Line: 98  - message(20, {"gpsdata":{"gpsid":"1080","time":"2007-02-20 00:00:17","lon":"121.114300","lat":"31.148300","bearing":"135","speed":"36"}}) sent to partition(0), offset(65488) in 2324 ms
+2018-08-02 17:59:53,870 [INFO ] kafka.DemoCallBack.onCompletion() Line: 98  - message(21, {"gpsdata":{"gpsid":"1310","time":"2007-02-20 00:00:17","lon":"121.541300","lat":"31.240500","bearing":"22","speed":"34"}}) sent to partition(0), offset(65489) in 2324 ms
+2018-08-02 17:59:53,870 [INFO ] kafka.DemoCallBack.onCompletion() Line: 98  - message(22, {"gpsdata":{"gpsid":"2154","time":"2007-02-20 00:00:17","lon":"121.561600","lat":"31.152500","bearing":"90","speed":"58"}}) sent to partition(0), offset(65490) in 2324 ms
+2018-08-02 17:59:53,870 [INFO ] kafka.DemoCallBack.onCompletion() Line: 98  - message(23, {"gpsdata":{"gpsid":"2005","time":"2007-02-20 00:00:17","lon":"121.414000","lat":"31.149500","bearing":"112","speed":"12"}}) sent to partition(0), offset(65491) in 2324 ms
+2018-08-02 17:59:53,870 [INFO ] kafka.DemoCallBack.onCompletion() Line: 98  - message(24, {"gpsdata":{"gpsid":"371","time":"2007-02-20 00:00:17","lon":"121.502500","lat":"31.285600","bearing":"90","speed":"52"}}) sent to partition(0), offset(65492) in 2324 ms
+2018-08-02 17:59:53,870 [INFO ] kafka.DemoCallBack.onCompletion() Line: 98  - message(25, {"gpsdata":{"gpsid":"1066","time":"2007-02-20 00:00:17","lon":"121.507800","lat":"31.275800","bearing":"112","speed":"32"}}) sent to partition(0), offset(65493) in 2324 ms
+2018-08-02 17:59:53,871 [INFO ] kafka.DemoCallBack.onCompletion() Line: 98  - message(26, {"gpsdata":{"gpsid":"1811","time":"2007-02-20 00:00:17","lon":"121.515100","lat":"31.237000","bearing":"67","speed":"40"}}) sent to partition(0), offset(65494) in 2324 ms
+2018-08-02 17:59:53,871 [INFO ] kafka.DemoCallBack.onCompletion() Line: 98  - message(27, {"gpsdata":{"gpsid":"1355","time":"2007-02-20 00:00:17","lon":"121.418500","lat":"31.173300","bearing":"45","speed":"34"}}) sent to partition(0), offset(65495) in 2325 ms
+2018-08-02 17:59:53,871 [INFO ] kafka.DemoCallBack.onCompletion() Line: 98  - message(28, {"gpsdata":{"gpsid":"1569","time":"2007-02-20 00:00:17","lon":"121.576300","lat":"31.273000","bearing":"67","speed":"28"}}) sent to partition(0), offset(65496) in 2325 ms
+2018-08-02 17:59:53,871 [INFO ] kafka.DemoCallBack.onCompletion() Line: 98  - message(29, {"gpsdata":{"gpsid":"879","time":"2007-02-20 00:00:17","lon":"121.412100","lat":"31.196800","bearing":"67","speed":"64"}}) sent to partition(0), offset(65497) in 2325 ms
+2018-08-02 17:59:53,871 [INFO ] kafka.DemoCallBack.onCompletion() Line: 98  - message(30, {"gpsdata":{"gpsid":"297","time":"2007-02-20 00:00:18","lon":"121.449500","lat":"31.275600","bearing":"157","speed":"68"}}) sent to partition(0), offset(65498) in 2325 ms
+2018-08-02 17:59:53,871 [INFO ] kafka.DemoCallBack.onCompletion() Line: 98  - message(31, {"gpsdata":{"gpsid":"343","time":"2007-02-20 00:00:18","lon":"121.416800","lat":"31.237800","bearing":"22","speed":"30"}}) sent to partition(0), offset(65499) in 2325 ms
+2018-08-02 17:59:53,871 [INFO ] kafka.DemoCallBack.onCompletion() Line: 98  - message(32, {"gpsdata":{"gpsid":"160","time":"2007-02-20 00:00:18","lon":"121.571100","lat":"31.120300","bearing":"0","speed":"36"}}) sent to partition(0), offset(65500) in 2325 ms
+2018-08-02 17:59:53,871 [INFO ] kafka.DemoCallBack.onCompletion() Line: 98  - message(33, {"gpsdata":{"gpsid":"2055","time":"2007-02-20 00:00:18","lon":"121.407600","lat":"31.194800","bearing":"45","speed":"52"}}) sent to partition(0), offset(65501) in 2325 ms
+2018-08-02 17:59:53,871 [INFO ] kafka.DemoCallBack.onCompletion() Line: 98  - message(34, {"gpsdata":{"gpsid":"166","time":"2007-02-20 00:00:18","lon":"121.538500","lat":"31.199800","bearing":"45","speed":"72"}}) sent to partition(0), offset(65502) in 2325 ms
+2018-08-02 17:59:53,871 [INFO ] kafka.DemoCallBack.onCompletion() Line: 98  - message(35, {"gpsdata":{"gpsid":"1697","time":"2007-02-20 00:00:18","lon":"121.359800","lat":"31.174800","bearing":"90","speed":"46"}}) sent to partition(0), offset(65503) in 2325 ms
+2018-08-02 17:59:53,871 [INFO ] kafka.DemoCallBack.onCompletion() Line: 98  - message(36, {"gpsdata":{"gpsid":"666","time":"2007-02-20 00:00:18","lon":"121.411300","lat":"31.146800","bearing":"112","speed":"74"}}) sent to partition(0), offset(65504) in 2325 ms
+2018-08-02 17:59:53,871 [INFO ] kafka.DemoCallBack.onCompletion() Line: 98  - message(37, {"gpsdata":{"gpsid":"1395","time":"2007-02-20 00:00:18","lon":"121.509000","lat":"31.204600","bearing":"135","speed":"52"}}) sent to partition(0), offset(65505) in 2325 ms
+2018-08-02 17:59:53,872 [INFO ] kafka.DemoCallBack.onCompletion() Line: 98  - message(38, {"gpsdata":{"gpsid":"1490","time":"2007-02-20 00:00:18","lon":"121.540800","lat":"31.274100","bearing":"157","speed":"36"}}) sent to partition(0), offset(65506) in 2325 ms
+2018-08-02 17:59:53,872 [INFO ] kafka.DemoCallBack.onCompletion() Line: 98  - message(39, {"gpsdata":{"gpsid":"807","time":"2007-02-20 00:00:18","lon":"121.506800","lat":"31.205300","bearing":"135","speed":"70"}}) sent to partition(0), offset(65507) in 2326 ms
+2018-08-02 17:59:53,872 [INFO ] kafka.DemoCallBack.onCompletion() Line: 98  - message(40, {"gpsdata":{"gpsid":"291","time":"2007-02-20 00:00:18","lon":"121.480800","lat":"31.203000","bearing":"0","speed":"48"}}) sent to partition(0), offset(65508) in 2326 ms
+2018-08-02 17:59:53,872 [INFO ] kafka.DemoCallBack.onCompletion() Line: 98  - message(41, {"gpsdata":{"gpsid":"1958","time":"2007-02-20 00:00:18","lon":"121.486500","lat":"31.245800","bearing":"45","speed":"36"}}) sent to partition(0), offset(65509) in 2326 ms
+2018-08-02 17:59:53,872 [INFO ] kafka.DemoCallBack.onCompletion() Line: 98  - message(42, {"gpsdata":{"gpsid":"695","time":"2007-02-20 00:00:18","lon":"121.431100","lat":"31.229500","bearing":"157","speed":"50"}}) sent to partition(0), offset(65510) in 2326 ms
+2018-08-02 17:59:53,872 [INFO ] kafka.DemoCallBack.onCompletion() Line: 98  - message(43, {"gpsdata":{"gpsid":"820","time":"2007-02-20 00:00:18","lon":"121.454500","lat":"31.266800","bearing":"90","speed":"62"}}) sent to partition(0), offset(65511) in 2326 ms
+2018-08-02 17:59:53,872 [INFO ] kafka.DemoCallBack.onCompletion() Line: 98  - message(44, {"gpsdata":{"gpsid":"1185","time":"2007-02-20 00:00:18","lon":"121.527100","lat":"31.209100","bearing":"0","speed":"72"}}) sent to partition(0), offset(65512) in 2326 ms
+2018-08-02 17:59:53,872 [INFO ] kafka.DemoCallBack.onCompletion() Line: 98  - message(45, {"gpsdata":{"gpsid":"28","time":"2007-02-20 00:00:18","lon":"121.446800","lat":"31.251600","bearing":"0","speed":"48"}}) sent to partition(0), offset(65513) in 2326 ms
+2018-08-02 17:59:53,872 [INFO ] kafka.DemoCallBack.onCompletion() Line: 98  - message(46, {"gpsdata":{"gpsid":"922","time":"2007-02-20 00:00:18","lon":"121.414600","lat":"31.155500","bearing":"22","speed":"46"}}) sent to partition(0), offset(65514) in 2326 ms
+2018-08-02 17:59:53,872 [INFO ] kafka.DemoCallBack.onCompletion() Line: 98  - message(47, {"gpsdata":{"gpsid":"1819","time":"2007-02-20 00:00:18","lon":"121.485300","lat":"31.294600","bearing":"112","speed":"38"}}) sent to partition(0), offset(65515) in 2326 ms
+2018-08-02 17:59:53,872 [INFO ] kafka.DemoCallBack.onCompletion() Line: 98  - message(48, {"gpsdata":{"gpsid":"276","time":"2007-02-20 00:00:18","lon":"121.372600","lat":"31.249600","bearing":"0","speed":"0"}}) sent to partition(0), offset(65516) in 2326 ms
+2018-08-02 17:59:53,872 [INFO ] kafka.DemoCallBack.onCompletion() Line: 98  - message(49, {"gpsdata":{"gpsid":"1789","time":"2007-02-20 00:00:18","lon":"121.327300","lat":"31.133500","bearing":"67","speed":"56"}}) sent to partition(0), offset(65517) in 2326 ms
+2018-08-02 17:59:53,872 [INFO ] kafka.DemoCallBack.onCompletion() Line: 98  - message(50, {"gpsdata":{"gpsid":"2341","time":"2007-02-20 00:00:18","lon":"121.230500","lat":"31.034300","bearing":"90","speed":"6"}}) sent to partition(0), offset(65518) in 2326 ms
+2018-08-02 17:59:53,873 [INFO ] kafka.DemoCallBack.onCompletion() Line: 98  - message(51, {"gpsdata":{"gpsid":"59","time":"2007-02-20 00:00:18","lon":"121.441800","lat":"31.312500","bearing":"135","speed":"34"}}) sent to partition(0), offset(65519) in 2327 ms
+2018-08-02 17:59:53,873 [INFO ] kafka.DemoCallBack.onCompletion() Line: 98  - message(52, {"gpsdata":{"gpsid":"626","time":"2007-02-20 00:00:19","lon":"121.449300","lat":"31.247100","bearing":"157","speed":"10"}}) sent to partition(0), offset(65520) in 2327 ms
+2018-08-02 17:59:53,873 [INFO ] kafka.DemoCallBack.onCompletion() Line: 98  - message(53, {"gpsdata":{"gpsid":"2346","time":"2007-02-20 00:00:19","lon":"121.457500","lat":"31.231000","bearing":"0","speed":"42"}}) sent to partition(0), offset(65521) in 2327 ms
+2018-08-02 17:59:53,873 [INFO ] kafka.DemoCallBack.onCompletion() Line: 98  - message(54, {"gpsdata":{"gpsid":"1075","time":"2007-02-20 00:00:19","lon":"121.482500","lat":"31.323500","bearing":"67","speed":"0"}}) sent to partition(0), offset(65522) in 2327 ms
+2018-08-02 17:59:53,873 [INFO ] kafka.DemoCallBack.onCompletion() Line: 98  - message(55, {"gpsdata":{"gpsid":"1404","time":"2007-02-20 00:00:19","lon":"121.481600","lat":"31.260600","bearing":"135","speed":"12"}}) sent to partition(0), offset(65523) in 2327 ms
+2018-08-02 17:59:53,873 [INFO ] kafka.DemoCallBack.onCompletion() Line: 98  - message(56, {"gpsdata":{"gpsid":"843","time":"2007-02-20 00:00:19","lon":"121.453500","lat":"31.220600","bearing":"90","speed":"26"}}) sent to partition(0), offset(65524) in 2327 ms
+2018-08-02 17:59:53,873 [INFO ] kafka.DemoCallBack.onCompletion() Line: 98  - message(57, {"gpsdata":{"gpsid":"985","time":"2007-02-20 00:00:19","lon":"121.442800","lat":"31.102300","bearing":"135","speed":"60"}}) sent to partition(0), offset(65525) in 2327 ms
+2018-08-02 17:59:53,873 [INFO ] kafka.DemoCallBack.onCompletion() Line: 98  - message(58, {"gpsdata":{"gpsid":"1721","time":"2007-02-20 00:00:19","lon":"121.492600","lat":"31.154300","bearing":"0","speed":"66"}}) sent to partition(0), offset(65526) in 2327 ms
+2018-08-02 17:59:53,873 [INFO ] kafka.DemoCallBack.onCompletion() Line: 98  - message(59, {"gpsdata":{"gpsid":"963","time":"2007-02-20 00:00:19","lon":"121.453100","lat":"31.340000","bearing":"112","speed":"10"}}) sent to partition(0), offset(65527) in 2327 ms
+2018-08-02 17:59:53,873 [INFO ] kafka.DemoCallBack.onCompletion() Line: 98  - message(60, {"gpsdata":{"gpsid":"526","time":"2007-02-20 00:00:19","lon":"121.479000","lat":"31.233000","bearing":"135","speed":"82"}}) sent to partition(0), offset(65528) in 2327 ms
+2018-08-02 17:59:53,873 [INFO ] kafka.DemoCallBack.onCompletion() Line: 98  - message(61, {"gpsdata":{"gpsid":"2137","time":"2007-02-20 00:00:19","lon":"121.457300","lat":"31.231300","bearing":"157","speed":"34"}}) sent to partition(0), offset(65529) in 2327 ms
+2018-08-02 17:59:53,873 [INFO ] kafka.DemoCallBack.onCompletion() Line: 98  - message(62, {"gpsdata":{"gpsid":"2276","time":"2007-02-20 00:00:19","lon":"121.546100","lat":"31.249300","bearing":"67","speed":"42"}}) sent to partition(0), offset(65530) in 2327 ms
+2018-08-02 17:59:53,873 [INFO ] kafka.DemoCallBack.onCompletion() Line: 98  - message(63, {"gpsdata":{"gpsid":"1638","time":"2007-02-20 00:00:19","lon":"121.498500","lat":"31.388500","bearing":"22","speed":"0"}}) sent to partition(0), offset(65531) in 2327 ms
+2018-08-02 17:59:53,874 [INFO ] kafka.DemoCallBack.onCompletion() Line: 98  - message(64, {"gpsdata":{"gpsid":"1190","time":"2007-02-20 00:00:19","lon":"121.729800","lat":"31.139000","bearing":"90","speed":"68"}}) sent to partition(0), offset(65532) in 2327 ms
+2018-08-02 17:59:53,874 [INFO ] kafka.DemoCallBack.onCompletion() Line: 98  - message(65, {"gpsdata":{"gpsid":"976","time":"2007-02-20 00:00:19","lon":"121.454500","lat":"31.336300","bearing":"0","speed":"32"}}) sent to partition(0), offset(65533) in 2328 ms
+2018-08-02 17:59:53,874 [INFO ] kafka.DemoCallBack.onCompletion() Line: 98  - message(66, {"gpsdata":{"gpsid":"1458","time":"2007-02-20 00:00:19","lon":"121.565300","lat":"31.188100","bearing":"0","speed":"56"}}) sent to partition(0), offset(65534) in 2328 ms
+2018-08-02 17:59:53,874 [INFO ] kafka.DemoCallBack.onCompletion() Line: 98  - message(67, {"gpsdata":{"gpsid":"177","time":"2007-02-20 00:00:20","lon":"121.523800","lat":"31.209800","bearing":"45","speed":"24"}}) sent to partition(0), offset(65535) in 2328 ms
+2018-08-02 17:59:53,874 [INFO ] kafka.DemoCallBack.onCompletion() Line: 98  - message(68, {"gpsdata":{"gpsid":"1226","time":"2007-02-20 00:00:20","lon":"121.538100","lat":"31.244500","bearing":"0","speed":"0"}}) sent to partition(0), offset(65536) in 2328 ms
+2018-08-02 17:59:53,874 [INFO ] kafka.DemoCallBack.onCompletion() Line: 98  - message(69, {"gpsdata":{"gpsid":"214","time":"2007-02-20 00:00:20","lon":"121.451100","lat":"31.273300","bearing":"157","speed":"50"}}) sent to partition(0), offset(65537) in 2328 ms
+2018-08-02 17:59:53,874 [INFO ] kafka.DemoCallBack.onCompletion() Line: 98  - message(70, {"gpsdata":{"gpsid":"1905","time":"2007-02-20 00:00:20","lon":"121.471500","lat":"31.233000","bearing":"22","speed":"14"}}) sent to partition(0), offset(65538) in 2328 ms
+2018-08-02 17:59:53,874 [INFO ] kafka.DemoCallBack.onCompletion() Line: 98  - message(71, {"gpsdata":{"gpsid":"2109","time":"2007-02-20 00:00:20","lon":"121.447300","lat":"31.181300","bearing":"0","speed":"62"}}) sent to partition(0), offset(65539) in 2328 ms
+2018-08-02 17:59:53,874 [INFO ] kafka.DemoCallBack.onCompletion() Line: 98  - message(72, {"gpsdata":{"gpsid":"696","time":"2007-02-20 00:00:20","lon":"121.583600","lat":"31.340500","bearing":"22","speed":"22"}}) sent to partition(0), offset(65540) in 2328 ms
+2018-08-02 17:59:53,874 [INFO ] kafka.DemoCallBack.onCompletion() Line: 98  - message(73, {"gpsdata":{"gpsid":"1105","time":"2007-02-20 00:00:20","lon":"121.406000","lat":"31.044000","bearing":"0","speed":"44"}}) sent to partition(0), offset(65541) in 2328 ms
+2018-08-02 17:59:53,874 [INFO ] kafka.DemoCallBack.onCompletion() Line: 98  - message(74, {"gpsdata":{"gpsid":"913","time":"2007-02-20 00:00:20","lon":"121.506500","lat":"31.259300","bearing":"157","speed":"26"}}) sent to partition(0), offset(65542) in 2328 ms
+2018-08-02 17:59:53,874 [INFO ] kafka.DemoCallBack.onCompletion() Line: 98  - message(75, {"gpsdata":{"gpsid":"1028","time":"2007-02-20 00:00:20","lon":"121.623500","lat":"31.156000","bearing":"135","speed":"136"}}) sent to partition(0), offset(65543) in 2328 ms
+2018-08-02 17:59:53,874 [INFO ] kafka.DemoCallBack.onCompletion() Line: 98  - message(76, {"gpsdata":{"gpsid":"215","time":"2007-02-20 00:00:20","lon":"121.512600","lat":"31.276600","bearing":"45","speed":"30"}}) sent to partition(0), offset(65544) in 2328 ms
+2018-08-02 17:59:53,875 [INFO ] kafka.DemoCallBack.onCompletion() Line: 98  - message(77, {"gpsdata":{"gpsid":"601","time":"2007-02-20 00:00:20","lon":"121.443300","lat":"31.210000","bearing":"0","speed":"24"}}) sent to partition(0), offset(65545) in 2329 ms
+2018-08-02 17:59:53,875 [INFO ] kafka.DemoCallBack.onCompletion() Line: 98  - message(78, {"gpsdata":{"gpsid":"850","time":"2007-02-20 00:00:20","lon":"121.364300","lat":"31.074500","bearing":"22","speed":"40"}}) sent to partition(0), offset(65546) in 2329 ms
+2018-08-02 17:59:53,875 [INFO ] kafka.DemoCallBack.onCompletion() Line: 98  - message(79, {"gpsdata":{"gpsid":"165","time":"2007-02-20 00:00:20","lon":"121.419800","lat":"31.136800","bearing":"0","speed":"24"}}) sent to partition(0), offset(65547) in 2329 ms
+2018-08-02 17:59:53,875 [INFO ] kafka.DemoCallBack.onCompletion() Line: 98  - message(80, {"gpsdata":{"gpsid":"2280","time":"2007-02-20 00:00:20","lon":"121.482800","lat":"31.264800","bearing":"157","speed":"34"}}) sent to partition(0), offset(65548) in 2329 ms
+2018-08-02 17:59:53,875 [INFO ] kafka.DemoCallBack.onCompletion() Line: 98  - message(81, {"gpsdata":{"gpsid":"2221","time":"2007-02-20 00:00:20","lon":"121.445000","lat":"31.296500","bearing":"90","speed":"62"}}) sent to partition(0), offset(65549) in 2329 ms
+2018-08-02 17:59:53,875 [INFO ] kafka.DemoCallBack.onCompletion() Line: 98  - message(82, {"gpsdata":{"gpsid":"856","time":"2007-02-20 00:00:20","lon":"121.389500","lat":"31.105100","bearing":"45","speed":"4"}}) sent to partition(0), offset(65550) in 2329 ms
+2018-08-02 17:59:53,875 [INFO ] kafka.DemoCallBack.onCompletion() Line: 98  - message(83, {"gpsdata":{"gpsid":"2070","time":"2007-02-20 00:00:21","lon":"121.454000","lat":"31.266800","bearing":"45","speed":"20"}}) sent to partition(0), offset(65551) in 2329 ms
+2018-08-02 17:59:53,875 [INFO ] kafka.DemoCallBack.onCompletion() Line: 98  - message(84, {"gpsdata":{"gpsid":"1360","time":"2007-02-20 00:00:21","lon":"121.472600","lat":"31.275600","bearing":"0","speed":"0"}}) sent to partition(0), offset(65552) in 2329 ms
+2018-08-02 17:59:53,875 [INFO ] kafka.DemoCallBack.onCompletion() Line: 98  - message(85, {"gpsdata":{"gpsid":"1540","time":"2007-02-20 00:00:21","lon":"121.443500","lat":"31.185500","bearing":"112","speed":"44"}}) sent to partition(0), offset(65553) in 2329 ms
+2018-08-02 17:59:53,875 [INFO ] kafka.DemoCallBack.onCompletion() Line: 98  - message(86, {"gpsdata":{"gpsid":"1961","time":"2007-02-20 00:00:21","lon":"121.480800","lat":"31.248000","bearing":"90","speed":"44"}}) sent to partition(0), offset(65554) in 2329 ms
+2018-08-02 17:59:53,876 [INFO ] kafka.DemoCallBack.onCompletion() Line: 98  - message(87, {"gpsdata":{"gpsid":"1142","time":"2007-02-20 00:00:21","lon":"121.354000","lat":"31.184600","bearing":"0","speed":"30"}}) sent to partition(0), offset(65555) in 2330 ms
+2018-08-02 17:59:53,876 [INFO ] kafka.DemoCallBack.onCompletion() Line: 98  - message(88, {"gpsdata":{"gpsid":"1930","time":"2007-02-20 00:00:21","lon":"121.422100","lat":"31.160100","bearing":"112","speed":"0"}}) sent to partition(0), offset(65556) in 2330 ms
+2018-08-02 17:59:53,876 [INFO ] kafka.DemoCallBack.onCompletion() Line: 98  - message(89, {"gpsdata":{"gpsid":"1280","time":"2007-02-20 00:00:21","lon":"121.520300","lat":"31.277600","bearing":"67","speed":"50"}}) sent to partition(0), offset(65557) in 2330 ms
+2018-08-02 17:59:53,876 [INFO ] kafka.DemoCallBack.onCompletion() Line: 98  - message(90, {"gpsdata":{"gpsid":"591","time":"2007-02-20 00:00:21","lon":"121.629100","lat":"31.156500","bearing":"45","speed":"96"}}) sent to partition(0), offset(65558) in 2330 ms
+2018-08-02 17:59:53,876 [INFO ] kafka.DemoCallBack.onCompletion() Line: 98  - message(91, {"gpsdata":{"gpsid":"1399","time":"2007-02-20 00:00:21","lon":"121.429000","lat":"31.232100","bearing":"157","speed":"16"}}) sent to partition(0), offset(65559) in 2330 ms
+2018-08-02 17:59:53,876 [INFO ] kafka.DemoCallBack.onCompletion() Line: 98  - message(92, {"gpsdata":{"gpsid":"2347","time":"2007-02-20 00:00:21","lon":"121.423100","lat":"31.226800","bearing":"0","speed":"52"}}) sent to partition(0), offset(65560) in 2330 ms
+2018-08-02 17:59:53,876 [INFO ] kafka.DemoCallBack.onCompletion() Line: 98  - message(93, {"gpsdata":{"gpsid":"1022","time":"2007-02-20 00:00:21","lon":"121.469100","lat":"31.197800","bearing":"90","speed":"18"}}) sent to partition(0), offset(65561) in 2330 ms
+2018-08-02 17:59:53,876 [INFO ] kafka.DemoCallBack.onCompletion() Line: 98  - message(94, {"gpsdata":{"gpsid":"547","time":"2007-02-20 00:00:21","lon":"121.514800","lat":"31.228000","bearing":"67","speed":"32"}}) sent to partition(0), offset(65562) in 2330 ms
+2018-08-02 17:59:53,876 [INFO ] kafka.DemoCallBack.onCompletion() Line: 98  - message(95, {"gpsdata":{"gpsid":"1717","time":"2007-02-20 00:00:21","lon":"121.590800","lat":"31.249000","bearing":"22","speed":"42"}}) sent to partition(0), offset(65563) in 2330 ms
+2018-08-02 17:59:53,876 [INFO ] kafka.DemoCallBack.onCompletion() Line: 98  - message(96, {"gpsdata":{"gpsid":"1067","time":"2007-02-20 00:00:22","lon":"121.486300","lat":"31.291100","bearing":"0","speed":"42"}}) sent to partition(0), offset(65564) in 2330 ms
+2018-08-02 17:59:53,876 [INFO ] kafka.DemoCallBack.onCompletion() Line: 98  - message(97, {"gpsdata":{"gpsid":"266","time":"2007-02-20 00:00:22","lon":"121.484600","lat":"31.262800","bearing":"135","speed":"16"}}) sent to partition(0), offset(65565) in 2330 ms
+2018-08-02 17:59:53,876 [INFO ] kafka.DemoCallBack.onCompletion() Line: 98  - message(98, {"gpsdata":{"gpsid":"105","time":"2007-02-20 00:00:22","lon":"121.440600","lat":"31.232600","bearing":"45","speed":"26"}}) sent to partition(0), offset(65566) in 2330 ms
+2018-08-02 17:59:53,876 [INFO ] kafka.DemoCallBack.onCompletion() Line: 98  - message(99, {"gpsdata":{"gpsid":"302","time":"2007-02-20 00:00:22","lon":"121.519600","lat":"31.231500","bearing":"45","speed":"14"}}) sent to partition(0), offset(65567) in 2330 ms
+2018-08-02 17:59:56,918 [INFO ] org.apache.spark.SparkContext  - Running Spark version 2.3.1
+2018-08-02 17:59:57,022 [DEBUG] org.apache.hadoop.metrics2.lib.MutableMetricsFactory  - field org.apache.hadoop.metrics2.lib.MutableRate org.apache.hadoop.security.UserGroupInformation$UgiMetrics.loginSuccess with annotation @org.apache.hadoop.metrics2.annotation.Metric(about=, always=false, sampleName=Ops, type=DEFAULT, value=[Rate of successful kerberos logins and latency (milliseconds)], valueName=Time)
+2018-08-02 17:59:57,034 [DEBUG] org.apache.hadoop.metrics2.lib.MutableMetricsFactory  - field org.apache.hadoop.metrics2.lib.MutableRate org.apache.hadoop.security.UserGroupInformation$UgiMetrics.loginFailure with annotation @org.apache.hadoop.metrics2.annotation.Metric(about=, always=false, sampleName=Ops, type=DEFAULT, value=[Rate of failed kerberos logins and latency (milliseconds)], valueName=Time)
+2018-08-02 17:59:57,034 [DEBUG] org.apache.hadoop.metrics2.lib.MutableMetricsFactory  - field org.apache.hadoop.metrics2.lib.MutableRate org.apache.hadoop.security.UserGroupInformation$UgiMetrics.getGroups with annotation @org.apache.hadoop.metrics2.annotation.Metric(about=, always=false, sampleName=Ops, type=DEFAULT, value=[GetGroups], valueName=Time)
+2018-08-02 17:59:57,035 [DEBUG] org.apache.hadoop.metrics2.impl.MetricsSystemImpl  - UgiMetrics, User and group related metrics
+2018-08-02 17:59:57,168 [ERROR] org.apache.hadoop.util.Shell  - Failed to locate the winutils binary in the hadoop binary path
 java.io.IOException: Could not locate executable E:\ICBC\hadoop-2.9.1\bin\winutils.exe in the Hadoop binaries.
 	at org.apache.hadoop.util.Shell.getQualifiedBinPath(Shell.java:382)
 	at org.apache.hadoop.util.Shell.getWinUtilsPath(Shell.java:397)
 	at org.apache.hadoop.util.Shell.<clinit>(Shell.java:390)
 	at org.apache.hadoop.util.StringUtils.<clinit>(StringUtils.java:80)
-	at org.apache.hadoop.conf.Configuration.getBoolean(Configuration.java:1437)
-	at org.apache.hadoop.hbase.HBaseConfiguration.checkDefaultsVersion(HBaseConfiguration.java:66)
-	at org.apache.hadoop.hbase.HBaseConfiguration.addHbaseResources(HBaseConfiguration.java:80)
-	at org.apache.hadoop.hbase.HBaseConfiguration.create(HBaseConfiguration.java:94)
-	at hbase.HBaseOper.initHBse(HBaseDemo.java:30)
-	at hbase.HBaseOper.<init>(HBaseDemo.java:26)
-	at hbase.HBaseOper.main(HBaseDemo.java:277)
-2018-08-02 14:07:24,925 [DEBUG] org.apache.hadoop.security.Groups  -  Creating new Groups object
-2018-08-02 14:07:24,951 [DEBUG] org.apache.hadoop.util.NativeCodeLoader  - Trying to load the custom-built native-hadoop library...
-2018-08-02 14:07:24,953 [DEBUG] org.apache.hadoop.util.NativeCodeLoader  - Failed to load native-hadoop with error: java.lang.UnsatisfiedLinkError: no hadoop in java.library.path
-2018-08-02 14:07:24,953 [DEBUG] org.apache.hadoop.util.NativeCodeLoader  - java.library.path=D:\Java\jdk1.8.0_102\bin;C:\WINDOWS\Sun\Java\bin;C:\WINDOWS\system32;C:\WINDOWS;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;D:\Java\jdk1.8.0_102\bin;D:\Java\jdk1.8.0_102\jre\bin;C:\ProgramData\Oracle\Java\javapath;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\Program Files\Git\cmd;E:\java\maven\apache-maven-3.5.2\bin;C:\WINDOWS\System32\OpenSSH\;E:\ICBC\hadoop-2.9.1\bin;E:\ICBC\hadoop-2.9.1\sbin;E:\ICBC\spark-2.3.1\bin\windows;E:\ICBC\scala\bin;E:\ICBC\scala\lib\dt.jar;E:\ICBC\scala\lib\tools.jar;E:\ICBC\hbase-2.0.0\bin;E:\ICBC\zookeeper-3.4.12\bin;E:\ICBC\spark-2.3.1\config;E:\ICBC\;C:\Users\Asus-\AppData\Local\Programs\Python\Python36\Scripts\;C:\Users\Asus-\AppData\Local\Programs\Python\Python36\;C:\Users\Asus-\AppData\Local\Programs\Python\Python35-32\Scripts\;C:\Users\Asus-\AppData\Local\Programs\Python\Python35-32\;C:\Users\Asus-\AppData\Local\Programs\Python\Python36-32\Scripts\;C:\Users\Asus-\AppData\Local\Programs\Python\Python36-32\;C:\Users\Asus-\AppData\Local\Microsoft\WindowsApps;E:\Bandizip\;;C:\Users\Asus-\AppData\Local\Programs\Fiddler;.
-2018-08-02 14:07:24,953 [WARN ] org.apache.hadoop.util.NativeCodeLoader  - Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
-2018-08-02 14:07:24,955 [DEBUG] org.apache.hadoop.security.JniBasedUnixGroupsMappingWithFallback  - Group mapping impl=org.apache.hadoop.security.ShellBasedUnixGroupsMapping
-2018-08-02 14:07:25,080 [DEBUG] org.apache.hadoop.security.Groups  - Group mapping impl=org.apache.hadoop.security.JniBasedUnixGroupsMappingWithFallback; cacheTimeout=300000; warningDeltaMs=5000
-2018-08-02 14:07:25,235 [DEBUG] org.apache.hadoop.metrics2.lib.MutableMetricsFactory  - field org.apache.hadoop.metrics2.lib.MutableRate org.apache.hadoop.security.UserGroupInformation$UgiMetrics.loginSuccess with annotation @org.apache.hadoop.metrics2.annotation.Metric(about=, sampleName=Ops, always=false, type=DEFAULT, value=[Rate of successful kerberos logins and latency (milliseconds)], valueName=Time)
-2018-08-02 14:07:25,248 [DEBUG] org.apache.hadoop.metrics2.lib.MutableMetricsFactory  - field org.apache.hadoop.metrics2.lib.MutableRate org.apache.hadoop.security.UserGroupInformation$UgiMetrics.loginFailure with annotation @org.apache.hadoop.metrics2.annotation.Metric(about=, sampleName=Ops, always=false, type=DEFAULT, value=[Rate of failed kerberos logins and latency (milliseconds)], valueName=Time)
-2018-08-02 14:07:25,249 [DEBUG] org.apache.hadoop.metrics2.lib.MutableMetricsFactory  - field org.apache.hadoop.metrics2.lib.MutableRate org.apache.hadoop.security.UserGroupInformation$UgiMetrics.getGroups with annotation @org.apache.hadoop.metrics2.annotation.Metric(about=, sampleName=Ops, always=false, type=DEFAULT, value=[GetGroups], valueName=Time)
-2018-08-02 14:07:25,250 [DEBUG] org.apache.hadoop.metrics2.impl.MetricsSystemImpl  - UgiMetrics, User and group related metrics
-2018-08-02 14:07:25,343 [DEBUG] org.apache.hadoop.security.UserGroupInformation  - hadoop login
-2018-08-02 14:07:25,343 [DEBUG] org.apache.hadoop.security.UserGroupInformation  - hadoop login commit
-2018-08-02 14:07:25,350 [DEBUG] org.apache.hadoop.security.UserGroupInformation  - using local user:NTUserPrincipal: Asus-
-2018-08-02 14:07:25,351 [DEBUG] org.apache.hadoop.security.UserGroupInformation  - Using user: "NTUserPrincipal: Asus-" with name Asus-
-2018-08-02 14:07:25,351 [DEBUG] org.apache.hadoop.security.UserGroupInformation  - User entry: "Asus-"
-2018-08-02 14:07:25,351 [DEBUG] org.apache.hadoop.security.UserGroupInformation  - Assuming keytab is managed externally since logged in from subject.
-2018-08-02 14:07:25,352 [DEBUG] org.apache.hadoop.security.UserGroupInformation  - UGI loginUser:Asus- (auth:SIMPLE)
+	at org.apache.hadoop.security.SecurityUtil.getAuthenticationMethod(SecurityUtil.java:611)
+	at org.apache.hadoop.security.UserGroupInformation.initialize(UserGroupInformation.java:274)
+	at org.apache.hadoop.security.UserGroupInformation.ensureInitialized(UserGroupInformation.java:262)
+	at org.apache.hadoop.security.UserGroupInformation.loginUserFromSubject(UserGroupInformation.java:807)
+	at org.apache.hadoop.security.UserGroupInformation.getLoginUser(UserGroupInformation.java:777)
+	at org.apache.hadoop.security.UserGroupInformation.getCurrentUser(UserGroupInformation.java:650)
+	at org.apache.spark.util.Utils$$anonfun$getCurrentUserName$1.apply(Utils.scala:2467)
+	at org.apache.spark.util.Utils$$anonfun$getCurrentUserName$1.apply(Utils.scala:2467)
+	at scala.Option.getOrElse(Option.scala:121)
+	at org.apache.spark.util.Utils$.getCurrentUserName(Utils.scala:2467)
+	at org.apache.spark.SparkContext.<init>(SparkContext.scala:292)
+	at org.apache.spark.api.java.JavaSparkContext.<init>(JavaSparkContext.scala:58)
+	at spark.SparkMain.initSparkStreaming(SparkMain.java:42)
+	at spark.SparkMain.<init>(SparkMain.java:31)
+	at Main.main(Main.java:21)
+2018-08-02 17:59:57,188 [DEBUG] org.apache.hadoop.security.authentication.util.KerberosName  - Kerberos krb5 configuration not found, setting default realm to empty
+2018-08-02 17:59:57,191 [DEBUG] org.apache.hadoop.security.Groups  -  Creating new Groups object
+2018-08-02 17:59:57,193 [DEBUG] org.apache.hadoop.util.NativeCodeLoader  - Trying to load the custom-built native-hadoop library...
+2018-08-02 17:59:57,195 [DEBUG] org.apache.hadoop.util.NativeCodeLoader  - Failed to load native-hadoop with error: java.lang.UnsatisfiedLinkError: no hadoop in java.library.path
+2018-08-02 17:59:57,195 [DEBUG] org.apache.hadoop.util.NativeCodeLoader  - java.library.path=D:\Java\jdk1.8.0_102\bin;C:\WINDOWS\Sun\Java\bin;C:\WINDOWS\system32;C:\WINDOWS;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;D:\Java\jdk1.8.0_102\bin;D:\Java\jdk1.8.0_102\jre\bin;C:\ProgramData\Oracle\Java\javapath;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\Program Files\Git\cmd;E:\java\maven\apache-maven-3.5.2\bin;C:\WINDOWS\System32\OpenSSH\;E:\ICBC\hadoop-2.9.1\bin;E:\ICBC\hadoop-2.9.1\sbin;E:\ICBC\spark-2.3.1\bin\windows;E:\ICBC\scala\bin;E:\ICBC\scala\lib\dt.jar;E:\ICBC\scala\lib\tools.jar;E:\ICBC\hbase-2.0.0\bin;E:\ICBC\zookeeper-3.4.12\bin;E:\ICBC\spark-2.3.1\config;E:\ICBC\;C:\Users\Asus-\AppData\Local\Programs\Python\Python36\Scripts\;C:\Users\Asus-\AppData\Local\Programs\Python\Python36\;C:\Users\Asus-\AppData\Local\Programs\Python\Python35-32\Scripts\;C:\Users\Asus-\AppData\Local\Programs\Python\Python35-32\;C:\Users\Asus-\AppData\Local\Programs\Python\Python36-32\Scripts\;C:\Users\Asus-\AppData\Local\Programs\Python\Python36-32\;C:\Users\Asus-\AppData\Local\Microsoft\WindowsApps;E:\Bandizip\;;C:\Users\Asus-\AppData\Local\Programs\Fiddler;.
+2018-08-02 17:59:57,196 [WARN ] org.apache.hadoop.util.NativeCodeLoader  - Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+2018-08-02 17:59:57,196 [DEBUG] org.apache.hadoop.util.PerformanceAdvisory  - Falling back to shell based
+2018-08-02 17:59:57,196 [DEBUG] org.apache.hadoop.security.JniBasedUnixGroupsMappingWithFallback  - Group mapping impl=org.apache.hadoop.security.ShellBasedUnixGroupsMapping
+2018-08-02 17:59:57,278 [DEBUG] org.apache.hadoop.security.Groups  - Group mapping impl=org.apache.hadoop.security.JniBasedUnixGroupsMappingWithFallback; cacheTimeout=300000; warningDeltaMs=5000
+2018-08-02 17:59:57,282 [DEBUG] org.apache.hadoop.security.UserGroupInformation  - hadoop login
+2018-08-02 17:59:57,283 [DEBUG] org.apache.hadoop.security.UserGroupInformation  - hadoop login commit
+2018-08-02 17:59:57,292 [DEBUG] org.apache.hadoop.security.UserGroupInformation  - using local user:NTUserPrincipal: Asus-
+2018-08-02 17:59:57,292 [DEBUG] org.apache.hadoop.security.UserGroupInformation  - Using user: "NTUserPrincipal: Asus-" with name Asus-
+2018-08-02 17:59:57,293 [DEBUG] org.apache.hadoop.security.UserGroupInformation  - User entry: "Asus-"
+2018-08-02 17:59:57,293 [DEBUG] org.apache.hadoop.security.UserGroupInformation  - Assuming keytab is managed externally since logged in from subject.
+2018-08-02 17:59:57,293 [DEBUG] org.apache.hadoop.security.UserGroupInformation  - UGI loginUser:Asus- (auth:SIMPLE)
+2018-08-02 17:59:57,312 [INFO ] org.apache.spark.SparkContext  - Submitted application: calgpsdata
+2018-08-02 17:59:57,439 [INFO ] org.apache.spark.SecurityManager  - Changing view acls to: Asus-
+2018-08-02 17:59:57,440 [INFO ] org.apache.spark.SecurityManager  - Changing modify acls to: Asus-
+2018-08-02 17:59:57,441 [INFO ] org.apache.spark.SecurityManager  - Changing view acls groups to: 
+2018-08-02 17:59:57,442 [INFO ] org.apache.spark.SecurityManager  - Changing modify acls groups to: 
+2018-08-02 17:59:57,443 [INFO ] org.apache.spark.SecurityManager  - SecurityManager: authentication disabled; ui acls disabled; users  with view permissions: Set(Asus-); groups with view permissions: Set(); users  with modify permissions: Set(Asus-); groups with modify permissions: Set()
+2018-08-02 17:59:57,472 [DEBUG] org.apache.spark.SecurityManager  - Created SSL options for fs: SSLOptions{enabled=false, port=None, keyStore=None, keyStorePassword=None, trustStore=None, trustStorePassword=None, protocol=None, enabledAlgorithms=Set()}
+2018-08-02 17:59:57,551 [DEBUG] io.netty.util.internal.logging.InternalLoggerFactory  - Using SLF4J as the default logging framework
+2018-08-02 17:59:57,556 [DEBUG] io.netty.util.internal.PlatformDependent0  - java.nio.Buffer.address: available
+2018-08-02 17:59:57,556 [DEBUG] io.netty.util.internal.PlatformDependent0  - sun.misc.Unsafe.theUnsafe: available
+2018-08-02 17:59:57,556 [DEBUG] io.netty.util.internal.PlatformDependent0  - sun.misc.Unsafe.copyMemory: available
+2018-08-02 17:59:57,557 [DEBUG] io.netty.util.internal.PlatformDependent0  - java.nio.Bits.unaligned: true
+2018-08-02 17:59:57,558 [DEBUG] io.netty.util.internal.PlatformDependent  - Platform: Windows
+2018-08-02 17:59:57,558 [DEBUG] io.netty.util.internal.PlatformDependent  - Java version: 8
+2018-08-02 17:59:57,558 [DEBUG] io.netty.util.internal.PlatformDependent  - -Dio.netty.noUnsafe: false
+2018-08-02 17:59:57,558 [DEBUG] io.netty.util.internal.PlatformDependent  - sun.misc.Unsafe: available
+2018-08-02 17:59:57,559 [DEBUG] io.netty.util.internal.PlatformDependent  - -Dio.netty.noJavassist: false
+2018-08-02 17:59:57,638 [DEBUG] io.netty.util.internal.PlatformDependent  - Javassist: available
+2018-08-02 17:59:57,638 [DEBUG] io.netty.util.internal.PlatformDependent  - -Dio.netty.tmpdir: C:\Users\Asus-\AppData\Local\Temp (java.io.tmpdir)
+2018-08-02 17:59:57,638 [DEBUG] io.netty.util.internal.PlatformDependent  - -Dio.netty.bitMode: 32 (sun.arch.data.model)
+2018-08-02 17:59:57,638 [DEBUG] io.netty.util.internal.PlatformDependent  - -Dio.netty.noPreferDirect: false
+2018-08-02 17:59:57,640 [DEBUG] io.netty.util.internal.JavassistTypeParameterMatcherGenerator  - Generated: io.netty.util.internal.__matchers__.org.apache.spark.network.protocol.MessageMatcher
+2018-08-02 17:59:57,647 [DEBUG] io.netty.util.internal.JavassistTypeParameterMatcherGenerator  - Generated: io.netty.util.internal.__matchers__.io.netty.buffer.ByteBufMatcher
+2018-08-02 17:59:57,661 [DEBUG] io.netty.channel.MultithreadEventLoopGroup  - -Dio.netty.eventLoopThreads: 8
+2018-08-02 17:59:57,679 [DEBUG] io.netty.channel.nio.NioEventLoop  - -Dio.netty.noKeySetOptimization: false
+2018-08-02 17:59:57,679 [DEBUG] io.netty.channel.nio.NioEventLoop  - -Dio.netty.selectorAutoRebuildThreshold: 512
+2018-08-02 17:59:57,756 [DEBUG] io.netty.buffer.PooledByteBufAllocator  - -Dio.netty.allocator.numHeapArenas: 2
+2018-08-02 17:59:57,756 [DEBUG] io.netty.buffer.PooledByteBufAllocator  - -Dio.netty.allocator.numDirectArenas: 2
+2018-08-02 17:59:57,756 [DEBUG] io.netty.buffer.PooledByteBufAllocator  - -Dio.netty.allocator.pageSize: 8192
+2018-08-02 17:59:57,756 [DEBUG] io.netty.buffer.PooledByteBufAllocator  - -Dio.netty.allocator.maxOrder: 11
+2018-08-02 17:59:57,756 [DEBUG] io.netty.buffer.PooledByteBufAllocator  - -Dio.netty.allocator.chunkSize: 16777216
+2018-08-02 17:59:57,756 [DEBUG] io.netty.buffer.PooledByteBufAllocator  - -Dio.netty.allocator.tinyCacheSize: 512
+2018-08-02 17:59:57,756 [DEBUG] io.netty.buffer.PooledByteBufAllocator  - -Dio.netty.allocator.smallCacheSize: 256
+2018-08-02 17:59:57,756 [DEBUG] io.netty.buffer.PooledByteBufAllocator  - -Dio.netty.allocator.normalCacheSize: 64
+2018-08-02 17:59:57,756 [DEBUG] io.netty.buffer.PooledByteBufAllocator  - -Dio.netty.allocator.maxCachedBufferCapacity: 32768
+2018-08-02 17:59:57,757 [DEBUG] io.netty.buffer.PooledByteBufAllocator  - -Dio.netty.allocator.cacheTrimInterval: 8192

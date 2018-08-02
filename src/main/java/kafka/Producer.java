@@ -49,11 +49,11 @@ public class Producer extends Thread {
 
     public void run() {
         int index = 1;
-        int count = 10000;
+        int count = 100;
         int messageNo = 0;
         long startTime = System.currentTimeMillis();
         DBOper dbOper = new DBOper();
-        while (true) {
+        while (index < 100) {
             List<String> data = dbOper.search(index, count);
             index += count;
             if (isAsync) {
