@@ -31,6 +31,19 @@
         <jarDirectory url="file://E:/ICBC/hbase-2.0.0/lib" recursive="false" />
       </library>
     </orderEntry>
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="file://E:/ICBC/spark-2.3.1-bin-hadoop2.7/jars" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES>
+          <root url="file://E:/ICBC/spark-2.3.1-bin-hadoop2.7/jars" />
+        </SOURCES>
+        <jarDirectory url="file://E:/ICBC/spark-2.3.1-bin-hadoop2.7/jars" recursive="false" />
+        <jarDirectory url="file://E:/ICBC/spark-2.3.1-bin-hadoop2.7/jars" recursive="false" type="SOURCES" />
+      </library>
+    </orderEntry>
     <orderEntry type="library" name="Maven: org.apache.kafka:kafka_2.12:1.1.0" level="project" />
     <orderEntry type="library" name="Maven: org.apache.kafka:kafka-clients:1.1.0" level="project" />
     <orderEntry type="library" name="Maven: org.lz4:lz4-java:1.4" level="project" />
@@ -49,5 +62,8 @@
     <orderEntry type="library" name="Maven: org.slf4j:slf4j-simple:1.7.25" level="project" />
     <orderEntry type="library" name="Maven: org.apache.logging.log4j:log4j-api:2.11.0" level="project" />
     <orderEntry type="library" name="Maven: org.apache.logging.log4j:log4j-core:2.11.0" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.spark:spark-streaming-kafka-0-10_2.11:2.3.1" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.spark:spark-tags_2.11:2.3.1" level="project" />
+    <orderEntry type="library" name="Maven: org.spark-project.spark:unused:1.0.0" level="project" />
   </component>
 </module>

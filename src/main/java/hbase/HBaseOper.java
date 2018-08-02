@@ -1,41 +1,32 @@
 package hbase;
 
 import org.apache.commons.io.IOUtils;
-import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.hbase.*;
 import org.apache.hadoop.hbase.client.*;
 import org.apache.hadoop.hbase.util.Bytes;
-import org.jets3t.service.model.container.ObjectKeyAndVersion;
 import utils.LoggerUtil;
 
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Map;
+import java.util.*;
 
 /**
  * Created by Asus- on 2018/7/26.
  */
-public class HBaseDemo {
+public class HBaseOper {
     private static HBaseAdmin admin;
-    private static Configuration configuration;
     private static Connection connection;
 
-    public HBaseDemo() {
+    public HBaseOper() {
         initHBse();
     }
 
     private void initHBse() {
-        configuration = HBaseConfiguration.create();
-        configuration.set("hbase.zookeeper.quorum", "10.2.17.202");
-        configuration.set("hbase.zookeeper.property.clientPort", "2182");
         try {
-            this.connection = ConnectionFactory.createConnection(configuration);
+            HBConn hbConn = HBConn.getInstance();
+            this.connection = hbConn.getConnection();
             this.admin = (HBaseAdmin) connection.getAdmin();
         } catch (IOException e) {
             e.printStackTrace();
-        } finally {
-            LoggerUtil.info("HBase连接成功!");
         }
     }
 
@@ -43,9 +34,9 @@ public class HBaseDemo {
      * HBase-创建表
      *
      * @param tableName
-     * @param seriesStr
+     * @param serFamilyStr
      */
-    private void create(String tableName, String seriesStr) {
+    private void create(String tableName, String serFamilyStr) {
         /**
          * 1.得到表名
          * 2.判断数据库中是否已经含有该表
@@ -63,11 +54,11 @@ public class HBaseDemo {
             //3.创建一个HTableDescriptor对象实例
             HTableDescriptor tableDescriptor = new HTableDescriptor(name);
             //4.4.将字符串切割，得到家族簇集
-            String[] series = seriesStr.split(",");
+            String[] series = serFamilyStr.split(",");
             //5.将每一个家族簇加入到HTableDescriptor对象实例中
             for (String s : series) {
                 HColumnDescriptor hColumnDescriptor = new HColumnDescriptor(s.getBytes());
-                hColumnDescriptor.setMaxVersions(1000);
+                hColumnDescriptor.setMaxVersions(2500);
                 tableDescriptor.addFamily(hColumnDescriptor);
             }
             //6.创建该表
@@ -158,11 +149,13 @@ public class HBaseDemo {
                 //6.根据家族簇名得到Map集
                 Map<byte[], byte[]> map = result.getFamilyMap(family.getBytes());
                 //7.遍历Map集，将它转换成我们需要的Map
-                Iterator<Map.Entry<byte[], byte[]>> it = map.entrySet().iterator();
-                resultMap = new HashMap<String, String>();
-                while (it.hasNext()) {
-                    Map.Entry<byte[], byte[]> entry = it.next();
-                    resultMap.put(Bytes.toString(entry.getKey()), Bytes.toString(entry.getValue()));
+                if (map != null) {
+                    Iterator<Map.Entry<byte[], byte[]>> it = map.entrySet().iterator();
+                    resultMap = new HashMap<String, String>();
+                    while (it.hasNext()) {
+                        Map.Entry<byte[], byte[]> entry = it.next();
+                        resultMap.put(Bytes.toString(entry.getKey()), Bytes.toString(entry.getValue()));
+                    }
                 }
             }
         } catch (IOException e) {
@@ -182,7 +175,7 @@ public class HBaseDemo {
      * @param column
      * @return
      */
-    private String search(String tableName, String family, String rowKey, String column) {
+    private String search(String tableName, String family, String column, String rowKey) {
         TableName name = TableName.valueOf(tableName);
         String resultStr = "";
         try {
@@ -222,19 +215,93 @@ public class HBaseDemo {
         }
     }
 
-    public static void main(String[] args) {
-        String tableName = "demo";
-        String family = "userinfo";
-        String ser = "userinfo,moreinfo";
-        HBaseDemo hBaseDemo = new HBaseDemo();
-        Map<String, Object> myMap = new HashMap<String, Object>();
-        Map<String, String> resultMap;
-        myMap.put("name", "jackson");
-        myMap.put("sex", "boy");
-        hBaseDemo.insert(tableName, "1", family, myMap);
-        resultMap = hBaseDemo.search(tableName, family, "1");
+    /**
+     * 查询数据，返回对应列族的列的
+     *
+     * @param tableName
+     * @param family
+     * @param column
+     * @return
+     * @throws IOException
+     */
+    public List<String> read(String tableName, String family, String column) throws IOException {
+        Table table = connection.getTable(TableName.valueOf(tableName));
+        Scan scan = new Scan();
+        scan.addColumn(family.getBytes(), column.getBytes());
+        scan.setMaxVersions(3000);//设置读取的最大的版本数
+        ResultScanner r = table.getScanner(scan);
+        List<String> list = new ArrayList<String>();
+        for (Result result : r) {
+            for (Cell kv : result.rawCells()) {
+                list.add(Bytes.toString(kv.getRowArray()));
+            }
+        }
+        System.out.println(list.size());
+        table.close();
+        return list;
+    }
+
+    /**
+     * 删除表对应的行的列族的数据
+     *
+     * @param tableName
+     * @param family
+     * @param rowkey
+     */
+    public void delete(String tableName, String family, String rowkey) {
+        try {
+            Table table = connection.getTable(TableName.valueOf(tableName));
+            Delete delete = new Delete(rowkey.getBytes());
+            delete.addFamily(family.getBytes());
+            table.delete(delete);
+            LoggerUtil.info("删除列族 " + family + " 的数据成功");
+            table.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * 删除表某行对应列族某列的数据
+     *
+     * @param tableName
+     * @param family
+     * @param column
+     * @param rowkey
+     */
+    public void delete(String tableName, String family, String column, String rowkey) {
+        try {
+            Table table = connection.getTable(TableName.valueOf(tableName));
+            Delete delete = new Delete(rowkey.getBytes());
+//            delete.addFamily(family.getBytes());
+            delete.addColumn(family.getBytes(), column.getBytes());
+            table.delete(delete);
+            LoggerUtil.info("删除列 " + column + " 的数据成功!");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void main(String[] args) throws IOException {
+        String tableName = "gpsdata";
+        String gpsFamily = "gpsinfo";
+        String ususlFamily = "usualstopinfo";
+        String finalFamily = "finalstopinfo";
+        String serFamily = "gpsinfo,usualstopinfo,finalstopinfo";
+        HBaseOper hBaseOper = new HBaseOper();
+        //hBaseOper.dropTable(tableName);
+        //创建表gpsdata
+        //hBaseOper.create(tableName, serFamily);
+        //使用键值对进行数据保存，插入
+        //Map<String, Object> gpsMap = new HashMap<String, Object>();
+        //gpsMap.put("lon", "121.469600");
+        //gpsMap.put("lat", "31.291600");
+        //hBaseOper.insert(tableName, "1", gpsFamily, gpsMap);
+        Map<String, String> resultMap = hBaseOper.search(tableName, gpsFamily, "1");
         for (Map.Entry entry : resultMap.entrySet()) {
             System.out.println(entry.getValue());
         }
+//        hBaseOper.delete(tableName, gpsFamily, "lon", "1");
+//        hBaseOper.delete(tableName, gpsFamily, "lat", "1");
     }
 }

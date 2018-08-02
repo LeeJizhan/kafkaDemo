@@ -1,4 +1,4 @@
-2018-08-02 10:12:56,412 [ERROR] org.apache.hadoop.util.Shell  - Failed to locate the winutils binary in the hadoop binary path
+2018-08-02 14:07:24,887 [ERROR] org.apache.hadoop.util.Shell  - Failed to locate the winutils binary in the hadoop binary path
 java.io.IOException: Could not locate executable E:\ICBC\hadoop-2.9.1\bin\winutils.exe in the Hadoop binaries.
 	at org.apache.hadoop.util.Shell.getQualifiedBinPath(Shell.java:382)
 	at org.apache.hadoop.util.Shell.getWinUtilsPath(Shell.java:397)
@@ -8,24 +8,24 @@ java.io.IOException: Could not locate executable E:\ICBC\hadoop-2.9.1\bin\winuti
 	at org.apache.hadoop.hbase.HBaseConfiguration.checkDefaultsVersion(HBaseConfiguration.java:66)
 	at org.apache.hadoop.hbase.HBaseConfiguration.addHbaseResources(HBaseConfiguration.java:80)
 	at org.apache.hadoop.hbase.HBaseConfiguration.create(HBaseConfiguration.java:94)
-	at hbase.HBaseDemo.initHBse(HBaseDemo.java:29)
-	at hbase.HBaseDemo.<init>(HBaseDemo.java:25)
-	at hbase.HBaseDemo.main(HBaseDemo.java:229)
-2018-08-02 10:12:56,703 [DEBUG] org.apache.hadoop.security.Groups  -  Creating new Groups object
-2018-08-02 10:12:56,772 [DEBUG] org.apache.hadoop.util.NativeCodeLoader  - Trying to load the custom-built native-hadoop library...
-2018-08-02 10:12:56,788 [DEBUG] org.apache.hadoop.util.NativeCodeLoader  - Failed to load native-hadoop with error: java.lang.UnsatisfiedLinkError: no hadoop in java.library.path
-2018-08-02 10:12:56,788 [DEBUG] org.apache.hadoop.util.NativeCodeLoader  - java.library.path=D:\Java\jdk1.8.0_102\bin;C:\WINDOWS\Sun\Java\bin;C:\WINDOWS\system32;C:\WINDOWS;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;D:\Java\jdk1.8.0_102\bin;D:\Java\jdk1.8.0_102\jre\bin;C:\ProgramData\Oracle\Java\javapath;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\Program Files\Git\cmd;E:\java\maven\apache-maven-3.5.2\bin;C:\WINDOWS\System32\OpenSSH\;E:\ICBC\hadoop-2.9.1\bin;E:\ICBC\hadoop-2.9.1\sbin;E:\ICBC\spark-2.3.1\bin\windows;E:\ICBC\scala\bin;E:\ICBC\scala\lib\dt.jar;E:\ICBC\scala\lib\tools.jar;E:\ICBC\hbase-2.0.0\bin;E:\ICBC\zookeeper-3.4.12\bin;E:\ICBC\spark-2.3.1\config;E:\ICBC\;C:\Users\Asus-\AppData\Local\Programs\Python\Python36\Scripts\;C:\Users\Asus-\AppData\Local\Programs\Python\Python36\;C:\Users\Asus-\AppData\Local\Programs\Python\Python35-32\Scripts\;C:\Users\Asus-\AppData\Local\Programs\Python\Python35-32\;C:\Users\Asus-\AppData\Local\Programs\Python\Python36-32\Scripts\;C:\Users\Asus-\AppData\Local\Programs\Python\Python36-32\;C:\Users\Asus-\AppData\Local\Microsoft\WindowsApps;E:\Bandizip\;;C:\Users\Asus-\AppData\Local\Programs\Fiddler;.
-2018-08-02 10:12:56,788 [WARN ] org.apache.hadoop.util.NativeCodeLoader  - Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
-2018-08-02 10:12:56,789 [DEBUG] org.apache.hadoop.security.JniBasedUnixGroupsMappingWithFallback  - Group mapping impl=org.apache.hadoop.security.ShellBasedUnixGroupsMapping
-2018-08-02 10:12:57,043 [DEBUG] org.apache.hadoop.security.Groups  - Group mapping impl=org.apache.hadoop.security.JniBasedUnixGroupsMappingWithFallback; cacheTimeout=300000; warningDeltaMs=5000
-2018-08-02 10:12:57,350 [DEBUG] org.apache.hadoop.metrics2.lib.MutableMetricsFactory  - field org.apache.hadoop.metrics2.lib.MutableRate org.apache.hadoop.security.UserGroupInformation$UgiMetrics.loginSuccess with annotation @org.apache.hadoop.metrics2.annotation.Metric(sampleName=Ops, about=, always=false, type=DEFAULT, value=[Rate of successful kerberos logins and latency (milliseconds)], valueName=Time)
-2018-08-02 10:12:57,377 [DEBUG] org.apache.hadoop.metrics2.lib.MutableMetricsFactory  - field org.apache.hadoop.metrics2.lib.MutableRate org.apache.hadoop.security.UserGroupInformation$UgiMetrics.loginFailure with annotation @org.apache.hadoop.metrics2.annotation.Metric(sampleName=Ops, about=, always=false, type=DEFAULT, value=[Rate of failed kerberos logins and latency (milliseconds)], valueName=Time)
-2018-08-02 10:12:57,377 [DEBUG] org.apache.hadoop.metrics2.lib.MutableMetricsFactory  - field org.apache.hadoop.metrics2.lib.MutableRate org.apache.hadoop.security.UserGroupInformation$UgiMetrics.getGroups with annotation @org.apache.hadoop.metrics2.annotation.Metric(sampleName=Ops, about=, always=false, type=DEFAULT, value=[GetGroups], valueName=Time)
-2018-08-02 10:12:57,379 [DEBUG] org.apache.hadoop.metrics2.impl.MetricsSystemImpl  - UgiMetrics, User and group related metrics
-2018-08-02 10:12:57,641 [DEBUG] org.apache.hadoop.security.UserGroupInformation  - hadoop login
-2018-08-02 10:12:57,642 [DEBUG] org.apache.hadoop.security.UserGroupInformation  - hadoop login commit
-2018-08-02 10:12:57,658 [DEBUG] org.apache.hadoop.security.UserGroupInformation  - using local user:NTUserPrincipal: Asus-
-2018-08-02 10:12:57,658 [DEBUG] org.apache.hadoop.security.UserGroupInformation  - Using user: "NTUserPrincipal: Asus-" with name Asus-
-2018-08-02 10:12:57,658 [DEBUG] org.apache.hadoop.security.UserGroupInformation  - User entry: "Asus-"
-2018-08-02 10:12:57,658 [DEBUG] org.apache.hadoop.security.UserGroupInformation  - Assuming keytab is managed externally since logged in from subject.
-2018-08-02 10:12:57,660 [DEBUG] org.apache.hadoop.security.UserGroupInformation  - UGI loginUser:Asus- (auth:SIMPLE)
+	at hbase.HBaseOper.initHBse(HBaseDemo.java:30)
+	at hbase.HBaseOper.<init>(HBaseDemo.java:26)
+	at hbase.HBaseOper.main(HBaseDemo.java:277)
+2018-08-02 14:07:24,925 [DEBUG] org.apache.hadoop.security.Groups  -  Creating new Groups object
+2018-08-02 14:07:24,951 [DEBUG] org.apache.hadoop.util.NativeCodeLoader  - Trying to load the custom-built native-hadoop library...
+2018-08-02 14:07:24,953 [DEBUG] org.apache.hadoop.util.NativeCodeLoader  - Failed to load native-hadoop with error: java.lang.UnsatisfiedLinkError: no hadoop in java.library.path
+2018-08-02 14:07:24,953 [DEBUG] org.apache.hadoop.util.NativeCodeLoader  - java.library.path=D:\Java\jdk1.8.0_102\bin;C:\WINDOWS\Sun\Java\bin;C:\WINDOWS\system32;C:\WINDOWS;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;D:\Java\jdk1.8.0_102\bin;D:\Java\jdk1.8.0_102\jre\bin;C:\ProgramData\Oracle\Java\javapath;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\Program Files\Git\cmd;E:\java\maven\apache-maven-3.5.2\bin;C:\WINDOWS\System32\OpenSSH\;E:\ICBC\hadoop-2.9.1\bin;E:\ICBC\hadoop-2.9.1\sbin;E:\ICBC\spark-2.3.1\bin\windows;E:\ICBC\scala\bin;E:\ICBC\scala\lib\dt.jar;E:\ICBC\scala\lib\tools.jar;E:\ICBC\hbase-2.0.0\bin;E:\ICBC\zookeeper-3.4.12\bin;E:\ICBC\spark-2.3.1\config;E:\ICBC\;C:\Users\Asus-\AppData\Local\Programs\Python\Python36\Scripts\;C:\Users\Asus-\AppData\Local\Programs\Python\Python36\;C:\Users\Asus-\AppData\Local\Programs\Python\Python35-32\Scripts\;C:\Users\Asus-\AppData\Local\Programs\Python\Python35-32\;C:\Users\Asus-\AppData\Local\Programs\Python\Python36-32\Scripts\;C:\Users\Asus-\AppData\Local\Programs\Python\Python36-32\;C:\Users\Asus-\AppData\Local\Microsoft\WindowsApps;E:\Bandizip\;;C:\Users\Asus-\AppData\Local\Programs\Fiddler;.
+2018-08-02 14:07:24,953 [WARN ] org.apache.hadoop.util.NativeCodeLoader  - Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+2018-08-02 14:07:24,955 [DEBUG] org.apache.hadoop.security.JniBasedUnixGroupsMappingWithFallback  - Group mapping impl=org.apache.hadoop.security.ShellBasedUnixGroupsMapping
+2018-08-02 14:07:25,080 [DEBUG] org.apache.hadoop.security.Groups  - Group mapping impl=org.apache.hadoop.security.JniBasedUnixGroupsMappingWithFallback; cacheTimeout=300000; warningDeltaMs=5000
+2018-08-02 14:07:25,235 [DEBUG] org.apache.hadoop.metrics2.lib.MutableMetricsFactory  - field org.apache.hadoop.metrics2.lib.MutableRate org.apache.hadoop.security.UserGroupInformation$UgiMetrics.loginSuccess with annotation @org.apache.hadoop.metrics2.annotation.Metric(about=, sampleName=Ops, always=false, type=DEFAULT, value=[Rate of successful kerberos logins and latency (milliseconds)], valueName=Time)
+2018-08-02 14:07:25,248 [DEBUG] org.apache.hadoop.metrics2.lib.MutableMetricsFactory  - field org.apache.hadoop.metrics2.lib.MutableRate org.apache.hadoop.security.UserGroupInformation$UgiMetrics.loginFailure with annotation @org.apache.hadoop.metrics2.annotation.Metric(about=, sampleName=Ops, always=false, type=DEFAULT, value=[Rate of failed kerberos logins and latency (milliseconds)], valueName=Time)
+2018-08-02 14:07:25,249 [DEBUG] org.apache.hadoop.metrics2.lib.MutableMetricsFactory  - field org.apache.hadoop.metrics2.lib.MutableRate org.apache.hadoop.security.UserGroupInformation$UgiMetrics.getGroups with annotation @org.apache.hadoop.metrics2.annotation.Metric(about=, sampleName=Ops, always=false, type=DEFAULT, value=[GetGroups], valueName=Time)
+2018-08-02 14:07:25,250 [DEBUG] org.apache.hadoop.metrics2.impl.MetricsSystemImpl  - UgiMetrics, User and group related metrics
+2018-08-02 14:07:25,343 [DEBUG] org.apache.hadoop.security.UserGroupInformation  - hadoop login
+2018-08-02 14:07:25,343 [DEBUG] org.apache.hadoop.security.UserGroupInformation  - hadoop login commit
+2018-08-02 14:07:25,350 [DEBUG] org.apache.hadoop.security.UserGroupInformation  - using local user:NTUserPrincipal: Asus-
+2018-08-02 14:07:25,351 [DEBUG] org.apache.hadoop.security.UserGroupInformation  - Using user: "NTUserPrincipal: Asus-" with name Asus-
+2018-08-02 14:07:25,351 [DEBUG] org.apache.hadoop.security.UserGroupInformation  - User entry: "Asus-"
+2018-08-02 14:07:25,351 [DEBUG] org.apache.hadoop.security.UserGroupInformation  - Assuming keytab is managed externally since logged in from subject.
+2018-08-02 14:07:25,352 [DEBUG] org.apache.hadoop.security.UserGroupInformation  - UGI loginUser:Asus- (auth:SIMPLE)
