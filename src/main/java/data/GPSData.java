@@ -34,6 +34,7 @@ public class GPSData {
     private static Map<Integer, Double> lonMap = new HashMap<Integer, Double>();
     private static Map<Integer, Double> bearingMap = new HashMap<Integer, Double>();
     private static Map<Integer, Double> distanceMap = new HashMap<Integer, Double>();
+    private static Map<Integer, Boolean> isStopMap = new HashMap<Integer, Boolean>();
 
     public GPSData() {
         initData();
@@ -49,6 +50,7 @@ public class GPSData {
             lonMap.put(i, start[1]);
             bearingMap.put(i, 0.0);
             distanceMap.put(i, 0.001);
+            isStopMap.put(i, false);
         }
     }
 
@@ -93,6 +95,7 @@ public class GPSData {
             latMap.clear();
             bearingMap.clear();
             distanceMap.clear();
+            isStopMap.clear();
             //更新汽车位置信息
             for (GpsBean bean : gpsBeanList) {
                 lonMap.put(Integer.valueOf(bean.getGpsID()), Double.valueOf(bean.getLongitude()));
@@ -201,9 +204,6 @@ public class GPSData {
         double cosstartlat = Math.cos(startlat);
         double distance;
         double rad360 = 2 * Math.PI;//圆周率
-        //模拟车辆停止
-//            int randomSleepTime = (int) Math.round(Math.random() * 100);
-//            Thread.sleep(randomSleepTime);
         //生成0-1的随机数
         double rand1 = new Random().nextDouble();
         distance = Math.acos(rand1 * (Math.cos(maxdist) - 1) + 1);//随机数

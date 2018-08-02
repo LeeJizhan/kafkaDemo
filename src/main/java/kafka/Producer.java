@@ -47,7 +47,7 @@ public class Producer extends Thread {
     }
 
     public void run() {
-        int count = 20;
+        int count = 10;
         int messageNo = 0;
         long startTime = System.currentTimeMillis();
 
@@ -58,11 +58,6 @@ public class Producer extends Thread {
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-//            try {
-//                Thread.sleep(100);
-//            } catch (InterruptedException e) {
-//                e.printStackTrace();
-//            }
             if (isAsync) {
                 //发送信息，包括topic和键值对
                 for (String messageStr : data) {
@@ -74,6 +69,12 @@ public class Producer extends Thread {
             }
             count--;
             messageNo++;
+            //LoggerUtil.info("----------------停一下-------------");
+            try {
+                Thread.sleep(2000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
         }
         //关闭
         producer.close();
@@ -94,15 +95,6 @@ class DemoCallBack implements Callback {
         this.message = message;
     }
 
-    /**
-     * A callback method the user can implement to provide asynchronous handling of request completion. This method will
-     * be called when the record sent to the server has been acknowledged. Exactly one of the arguments will be
-     * non-null.
-     *
-     * @param metadata  The metadata for the record that was sent (i.e. the partition and offset). Null if an error
-     *                  occurred.
-     * @param exception The exception thrown during processing of this record. Null if no error occurred.
-     */
     public void onCompletion(RecordMetadata metadata, Exception exception) {
         long elapsedTime = System.currentTimeMillis() - startTime;
         if (metadata != null) {

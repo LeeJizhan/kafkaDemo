@@ -1,7 +1,6 @@
 import kafka.Consumer;
 import kafka.Producer;
 import properties.KafkaProperties;
-import utils.LoggerUtil;
 
 /**
  * Created by Asus- on 2018/7/12.
@@ -16,11 +15,10 @@ public class Main {
         //通过键值对的方式读取kafka配置文件的值
         String topic = kafkaProperties.getKafkaTopic();
         boolean isAsync = true;
-        LoggerUtil.info(topic);
         Producer producer = new Producer(topic, isAsync);
         producer.start();
-        Consumer consumer = new Consumer(topic);
-        consumer.start();
+//        Consumer consumer = new Consumer(topic);
+//        consumer.start();
 //        CarData carData = new CarData();
 //        List<CarBean> carBeans = carData.getCarData();
 //        for (CarBean carBean : carBeans) {

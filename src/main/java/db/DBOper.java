@@ -67,7 +67,7 @@ public class DBOper {
             preparedStatement.executeBatch();
             //提交
             conn.commit();
-            System.out.println("car数据完成.");
+            System.out.println("car数据更新完成!");
             //关闭连接
             preparedStatement.close();
         } catch (SQLException e) {
@@ -134,7 +134,7 @@ public class DBOper {
             preparedStatement.executeBatch();
             //提交
             conn.commit();
-            System.out.println("car数据和gps数据关联完成");
+            System.out.println("car数据和gps数据关联完成!");
             //关闭连接
             preparedStatement.close();
             conn.close();

@@ -2,10 +2,7 @@ package hbase;
 
 import org.apache.commons.io.IOUtils;
 import org.apache.hadoop.conf.Configuration;
-import org.apache.hadoop.hbase.HBaseConfiguration;
-import org.apache.hadoop.hbase.HColumnDescriptor;
-import org.apache.hadoop.hbase.HTableDescriptor;
-import org.apache.hadoop.hbase.TableName;
+import org.apache.hadoop.hbase.*;
 import org.apache.hadoop.hbase.client.*;
 import org.apache.hadoop.hbase.util.Bytes;
 import org.jets3t.service.model.container.ObjectKeyAndVersion;
@@ -30,13 +27,15 @@ public class HBaseDemo {
 
     private void initHBse() {
         configuration = HBaseConfiguration.create();
-        configuration.set("hbase.zookeeper.quorum", "10.2.17.204");
+        configuration.set("hbase.zookeeper.quorum", "10.2.17.202");
         configuration.set("hbase.zookeeper.property.clientPort", "2182");
         try {
             this.connection = ConnectionFactory.createConnection(configuration);
             this.admin = (HBaseAdmin) connection.getAdmin();
         } catch (IOException e) {
             e.printStackTrace();
+        } finally {
+            LoggerUtil.info("HBase连接成功!");
         }
     }
 
@@ -59,23 +58,21 @@ public class HBaseDemo {
         TableName name = TableName.valueOf(tableName);
         try {
             //2.判断数据库中是否已经含有该表
-            if (!admin.tableExists(name)) {
-                LoggerUtil.info("不存在表: " + name);
-                LoggerUtil.info("正在创建表: " + name + "...");
-                //3.创建一个HTableDescriptor对象实例
-                HTableDescriptor tableDescriptor = new HTableDescriptor(name);
-                //4.4.将字符串切割，得到家族簇集
-                String[] series = seriesStr.split(",");
-                //5.将每一个家族簇加入到HTableDescriptor对象实例中
-                for (String s : series) {
-                    tableDescriptor.addFamily(new HColumnDescriptor(s.getBytes()));
-                }
-                //6.创建该表
-                admin.createTable(tableDescriptor);
-                LoggerUtil.info("创建表：" + name + "成功!");
-            } else {
-                throw new Exception("数据库中已经含有该表，不用再创建!");
+            LoggerUtil.info("不存在表: " + name);
+            LoggerUtil.info("正在创建表: " + name + "...");
+            //3.创建一个HTableDescriptor对象实例
+            HTableDescriptor tableDescriptor = new HTableDescriptor(name);
+            //4.4.将字符串切割，得到家族簇集
+            String[] series = seriesStr.split(",");
+            //5.将每一个家族簇加入到HTableDescriptor对象实例中
+            for (String s : series) {
+                HColumnDescriptor hColumnDescriptor = new HColumnDescriptor(s.getBytes());
+                hColumnDescriptor.setMaxVersions(1000);
+                tableDescriptor.addFamily(hColumnDescriptor);
             }
+            //6.创建该表
+            admin.createTable(tableDescriptor);
+            LoggerUtil.info("创建表：" + name + "成功!");
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
@@ -107,12 +104,15 @@ public class HBaseDemo {
             if (table != null) {
                 //3.创建一个put对象实例
                 Put put = new Put(Bytes.toBytes(rowKey));
+//                put.setTimestamp(System.currentTimeMillis());
                 //4.取出map中的数据放到put中
                 for (Map.Entry<String, Object> entry : columns.entrySet()) {
+                    LoggerUtil.info(entry.getKey() + ": " + entry.getValue());
                     put.addColumn(family.getBytes(), Bytes.toBytes(entry.getKey()), Bytes.toBytes(String.valueOf(entry.getValue())));
                 }
                 //5.调用table的put方法将put中的数据插入到表中
                 table.put(put);
+                LoggerUtil.info("插入数据成功!");
             }
         } catch (IOException e) {
             e.printStackTrace();
@@ -150,11 +150,14 @@ public class HBaseDemo {
                 //4.创建一个Get对象实例
                 Get get = new Get(Bytes.toBytes(rowKey));
                 get.addFamily(family.getBytes());
+                int maxVersion = get.getMaxVersions();
+                get.setMaxVersions(maxVersion);
+                System.out.println(maxVersion);
                 //5.得到返回的Result集
                 Result result = table.get(get);
                 //6.根据家族簇名得到Map集
                 Map<byte[], byte[]> map = result.getFamilyMap(family.getBytes());
-                //7.遍历Mao集，将它转换成我们需要的Map
+                //7.遍历Map集，将它转换成我们需要的Map
                 Iterator<Map.Entry<byte[], byte[]>> it = map.entrySet().iterator();
                 resultMap = new HashMap<String, String>();
                 while (it.hasNext()) {
@@ -199,7 +202,39 @@ public class HBaseDemo {
         return resultStr;
     }
 
+    /**
+     * 删除HBase中的表
+     *
+     * @param tableName
+     */
+    public static void dropTable(String tableName) {
+        try {
+            TableName name = TableName.valueOf(tableName);
+            admin.disableTable(name);
+            admin.deleteTable(name);
+            LoggerUtil.info("删除表" + name + "成功!");
+        } catch (MasterNotRunningException e) {
+            e.printStackTrace();
+        } catch (ZooKeeperConnectionException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     public static void main(String[] args) {
+        String tableName = "demo";
+        String family = "userinfo";
+        String ser = "userinfo,moreinfo";
         HBaseDemo hBaseDemo = new HBaseDemo();
+        Map<String, Object> myMap = new HashMap<String, Object>();
+        Map<String, String> resultMap;
+        myMap.put("name", "jackson");
+        myMap.put("sex", "boy");
+        hBaseDemo.insert(tableName, "1", family, myMap);
+        resultMap = hBaseDemo.search(tableName, family, "1");
+        for (Map.Entry entry : resultMap.entrySet()) {
+            System.out.println(entry.getValue());
+        }
     }
 }

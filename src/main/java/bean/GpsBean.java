@@ -16,6 +16,10 @@ public class GpsBean {
     private String bearing;
     //单次运动的距离
     private String distance;
+    //车辆是否停止
+    private boolean isStop;
+    //车辆停止时间
+    private String totalStopTime;
 
     public String getGpsID() {
         return gpsID;
@@ -63,5 +67,21 @@ public class GpsBean {
 
     public void setDistance(String distance) {
         this.distance = distance;
+    }
+
+    public boolean isStop() {
+        return isStop;
+    }
+
+    public void setStop(boolean stop) {
+        isStop = stop;
+    }
+
+    public String getTotalStopTime() {
+        return totalStopTime;
+    }
+
+    public void setTotalStopTime(String totalStopTime) {
+        this.totalStopTime = totalStopTime;
     }
 }
