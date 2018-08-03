@@ -42,36 +42,34 @@ public class Producer extends Thread {
          * 新建一个KafkaProducer对象实例
          * ProducerRecord是发送到Kafka cluster.ProducerRecord类构造函数的键/值对
          */
-        producer = new KafkaProducer<String, String>(props);
+        producer = new KafkaProducer<>(props);
         this.topic = topic;
         this.isAsync = isAsync;
     }
 
     public void run() {
-        int index = 1;
-        int count = 100;
-        int messageNo = 0;
+        int index = 0;
+        int count = 10000;
         long startTime = System.currentTimeMillis();
         DBOper dbOper = new DBOper();
-        while (index < 100) {
+        while (true) {
             List<String> data = dbOper.search(index, count);
-            index += count;
+            index += count + 1;
+            if (index > 1960000)
+                index = 0;
             if (isAsync) {
+                try {
+                    Thread.sleep(10000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
                 //发送信息，包括topic和键值对
                 for (String messageStr : data) {
-                    producer.send(new ProducerRecord<String, String>(topic,
-                            Integer.toString(messageNo),
-                            messageStr), new DemoCallBack(startTime, messageNo, messageStr));
-                    messageNo++;
                     //LoggerUtil.info("Sent message:" + messageStr);
+                    producer.send(new ProducerRecord<>(topic, messageStr), new DemoCallBack(startTime, messageStr));
                 }
             }
             LoggerUtil.info("------------------停一下-----------------------");
-            try {
-                Thread.sleep(5000);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
         }
 //        //关闭
 //        producer.close();
@@ -83,22 +81,19 @@ public class Producer extends Thread {
  */
 class DemoCallBack implements Callback {
     private final long startTime;
-    private final int key;
     private final String message;
 
-    public DemoCallBack(long startTime, int key, String message) {
+    public DemoCallBack(long startTime, String message) {
         this.startTime = startTime;
-        this.key = key;
         this.message = message;
     }
 
     public void onCompletion(RecordMetadata metadata, Exception exception) {
         long elapsedTime = System.currentTimeMillis() - startTime;
         if (metadata != null) {
-            LoggerUtil.info(
-                    "message(" + key + ", " + message + ") sent to partition(" + metadata.partition() +
-                            "), " +
-                            "offset(" + metadata.offset() + ") in " + elapsedTime + " ms");
+            LoggerUtil.info(message + "sent to partition(" + metadata.partition() +
+                    "), " +
+                    "offset(" + metadata.offset() + ") in " + elapsedTime + " ms");
         } else {
             exception.printStackTrace();
         }

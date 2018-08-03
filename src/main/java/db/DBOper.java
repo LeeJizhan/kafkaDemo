@@ -147,18 +147,18 @@ public class DBOper {
     /**
      * 查询车辆数据
      *
-     * @param index 开始查询的坐标
+     * @param index    开始查询的坐标
      * @param perCount 一次查询的总数
      */
     public List<String> search(int index, int perCount) {
-        if (index < 0){
+        if (index < 0) {
             try {
                 throw new Exception("index应该大于0");
             } catch (Exception e) {
                 e.printStackTrace();
             }
         }
-        if (perCount > 1000000){
+        if (perCount > 1000000) {
             try {
                 throw new Exception("perCount不要大于1000000");
             } catch (Exception e) {
@@ -180,8 +180,6 @@ public class DBOper {
                 String bearing = resultSet.getString("bearing");
                 String speed = resultSet.getString("speed");
                 msg = "{"
-                        + "\"gpsdata\"" + ":"
-                        + "{"
                         + "\"gpsid\"" + ":" + "\"" + gpsid + "\"" + ","
                         + "\"time\"" + ":" + "\"" + time + "\"" + ","
                         + "\"lon\"" + ":" + "\"" + lon + "\"" + ","
@@ -189,7 +187,7 @@ public class DBOper {
                         + "\"bearing\"" + ":" + "\"" + bearing + "\"" + ","
                         + "\"speed\"" + ":" + "\"" + speed + "\""
                         + "}"
-                        + "}";
+                ;
                 messages.add(msg);
             }
             preparedStatement.close();

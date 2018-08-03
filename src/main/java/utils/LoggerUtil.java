@@ -8,6 +8,8 @@ import org.slf4j.LoggerFactory;
  */
 public class LoggerUtil {
 
+    private static final boolean isLog = true;
+
     /**
      * 查找堆栈信息,查找下一个非日志类
      *
@@ -61,22 +63,27 @@ public class LoggerUtil {
      * @param msg
      */
     public static void error(String msg) {
-        logger().error(msg);
+        if (isLog)
+            logger().error(msg);
     }
 
     public static void warn(String msg) {
-        logger().warn(msg);
+        if (isLog)
+            logger().warn(msg);
     }
 
     public static void info(String msg) {
-        logger().info(msg);
+        if (isLog)
+            logger().info(msg);
     }
 
     public static void debug(String msg) {
-        logger().debug(msg);
+        if (isLog)
+            logger().debug(msg);
     }
 
     public static void trance(String msg) {
-        logger().trace(msg);
+        if (isLog)
+            logger().trace(msg);
     }
 }

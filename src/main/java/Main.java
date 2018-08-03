@@ -18,7 +18,8 @@ public class Main {
         boolean isAsync = true;
         Producer producer = new Producer(topic, isAsync);
         producer.start();
-        SparkMain main = new SparkMain();
+        SparkMain sparkMain = new SparkMain();
+        sparkMain.run();
 //        Consumer consumer = new Consumer(topic);
 //        consumer.start();
 //        CarData carData = new CarData();
