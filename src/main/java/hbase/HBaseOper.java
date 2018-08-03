@@ -1,9 +1,11 @@
 package hbase;
 
+import javafx.scene.control.Tab;
 import org.apache.commons.io.IOUtils;
 import org.apache.hadoop.hbase.*;
 import org.apache.hadoop.hbase.client.*;
 import org.apache.hadoop.hbase.util.Bytes;
+import properties.HBaseTableProperties;
 import utils.LoggerUtil;
 
 import java.io.IOException;
@@ -79,7 +81,7 @@ public class HBaseOper {
      * @param family
      * @param columns
      */
-    private void insert(String tableName, String rowKey, String family, Map<String, Object> columns) {
+    public void insert(String tableName, String rowKey, String family, Map<String, Object> columns) {
         /**
          * 1.得到tableName
          * 2.根据tableName查找表
@@ -113,86 +115,104 @@ public class HBaseOper {
     }
 
     /**
-     * 查询数据 根据rowKey进行查询
+     * 获取行键指定行的 所有列族、所有列的最新版本数据
      *
-     * @param rowKey
      * @param tableName
-     * @param family
+     * @param rowKey
      * @return
      */
-    private Map<String, String> search(String tableName, String family, String rowKey) {
-        /**
-         * 1.得到tableName
-         * 2.根据tableName得到table
-         * 3.判断table是否存在
-         * 4.创建一个Get对象实例
-         * 5.得到返回的Result集
-         * 6.根据家族簇名得到Map集
-         * 7.遍历Mao集，将它转换成我们需要的Map
-         */
-        //1.得到tableName
-        TableName name = TableName.valueOf(tableName);
-        Map<String, String> resultMap = null;
+    public Map<String, String> getNewDataByRowKey(String tableName, String rowKey) {
+        Map<String, String> map = new HashMap<>();
         try {
-            //2.根据tableName得到table
-            Table table = connection.getTable(name);
-            //3.判断table是否存在
-            if (table != null) {
-                //4.创建一个Get对象实例
-                Get get = new Get(Bytes.toBytes(rowKey));
-                get.addFamily(family.getBytes());
-                int maxVersion = get.getMaxVersions();
-                get.setMaxVersions(maxVersion);
-                System.out.println(maxVersion);
-                //5.得到返回的Result集
-                Result result = table.get(get);
-                //6.根据家族簇名得到Map集
-                Map<byte[], byte[]> map = result.getFamilyMap(family.getBytes());
-                //7.遍历Map集，将它转换成我们需要的Map
-                if (map != null) {
-                    Iterator<Map.Entry<byte[], byte[]>> it = map.entrySet().iterator();
-                    resultMap = new HashMap<String, String>();
-                    while (it.hasNext()) {
-                        Map.Entry<byte[], byte[]> entry = it.next();
-                        resultMap.put(Bytes.toString(entry.getKey()), Bytes.toString(entry.getValue()));
-                    }
-                }
+            Table table = connection.getTable(TableName.valueOf(tableName));
+            Get get = new Get(rowKey.getBytes());
+            Result result = table.get(get);
+            for (Cell cell : result.rawCells()) {
+                map.put(Bytes.toString(CellUtil.cloneQualifier(cell)), Bytes.toString(CellUtil.cloneValue(cell)));
             }
+            table.close();
         } catch (IOException e) {
             e.printStackTrace();
-        } finally {
-            IOUtils.closeQuietly(admin);
         }
-        return resultMap;
+        return map;
     }
 
     /**
-     * 根据rowKey和column查询数据
+     * 获取行键指定行的 指定列族、所有列的最新版本数据
      *
      * @param tableName
-     * @param family
      * @param rowKey
+     * @param family
+     * @return
+     */
+    public Map<String, String> getNewDataByRowKeyAndFamily(String tableName, String rowKey, String family) {
+        Map<String, String> map = new HashMap<>();
+        try {
+            Table table = connection.getTable(TableName.valueOf(tableName));
+            Get get = new Get(rowKey.getBytes());
+            get.addFamily(family.getBytes());
+            Result result = table.get(get);
+            for (Cell cell : result.rawCells()) {
+                map.put(Bytes.toString(CellUtil.cloneQualifier(cell)), Bytes.toString(CellUtil.cloneValue(cell)));
+            }
+            table.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return map;
+    }
+
+    /**
+     * 获取行键指定行的 指定列族、指定列的最新版本数据
+     *
+     * @param tableName
+     * @param rowKey
+     * @param family
      * @param column
      * @return
      */
-    private String search(String tableName, String family, String column, String rowKey) {
-        TableName name = TableName.valueOf(tableName);
-        String resultStr = "";
+    public Map<String, String> getNewDataByRowKeyAndFamilyAndColumn(String tableName, String rowKey, String family, String column) {
+        Map<String, String> map = new HashMap<>();
         try {
-            Table table = connection.getTable(name);
-            if (table != null) {
-                Get get = new Get(Bytes.toBytes(rowKey));
-                get.addColumn(Bytes.toBytes(column), Bytes.toBytes(family));
-                Result result = table.get(get);
-                byte[] bytes = result.getValue(Bytes.toBytes(family), Bytes.toBytes(column));
-                resultStr = Bytes.toString(bytes);
+            Table table = connection.getTable(TableName.valueOf(tableName));
+            Get get = new Get(rowKey.getBytes());
+            get.addColumn(family.getBytes(), column.getBytes());
+            Result result = table.get(get);
+            for (Cell cell : result.rawCells()) {
+                map.put(Bytes.toString(CellUtil.cloneQualifier(cell)), Bytes.toString(CellUtil.cloneValue(cell)));
             }
+            table.close();
         } catch (IOException e) {
             e.printStackTrace();
-        } finally {
-            IOUtils.closeQuietly(admin);
         }
-        return resultStr;
+        return map;
+    }
+
+    /**
+     * 获取行键指定行的 指定列族、指定列的所有版本数据
+     *
+     * @param tableName
+     * @param rowKey
+     * @param family
+     * @param column
+     * @return
+     */
+    public List<String> getAllDataByRowKeyAndFamilyAndColumn(String tableName, String rowKey, String family, String column) {
+        List<String> list = new ArrayList<>();
+        try {
+            Table table = connection.getTable(TableName.valueOf(tableName));
+            Get get = new Get(rowKey.getBytes());
+            get.addColumn(family.getBytes(), column.getBytes());
+            get.setMaxVersions();
+            Result result = table.get(get);
+            for (Cell cell : result.rawCells()) {
+                list.add(Bytes.toString(CellUtil.cloneValue(cell)));
+            }
+            table.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return list;
     }
 
     /**
@@ -213,32 +233,6 @@ public class HBaseOper {
         } catch (IOException e) {
             e.printStackTrace();
         }
-    }
-
-    /**
-     * 查询数据，返回对应列族的列的
-     *
-     * @param tableName
-     * @param family
-     * @param column
-     * @return
-     * @throws IOException
-     */
-    public List<String> read(String tableName, String family, String column) throws IOException {
-        Table table = connection.getTable(TableName.valueOf(tableName));
-        Scan scan = new Scan();
-        scan.addColumn(family.getBytes(), column.getBytes());
-        scan.setMaxVersions(3000);//设置读取的最大的版本数
-        ResultScanner r = table.getScanner(scan);
-        List<String> list = new ArrayList<String>();
-        for (Result result : r) {
-            for (Cell kv : result.rawCells()) {
-                list.add(Bytes.toString(kv.getRowArray()));
-            }
-        }
-        System.out.println(list.size());
-        table.close();
-        return list;
     }
 
     /**
@@ -277,30 +271,42 @@ public class HBaseOper {
             delete.addColumn(family.getBytes(), column.getBytes());
             table.delete(delete);
             LoggerUtil.info("删除列 " + column + " 的数据成功!");
+            table.close();
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
     public static void main(String[] args) throws IOException {
-        String tableName = "gpsdata";
-        String gpsFamily = "gpsinfo";
-        String ususlFamily = "usualstopinfo";
-        String finalFamily = "finalstopinfo";
-        String serFamily = "gpsinfo,usualstopinfo,finalstopinfo";
+        HBaseTableProperties tableProperties = HBaseTableProperties.getInstance();
+        String tableName = tableProperties.getTableName();
+        String family1 = tableProperties.getFamily1();
+        String family2 = tableProperties.getFamily2();
+//        String tableName = "gpsdata";
+//        String gpsFamily = "gpsinfo";
+//        String ususlFamily = "usualstopinfo";
+//        String finalFamily = "finalstopinfo";
+//        String serFamily = "gpsinfo,usualstopinfo,finalstopinfo";
         HBaseOper hBaseOper = new HBaseOper();
         //hBaseOper.dropTable(tableName);
         //创建表gpsdata
         //hBaseOper.create(tableName, serFamily);
         //使用键值对进行数据保存，插入
-        //Map<String, Object> gpsMap = new HashMap<String, Object>();
-        //gpsMap.put("lon", "121.469600");
-        //gpsMap.put("lat", "31.291600");
-        //hBaseOper.insert(tableName, "1", gpsFamily, gpsMap);
-        Map<String, String> resultMap = hBaseOper.search(tableName, gpsFamily, "1");
-        for (Map.Entry entry : resultMap.entrySet()) {
-            System.out.println(entry.getValue());
+//        Map<String, Object> map = new HashMap<String, Object>();
+//        map.put("lon", "121.4");
+//        map.put("lat", "31.2");
+//        hBaseOper.insert(tableName, "1", "moreinfo", map);
+//        map.put("name", "tony");
+//        map.put("sex", "girl");
+//        hBaseOper.insert(tableName, "1", "userinfo", map);
+        List<String> mList = hBaseOper.getAllDataByRowKeyAndFamilyAndColumn(tableName, "1", "userinfo", "name");
+        for (String s : mList) {
+            System.out.println(s);
         }
+//        Map<String, String> resultMap = hBaseOper.search(tableName, family, "1080");
+//        for (Map.Entry entry : resultMap.entrySet()) {
+//            System.out.println(entry.getValue());
+//        }
 //        hBaseOper.delete(tableName, gpsFamily, "lon", "1");
 //        hBaseOper.delete(tableName, gpsFamily, "lat", "1");
     }

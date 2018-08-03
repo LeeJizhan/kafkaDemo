@@ -3,6 +3,7 @@ package hbase;
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.hbase.client.Connection;
 import org.apache.hadoop.hbase.client.ConnectionFactory;
+import properties.HBaseProperties;
 import properties.KafkaProperties;
 import utils.LoggerUtil;
 
@@ -24,17 +25,10 @@ public class HBConn {
     private Connection connection;
 
     private HBConn() {
-        Properties props = new Properties();
-        //当前类通过输入流来读取配置文件
-        InputStream inputStream = HBConn.class.getResourceAsStream("/hbase.properties");
-        try {
-            props.load(inputStream);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
         Configuration configuration = new Configuration();
-        configuration.set("hbase.zookeeper.quorum", props.getProperty("quorum"));
-        configuration.set("hbase.zookeeper.property.clientPort", props.getProperty("clientPort"));
+        HBaseProperties properties = HBaseProperties.getInstance();
+        configuration.set("hbase.zookeeper.quorum", properties.getQuorum());
+        configuration.set("hbase.zookeeper.property.clientPort", properties.getClientPort());
         try {
             connection = ConnectionFactory.createConnection(configuration);
             LoggerUtil.info("HBase连接成功!");

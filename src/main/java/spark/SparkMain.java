@@ -2,6 +2,7 @@ package spark;
 
 import bean.GpsDataBean;
 import com.google.gson.Gson;
+import hbase.HBaseOper;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.apache.kafka.common.serialization.StringDeserializer;
 import org.apache.spark.SparkConf;
@@ -24,8 +25,13 @@ import java.util.Map;
  */
 public class SparkMain {
 
+    private static String tableName = "demo";
+    private static String family = "userinfo";
+
+
     private static JavaStreamingContext javaStreamingContext;
     private static JavaInputDStream<ConsumerRecord<String, String>> stream;
+    private static Gson gson = new Gson();
 
     public SparkMain() {
         initSparkStreaming();
@@ -49,13 +55,13 @@ public class SparkMain {
         }).foreachRDD(rdd -> {
             rdd.foreachPartition(rdds -> {
                 while (rdds.hasNext()) {
-                    Gson gson = new Gson();
                     String jsonStr = rdds.next();
                     GpsDataBean gpsDataBean = gson.fromJson(jsonStr, GpsDataBean.class);
-                    System.out.println("id: " + gpsDataBean.getGpsid() +
-                            " time: " + gpsDataBean.getTime() +
-                            " bearing: " + gpsDataBean.getBearing() +
-                            " speed: " + gpsDataBean.getSpeed());
+                    HBaseOper hBaseOper = new HBaseOper();
+                    Map<String, Object> gpsMap = new HashMap<>();
+                    gpsMap.put("lon",gpsDataBean.getLon());
+                    gpsMap.put("lat",gpsDataBean.getLat());
+                    hBaseOper.insert(tableName, gpsDataBean.getGpsid(), family, gpsMap);
                 }
             });
         });

@@ -49,7 +49,7 @@ public class Producer extends Thread {
 
     public void run() {
         int index = 0;
-        int count = 10000;
+        int count = 100;
         long startTime = System.currentTimeMillis();
         DBOper dbOper = new DBOper();
         while (true) {
