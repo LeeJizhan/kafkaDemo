@@ -13,6 +13,7 @@ import org.apache.spark.streaming.api.java.JavaStreamingContext;
 import org.apache.spark.streaming.kafka010.ConsumerStrategies;
 import org.apache.spark.streaming.kafka010.KafkaUtils;
 import org.apache.spark.streaming.kafka010.LocationStrategies;
+import properties.HBaseTableProperties;
 import properties.KafkaProperties;
 
 import java.util.Arrays;
@@ -25,17 +26,32 @@ import java.util.Map;
  */
 public class SparkMain {
 
-    private static String tableName = "demo";
-    private static String family = "userinfo";
-
-
     private static JavaStreamingContext javaStreamingContext;
     private static JavaInputDStream<ConsumerRecord<String, String>> stream;
     private static Gson gson = new Gson();
 
+    //HBase
+    private static String tableName;
+    private static String gpsFamily;
+    private static String usualFamily;
+    private static String finalFamily;
+    private static HBaseOper hBaseOper;
+
     public SparkMain() {
         initSparkStreaming();
-        this.stream = getKafkaData();
+        initHBase();
+        stream = getKafkaData();
+    }
+
+    private void initHBase() {
+        hBaseOper = new HBaseOper();
+        HBaseTableProperties tableProperties = HBaseTableProperties.getInstance();
+        tableName = tableProperties.getTableName();
+        String families = tableProperties.getFamilies();
+        String[] family = families.split(",");
+        gpsFamily = family[0];
+        usualFamily = family[1];
+        finalFamily = family[2];
     }
 
     /**
@@ -44,7 +60,7 @@ public class SparkMain {
     private void initSparkStreaming() {
         SparkConf sparkConf = new SparkConf().setMaster("local[2]").setAppName("calgpsdata");
         JavaSparkContext javaSparkContext = new JavaSparkContext(sparkConf);
-        this.javaStreamingContext = new JavaStreamingContext(javaSparkContext, new Duration(5000));
+        javaStreamingContext = new JavaStreamingContext(javaSparkContext, new Duration(5000));
     }
 
     public void run() {
@@ -57,11 +73,13 @@ public class SparkMain {
                 while (rdds.hasNext()) {
                     String jsonStr = rdds.next();
                     GpsDataBean gpsDataBean = gson.fromJson(jsonStr, GpsDataBean.class);
-                    HBaseOper hBaseOper = new HBaseOper();
                     Map<String, Object> gpsMap = new HashMap<>();
-                    gpsMap.put("lon",gpsDataBean.getLon());
-                    gpsMap.put("lat",gpsDataBean.getLat());
-                    hBaseOper.insert(tableName, gpsDataBean.getGpsid(), family, gpsMap);
+                    gpsMap.put("lon", gpsDataBean.getLon());
+                    gpsMap.put("lat", gpsDataBean.getLat());
+                    gpsMap.put("speed", gpsDataBean.getSpeed());
+                    gpsMap.put("bearing", gpsDataBean.getBearing());
+                    gpsMap.put("time", gpsDataBean.getTime());
+                    hBaseOper.insert(tableName, gpsDataBean.getGpsid(), gpsFamily, gpsMap);
                 }
             });
         });
@@ -71,19 +89,19 @@ public class SparkMain {
     }
 
     private void start() {
-        this.javaStreamingContext.start();
+        javaStreamingContext.start();
     }
 
     private void await() {
         try {
-            this.javaStreamingContext.awaitTermination();
+            javaStreamingContext.awaitTermination();
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
     }
 
     private void stop() {
-        this.javaStreamingContext.stop();
+        javaStreamingContext.stop();
     }
 
     /**

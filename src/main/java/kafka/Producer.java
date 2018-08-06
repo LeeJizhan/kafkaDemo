@@ -49,14 +49,14 @@ public class Producer extends Thread {
 
     public void run() {
         int index = 0;
-        int count = 100;
+        int count = 10000;
         long startTime = System.currentTimeMillis();
         DBOper dbOper = new DBOper();
-        while (true) {
+        while (index < 1960000) {
             List<String> data = dbOper.search(index, count);
             index += count + 1;
-            if (index > 1960000)
-                index = 0;
+//            if (index > 1960000)
+//                index = 0;
             if (isAsync) {
                 try {
                     Thread.sleep(10000);

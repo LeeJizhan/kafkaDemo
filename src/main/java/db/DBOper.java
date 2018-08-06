@@ -7,7 +7,9 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -174,7 +176,8 @@ public class DBOper {
             String msg;
             while (resultSet.next()) {
                 String gpsid = resultSet.getString("gpsid");
-                String time = resultSet.getString("time");
+                //将time转换成当前日期，时间不变
+                String time = transform(resultSet.getString("time"));
                 String lon = resultSet.getString("lon");
                 String lat = resultSet.getString("lat");
                 String bearing = resultSet.getString("bearing");
@@ -195,5 +198,24 @@ public class DBOper {
             e.printStackTrace();
         }
         return messages;
+    }
+
+    /**
+     * 转换时间
+     *
+     * @param time
+     * @return
+     */
+    private String transform(String time) {
+        if (time == null) {
+            return null;
+        }
+        //获取当前日期
+        Date dateNow = new Date();
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        String date = simpleDateFormat.format(dateNow);
+        String[] dates = time.split(" ");
+        String reallyDate = date + " " + dates[1];
+        return reallyDate;
     }
 }

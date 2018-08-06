@@ -1,6 +1,5 @@
 package hbase;
 
-import javafx.scene.control.Tab;
 import org.apache.commons.io.IOUtils;
 import org.apache.hadoop.hbase.*;
 import org.apache.hadoop.hbase.client.*;
@@ -9,7 +8,10 @@ import properties.HBaseTableProperties;
 import utils.LoggerUtil;
 
 import java.io.IOException;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * Created by Asus- on 2018/7/26.
@@ -220,16 +222,12 @@ public class HBaseOper {
      *
      * @param tableName
      */
-    public static void dropTable(String tableName) {
+    public void dropTable(String tableName) {
         try {
             TableName name = TableName.valueOf(tableName);
             admin.disableTable(name);
             admin.deleteTable(name);
             LoggerUtil.info("删除表" + name + "成功!");
-        } catch (MasterNotRunningException e) {
-            e.printStackTrace();
-        } catch (ZooKeeperConnectionException e) {
-            e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -280,14 +278,14 @@ public class HBaseOper {
     public static void main(String[] args) throws IOException {
         HBaseTableProperties tableProperties = HBaseTableProperties.getInstance();
         String tableName = tableProperties.getTableName();
-        String family1 = tableProperties.getFamily1();
-        String family2 = tableProperties.getFamily2();
-//        String tableName = "gpsdata";
-//        String gpsFamily = "gpsinfo";
-//        String ususlFamily = "usualstopinfo";
-//        String finalFamily = "finalstopinfo";
-//        String serFamily = "gpsinfo,usualstopinfo,finalstopinfo";
+        String families = tableProperties.getFamilies();
+        String[] family = families.split(",");
+        String gpsFamily = family[0];
+        String ususlFamily = family[1];
+        String finalFamily = family[2];
         HBaseOper hBaseOper = new HBaseOper();
+//        hBaseOper.dropTable(tableName);
+//        hBaseOper.create(tableName, families);
         //hBaseOper.dropTable(tableName);
         //创建表gpsdata
         //hBaseOper.create(tableName, serFamily);
@@ -299,7 +297,7 @@ public class HBaseOper {
 //        map.put("name", "tony");
 //        map.put("sex", "girl");
 //        hBaseOper.insert(tableName, "1", "userinfo", map);
-        List<String> mList = hBaseOper.getAllDataByRowKeyAndFamilyAndColumn(tableName, "1", "userinfo", "name");
+        List<String> mList = hBaseOper.getAllDataByRowKeyAndFamilyAndColumn(tableName, "1", gpsFamily, "lon");
         for (String s : mList) {
             System.out.println(s);
         }
