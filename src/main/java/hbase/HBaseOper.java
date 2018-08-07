@@ -168,7 +168,7 @@ public class HBaseOper {
      * 获取行键指定行的 指定列族、指定列的最新版本数据
      *
      * @param tableName
-     * @param rowKey
+     * @param rowkey
      * @param family
      * @param column
      * @return
@@ -194,7 +194,7 @@ public class HBaseOper {
      * 获取行键指定行的 指定列族的所有行的所有版本数据
      *
      * @param tableName
-     * @param rowKey
+     * @param rowkey
      * @param family
      * @return
      */
