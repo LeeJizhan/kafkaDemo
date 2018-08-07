@@ -4,14 +4,12 @@ import org.apache.commons.io.IOUtils;
 import org.apache.hadoop.hbase.*;
 import org.apache.hadoop.hbase.client.*;
 import org.apache.hadoop.hbase.util.Bytes;
+import org.apache.hbase.thirdparty.org.apache.commons.collections4.map.MultiValueMap;
 import properties.HBaseTableProperties;
 import utils.LoggerUtil;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * Created by Asus- on 2018/7/26.
@@ -191,6 +189,42 @@ public class HBaseOper {
     }
 
     /**
+     * 获取行键指定行的 指定列族的所有行的所有版本数据
+     *
+     * @param tableName
+     * @param rowKey
+     * @param family
+     * @return
+     */
+    public Map<String, List<String>> getAllDataByRowKeyAndFamily(String tableName, String rowKey, String family) {
+        Map<String, List<String>> myMap = new HashMap<>();
+        try {
+            Table table = connection.getTable(TableName.valueOf(tableName));
+            Get get = new Get(rowKey.getBytes());
+            get.addFamily(family.getBytes());
+            get.setMaxVersions();
+            Result result = table.get(get);
+            List<Cell> cells = result.listCells();
+            for (int i = 0; i < cells.size(); i++) {
+                Cell currentCell = cells.get(i);
+                String column = Bytes.toString(CellUtil.cloneQualifier(currentCell));
+                String value = Bytes.toString(CellUtil.cloneValue(currentCell));
+                if (!myMap.containsKey(column)) {
+                    List<String> list = new ArrayList<>();
+                    list.add(value);
+                    myMap.put(column, list);
+                } else {
+                    myMap.get(column).add(value);
+                }
+            }
+            table.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return myMap;
+    }
+
+    /**
      * 获取行键指定行的 指定列族、指定列的所有版本数据
      *
      * @param tableName
@@ -297,13 +331,17 @@ public class HBaseOper {
 //        map.put("name", "tony");
 //        map.put("sex", "girl");
 //        hBaseOper.insert(tableName, "1", "userinfo", map);
-        List<String> mList = hBaseOper.getAllDataByRowKeyAndFamilyAndColumn(tableName, "1", gpsFamily, "lon");
-        for (String s : mList) {
-            System.out.println(s);
+        Map<String, List<String>> map = hBaseOper.getAllDataByRowKeyAndFamily(tableName, "1", gpsFamily);
+        for (Map.Entry entry : map.entrySet()) {
+            String key = (String) entry.getKey();
+            List<String> list = (List<String>) entry.getValue();
+            for (String s : list) {
+                System.out.println(key + ": " + s);
+            }
         }
-//        Map<String, String> resultMap = hBaseOper.search(tableName, family, "1080");
+//        Map<String, String> resultMap = hBaseOper.getNewDataByRowKeyAndFamily(tableName, "1", gpsFamily);
 //        for (Map.Entry entry : resultMap.entrySet()) {
-//            System.out.println(entry.getValue());
+//            System.out.println(entry.getKey() + ": " + entry.getValue());
 //        }
 //        hBaseOper.delete(tableName, gpsFamily, "lon", "1");
 //        hBaseOper.delete(tableName, gpsFamily, "lat", "1");
