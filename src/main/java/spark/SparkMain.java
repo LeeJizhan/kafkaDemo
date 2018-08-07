@@ -119,7 +119,7 @@ public class SparkMain {
         kafkaParams.put("auto.offset.reset", "latest");
         kafkaParams.put("enable.auto.commit", false);
 
-        String topic = kafkaProperties.getKafkaTopic();
+        String topic = kafkaProperties.getKafkaGpsTopic();
         Collection<String> topics = Arrays.asList(topic);
         JavaInputDStream<ConsumerRecord<String, String>> stream =
                 KafkaUtils.createDirectStream(

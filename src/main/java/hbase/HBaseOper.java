@@ -333,14 +333,14 @@ public class HBaseOper {
 //        map.put("name", "tony");
 //        map.put("sex", "girl");
 //        hBaseOper.insert(tableName, "1", "userinfo", map);
-        Map<String, List<String>> map = hBaseOper.getAllDataByRowKeyAndFamily(tableName, "1", gpsFamily);
-        for (Map.Entry entry : map.entrySet()) {
-            String key = (String) entry.getKey();
-            List<String> list = (List<String>) entry.getValue();
-            for (String s : list) {
-                System.out.println(key + ": " + s);
-            }
-        }
+//        Map<String, List<String>> map = hBaseOper.getAllDataByRowKeyAndFamily(tableName, "1", gpsFamily);
+//        for (Map.Entry entry : map.entrySet()) {
+//            String key = (String) entry.getKey();
+//            List<String> list = (List<String>) entry.getValue();
+//            for (String s : list) {
+//                System.out.println(key + ": " + s);
+//            }
+//        }
 //        Map<String, String> resultMap = hBaseOper.getNewDataByRowKeyAndFamily(tableName, "1", gpsFamily);
 //        for (Map.Entry entry : resultMap.entrySet()) {
 //            System.out.println(entry.getKey() + ": " + entry.getValue());

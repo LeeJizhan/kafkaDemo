@@ -1,4 +1,4 @@
-package kafka;
+package kafka.gpstest;
 
 import kafka.utils.ShutdownableThread;
 import org.apache.kafka.clients.consumer.ConsumerConfig;

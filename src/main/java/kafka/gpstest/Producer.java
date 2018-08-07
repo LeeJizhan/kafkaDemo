@@ -1,6 +1,5 @@
-package kafka;
+package kafka.gpstest;
 
-import data.GPSData;
 import db.DBOper;
 import org.apache.kafka.clients.producer.*;
 import org.apache.kafka.common.serialization.StringSerializer;
@@ -25,7 +24,7 @@ public class Producer extends Thread {
         KafkaProperties kafkaProperties = KafkaProperties.getInstance();
         LoggerUtil.info("server:" + kafkaProperties.getKafkaServerUrl() + ":" + kafkaProperties.getKafkaServerPort());
         LoggerUtil.info("groupId:" + kafkaProperties.getKafkaGroupID());
-        LoggerUtil.info("topic:" + kafkaProperties.getKafkaTopic());
+        LoggerUtil.info("topic:" + kafkaProperties.getKafkaGpsTopic());
 
         //BOOTSTRAP_SERVERS_CONFIG - ip地址和端口号配置
         props.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, kafkaProperties.getKafkaServerUrl() + ":" + kafkaProperties.getKafkaServerPort());

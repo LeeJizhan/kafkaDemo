@@ -11,13 +11,19 @@ public class KafkaProperties {
 
     private static volatile KafkaProperties kafkaProperties = null;
 
-    private String kafkaTopic;
+    private String kafkaGpsTopic;
     private String kafkaServerUrl;
     private String kafkaServerPort;
     private String kafkaGroupID;
 
-    public String getKafkaTopic() {
-        return kafkaTopic;
+    private String kafkaPointTopic;
+
+    public String getKafkaGpsTopic() {
+        return kafkaGpsTopic;
+    }
+
+    public String getKafkaPointTopic() {
+        return kafkaPointTopic;
     }
 
     public String getKafkaServerUrl() {
@@ -48,10 +54,11 @@ public class KafkaProperties {
             e.printStackTrace();
         }
         //通过键值对的方式读取kafka配置文件的值
-        this.kafkaTopic = props.getProperty("kafka.topic_gps");
+        this.kafkaGpsTopic = props.getProperty("kafka.topic_gps");
         this.kafkaServerUrl = props.getProperty("kafka.server.url");
         this.kafkaServerPort = props.getProperty("kafka.server.port");
         this.kafkaGroupID = props.getProperty("kafka.groupID");
+        this.kafkaPointTopic = props.getProperty("kafka.topic_point");
     }
 
     public static KafkaProperties getInstance(){

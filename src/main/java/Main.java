@@ -1,5 +1,4 @@
-import kafka.Consumer;
-import kafka.Producer;
+import kafka.gpstest.Producer;
 import properties.KafkaProperties;
 import spark.SparkMain;
 
@@ -14,9 +13,9 @@ public class Main {
 //        dbOper.updateCarAndGpsData();
         KafkaProperties kafkaProperties = KafkaProperties.getInstance();
         //通过键值对的方式读取kafka配置文件的值
-        String topic = kafkaProperties.getKafkaTopic();
+        String gpsTopic = kafkaProperties.getKafkaGpsTopic();
         boolean isAsync = true;
-        Producer producer = new Producer(topic, isAsync);
+        Producer producer = new Producer(gpsTopic, isAsync);
         producer.start();
         SparkMain sparkMain = new SparkMain();
         sparkMain.run();
