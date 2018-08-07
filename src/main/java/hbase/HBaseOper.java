@@ -4,12 +4,14 @@ import org.apache.commons.io.IOUtils;
 import org.apache.hadoop.hbase.*;
 import org.apache.hadoop.hbase.client.*;
 import org.apache.hadoop.hbase.util.Bytes;
-import org.apache.hbase.thirdparty.org.apache.commons.collections4.map.MultiValueMap;
 import properties.HBaseTableProperties;
 import utils.LoggerUtil;
 
 import java.io.IOException;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * Created by Asus- on 2018/7/26.
@@ -38,7 +40,7 @@ public class HBaseOper {
      * @param tableName
      * @param serFamilyStr
      */
-    private void create(String tableName, String serFamilyStr) {
+    public void create(String tableName, String serFamilyStr) {
         /**
          * 1.得到表名
          * 2.判断数据库中是否已经含有该表
@@ -171,11 +173,11 @@ public class HBaseOper {
      * @param column
      * @return
      */
-    public Map<String, String> getNewDataByRowKeyAndFamilyAndColumn(String tableName, String rowKey, String family, String column) {
+    public Map<String, String> getNewDataByRowKeyAndFamilyAndColumn(String tableName, String rowkey, String family, String column) {
         Map<String, String> map = new HashMap<>();
         try {
             Table table = connection.getTable(TableName.valueOf(tableName));
-            Get get = new Get(rowKey.getBytes());
+            Get get = new Get(rowkey.getBytes());
             get.addColumn(family.getBytes(), column.getBytes());
             Result result = table.get(get);
             for (Cell cell : result.rawCells()) {
@@ -196,11 +198,11 @@ public class HBaseOper {
      * @param family
      * @return
      */
-    public Map<String, List<String>> getAllDataByRowKeyAndFamily(String tableName, String rowKey, String family) {
+    public Map<String, List<String>> getAllDataByRowKeyAndFamily(String tableName, String rowkey, String family) {
         Map<String, List<String>> myMap = new HashMap<>();
         try {
             Table table = connection.getTable(TableName.valueOf(tableName));
-            Get get = new Get(rowKey.getBytes());
+            Get get = new Get(rowkey.getBytes());
             get.addFamily(family.getBytes());
             get.setMaxVersions();
             Result result = table.get(get);
