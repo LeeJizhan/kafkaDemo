@@ -1,6 +1,11 @@
 import kafka.gpstest.Producer;
 import properties.KafkaProperties;
 import spark.SparkMain;
+import spark.SparkOper;
+
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
 
 /**
  * Created by Asus- on 2018/7/12.
@@ -15,21 +20,21 @@ public class Main {
         //通过键值对的方式读取kafka配置文件的值
         String gpsTopic = kafkaProperties.getKafkaGpsTopic();
         boolean isAsync = true;
+        //从数据库拿数据扔到kafka中
         Producer producer = new Producer(gpsTopic, isAsync);
         producer.start();
+
+        //Spark Streaming从kafka拿数据进行实时处理写入HBase中
         SparkMain sparkMain = new SparkMain();
         sparkMain.run();
-//        Consumer consumer = new Consumer(topic);
-//        consumer.start();
-//        CarData carData = new CarData();
-//        List<CarBean> carBeans = carData.getCarData();
-//        for (CarBean carBean : carBeans) {
-//            LoggerUtil.info("车ID：" + carBean.getCarID()
-//                    + " 车品牌：" + carBean.getBrand()
-//                    + " 车型：" + carBean.getModel()
-//                    + " 车牌号：" + carBean.getNumber()
-//                    + " 车主：" + carBean.getOwner()
-//                    + " 车主电话：" + carBean.getPhone());
-//        }
+
+        //定时任务，进行常驻点分析
+        Runnable runnable = () -> {
+            SparkOper oper = new SparkOper();
+            oper.doWork();
+        };
+        ScheduledExecutorService service = Executors.newSingleThreadScheduledExecutor();
+        //从执行开始的时间起，24小时更新一次，initialDelay表示延迟1s后开始第一次执行
+        service.scheduleAtFixedRate(runnable, 1, 3600 * 24, TimeUnit.SECONDS);
     }
 }
