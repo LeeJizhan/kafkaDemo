@@ -10,7 +10,7 @@ import java.util.Map;
 
 /**
  * Created by Asus- on 2018/8/7.
- * Spark 数据操作
+ * Spark 数据操作/离线
  */
 public class SparkOper {
 
@@ -19,9 +19,8 @@ public class SparkOper {
     /**
      * 1.获取HBase中的数据
      * 2.将HBase获取到的数据进行相关处理
-     * 3.进行常驻点判断
-     * 4.进行最后停车点判断
-     * 5.将判断得到的结果写回HBase
+     * 3.进行停车点判断和停车时间计算
+     * 4.将得到的结果写回HBase
      */
     public void doWork() {
         List<String> lonList = null;
@@ -61,7 +60,7 @@ public class SparkOper {
             String stopLon = "";
             String stopLat = "";
 
-            //打印数据
+            //处理数据
             for (int j = timeList.size() - 1; j > 0; j--) {
                 if (isStop == false) {
                     //运动到停止,记录停车点和当前时间
@@ -96,17 +95,6 @@ public class SparkOper {
                 }
             }
         }
-
-
-        //最后停车点
-//        String finalStopLon = stopLon;
-//        String finalStopLat = stopLat;
-//        String finalStopTotalTime = totalStopTime;
-//        System.out.println("-----------------------------------------------------------");
-//        System.out.println("-----------------------------------------------------------");
-//        System.out.println("finalStopLon:" + finalStopLon
-//                + "   finalStopLat:" + finalStopLat
-//                + "   finalStopTotalTime:" + finalStopTotalTime);
     }
 
 //    public static void main(String[] args) {

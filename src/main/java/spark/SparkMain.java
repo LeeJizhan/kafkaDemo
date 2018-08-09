@@ -23,6 +23,7 @@ import java.util.Map;
 
 /**
  * Created by Asus- on 2018/8/2.
+ * Spark Streaming 实时数据处理
  */
 public class SparkMain {
 
@@ -79,6 +80,7 @@ public class SparkMain {
                     gpsMap.put("speed", gpsDataBean.getSpeed());
                     gpsMap.put("bearing", gpsDataBean.getBearing());
                     gpsMap.put("time", gpsDataBean.getTime());
+
                     hBaseOper.insert(tableName, gpsDataBean.getGpsid(), gpsFamily, gpsMap);
                 }
             });

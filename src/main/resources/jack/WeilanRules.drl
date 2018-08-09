@@ -5,17 +5,23 @@ import drools.droolsbean.WeiLan
 dialect  "mvel"
 
 rule "SAFE"
+    no-loop true
+    lock-on-active true
+    salience 1
     when
     $weilan: WeiLan()
-    $car: Car(distance<$weilan.radium*1000)
+    $car: Car(distance<$weilan.radius*1000)
     then
     $car.setType(Car.SAFE);
 end
 
 rule "WARN"
+    no-loop true
+    lock-on-active true
+    salience 1
     when
     $weilan: WeiLan()
-    $car: Car(distance>$weilan.radium*1000)
+    $car: Car(distance>$weilan.radius*1000)
     then
     $car.setType(Car.WARN);
 end
