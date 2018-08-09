@@ -1,0 +1,21 @@
+package jack;
+import drools.droolsbean.Car
+import drools.droolsbean.WeiLan
+
+dialect  "mvel"
+
+rule "SAFE"
+    when
+    $weilan: WeiLan()
+    $car: Car(distance<$weilan.radium*1000)
+    then
+    $car.setType(Car.SAFE);
+end
+
+rule "WARN"
+    when
+    $weilan: WeiLan()
+    $car: Car(distance>$weilan.radium*1000)
+    then
+    $car.setType(Car.WARN);
+end
