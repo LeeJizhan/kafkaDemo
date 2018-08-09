@@ -1,7 +1,12 @@
 package db;
 
 import bean.CarBean;
+import drools.droolsbean.*;
+import org.kie.api.KieServices;
+import org.kie.api.runtime.KieContainer;
+import org.kie.api.runtime.KieSession;
 import data.CarData;
+import utils.LoggerUtil;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
