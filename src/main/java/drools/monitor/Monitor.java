@@ -31,10 +31,11 @@ public class Monitor extends Thread {
 
     private static Connection connection;
 
-    private Map<Integer, String> map = new HashMap<>();
+    private static Map<Integer, Map<String, String>> map = new HashMap<>();
     //规则引擎
-    KieServices ks = KieServices.Factory.get();
-    KieContainer kieContainer = ks.getKieClasspathContainer();
+    private static KieServices ks = KieServices.Factory.get();
+    private static KieContainer kieContainer = ks.getKieClasspathContainer();
+    //private static KieSession kieSession = null;
 
     public Monitor() {
         DBCon dbCon = DBCon.getInstance();
@@ -115,7 +116,7 @@ public class Monitor extends Thread {
      * 更新缓存中的规则
      */
     private void updateRules() {
-        if (!map.isEmpty()){
+        if (!map.isEmpty()) {
             map.clear();
             LoggerUtil.info("map清除成功");
         }
@@ -129,22 +130,31 @@ public class Monitor extends Thread {
                 PreparedStatement preparedStatement = connection.prepareStatement("");
                 String querySql = "select * from fenceinfo";
                 ResultSet resultSet = preparedStatement.executeQuery(querySql);
-                while (resultSet.next()) {
-                    //获取MYSQL中规则id数据
-                    int id = resultSet.getInt("RuleId");
-                    //获取MYSQL中围栏名称数据
-                    String weiLanName = resultSet.getString("fencename");
-                    double lon = resultSet.getDouble("centerlon");
-                    double lat = resultSet.getFloat("centerlat");
-                    double radius = resultSet.getFloat("radius");
-                    String str = weiLanName + ","
-                            + lon + ","
-                            + lat + ","
-                            + radius;
-                    map.put(id, str);
-                    LoggerUtil.info("更新规则：" + id);
+                if (resultSet != null) {
+                    while (resultSet.next()) {
+                        //获取MYSQL中规则id数据
+                        int id = resultSet.getInt("RuleId");
+                        //获取MYSQL中围栏名称数据
+                        String weiLanName = resultSet.getString("fencename");
+                        double lon = resultSet.getDouble("centerlon");
+                        double lat = resultSet.getDouble("centerlat");
+                        double radius = resultSet.getDouble("radius");
+                        Map<String, String> strMap = new HashMap<>();
+                        strMap.put("name", weiLanName);
+                        strMap.put("lon", Double.toString(lon));
+                        strMap.put("lat", Double.toString(lat));
+                        strMap.put("radius", Double.toString(radius));
+//                        String str = weiLanName + ","
+//                                + lon + ","
+//                                + lat + ","
+//                                + radius;
+                        map.put(id, strMap);
+                        LoggerUtil.info("更新规则：" + id);
+                    }
+                    LoggerUtil.info("更新规则成功!");
+                } else {
+                    LoggerUtil.info("没有规则!");
                 }
-                LoggerUtil.info("更新规则成功!");
             } catch (SQLException e) {
                 e.printStackTrace();
             }
@@ -160,7 +170,7 @@ public class Monitor extends Thread {
      * @return
      * @throws SQLException
      */
-    public List<CarStatusRuturn> getMonitorAndData(String carLon, String carLat) throws SQLException {
+    public static List<CarStatusRuturn> getMonitorAndData(String carLon, String carLat) throws SQLException {
         List<CarStatusRuturn> carStatusList = new ArrayList<>();
         /**
          * 将map中的数据取出来
@@ -173,12 +183,11 @@ public class Monitor extends Thread {
                 CarStatusRuturn carStatusRuturn = new CarStatusRuturn();
 
                 int ruleId = (int) entry.getKey();
-                String value = (String) entry.getValue();
-                String[] strs = value.split(",");
-                String weiLanName = strs[0];
-                double lon = Double.parseDouble(strs[1]);
-                double lat = Double.parseDouble(strs[2]);
-                double radius = Double.parseDouble(strs[3]);
+                Map<String, String> value = (Map<String, String>) entry.getValue();
+                String weiLanName = value.get("name");
+                double lon = Double.valueOf(value.get("lon"));
+                double lat = Double.valueOf(value.get("lat"));
+                double radius = Double.valueOf(value.get("radius"));
 
                 weiLan.setRuleId(ruleId);
                 weiLan.setWeiLanName(weiLanName);
@@ -189,8 +198,10 @@ public class Monitor extends Thread {
                 double distance = LngAndLatDistance.getLngAndLat(weiLan, carData.cardata(carLon, carLat));
                 car.setDistance(distance);
                 //调用规则引擎
+//                if (kieSession == null) {
+//                    kieSession = kieContainer.newKieSession("weiLan");
+//                }
                 KieSession kieSession = kieContainer.newKieSession("weiLan");
-
                 kieSession.insert(weiLan);
                 kieSession.insert(car);
                 kieSession.fireAllRules();
@@ -198,15 +209,11 @@ public class Monitor extends Thread {
                 carStatusRuturn.setwLID(ruleId);
                 carStatusRuturn.setcStatus(car.getType());
                 carStatusList.add(carStatusRuturn);
-            }
-        } else {
-            try {
-                throw new Exception("Map是空的.");
-            } catch (Exception e) {
-                e.printStackTrace();
+                if (kieSession != null) {
+                    kieSession.dispose();
+                }
             }
         }
         return carStatusList;
     }
-
 }
