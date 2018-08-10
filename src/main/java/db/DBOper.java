@@ -1,12 +1,7 @@
 package db;
 
 import bean.CarBean;
-import drools.droolsbean.*;
-import org.kie.api.KieServices;
-import org.kie.api.runtime.KieContainer;
-import org.kie.api.runtime.KieSession;
 import data.CarData;
-import utils.LoggerUtil;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -172,7 +167,7 @@ public class DBOper {
                 e.printStackTrace();
             }
         }
-        List<String> messages = new ArrayList<String>();
+        List<String> messages = new ArrayList<>();
         try {
             PreparedStatement preparedStatement = conn.prepareStatement("");
             ResultSet resultSet;
