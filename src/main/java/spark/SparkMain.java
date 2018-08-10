@@ -2,6 +2,8 @@ package spark;
 
 import bean.GpsDataBean;
 import com.google.gson.Gson;
+import drools.droolsbean.CarStatusRuturn;
+import drools.monitor.Monitor;
 import hbase.HBaseOper;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.apache.kafka.common.serialization.StringDeserializer;
@@ -15,11 +17,11 @@ import org.apache.spark.streaming.kafka010.KafkaUtils;
 import org.apache.spark.streaming.kafka010.LocationStrategies;
 import properties.HBaseTableProperties;
 import properties.KafkaProperties;
+import utils.LoggerUtil;
 
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
+import java.beans.Transient;
+import java.sql.SQLException;
+import java.util.*;
 
 /**
  * Created by Asus- on 2018/8/2.
@@ -35,7 +37,7 @@ public class SparkMain {
     private static String tableName;
     private static String gpsFamily;
     private static String usualFamily;
-    private static String finalFamily;
+    private static String etcFamily;
     private static HBaseOper hBaseOper;
 
     public SparkMain() {
@@ -52,7 +54,7 @@ public class SparkMain {
         String[] family = families.split(",");
         gpsFamily = family[0];
         usualFamily = family[1];
-        finalFamily = family[2];
+        etcFamily = family[2];
     }
 
     /**
@@ -64,10 +66,10 @@ public class SparkMain {
         javaStreamingContext = new JavaStreamingContext(javaSparkContext, new Duration(5000));
     }
 
-    public void run() {
+    public void doWork() {
         stream.map(record -> record.value()).map(value -> {
             String str = value;
-            //System.out.println(s);
+            //System.out.println(str);
             return str;
         }).foreachRDD(rdd -> {
             rdd.foreachPartition(rdds -> {
@@ -80,8 +82,35 @@ public class SparkMain {
                     gpsMap.put("speed", gpsDataBean.getSpeed());
                     gpsMap.put("bearing", gpsDataBean.getBearing());
                     gpsMap.put("time", gpsDataBean.getTime());
-
                     hBaseOper.insert(tableName, gpsDataBean.getGpsid(), gpsFamily, gpsMap);
+                    //进行规则判断
+                    StringBuilder stringBuilder = new StringBuilder();
+                    try {
+                        List<CarStatusRuturn> mList = Monitor.getMonitorAndData(gpsDataBean.getLon(), gpsDataBean.getLat());
+                        if (mList != null && mList.size() != 0) {
+                            for (CarStatusRuturn statusRuturn : mList) {
+                                String dataStr = "{\"ruleid\":" + statusRuturn.getwLID() + ","
+                                        + "\"status\":" + "\"" + statusRuturn.getcStatus() + "\""
+                                        + "},";
+                                stringBuilder.append(dataStr);
+                            }
+                        }
+                    } catch (SQLException e) {
+                        e.printStackTrace();
+                    }
+                    if (stringBuilder != null && stringBuilder.length() != 0) {
+                        String msg = "[" + stringBuilder.substring(0, stringBuilder.length() - 1).toString() + "]";
+                        String fullMsg = "{" + "\"carid\":" + gpsDataBean.getGpsid() + ","
+                                + "\"time\":" + "\"" + gpsDataBean.getTime() + "\"" + ","
+                                + "\"msg\":"
+                                //+ ruleCheck(gpsDataBean.getLon(), gpsDataBean.getLat())
+                                + msg
+                                + "}";
+                        Map<String, Object> msgMap = new HashMap<>();
+                        msgMap.put("msg", fullMsg);
+                        //LoggerUtil.info(fullMsg);
+                        hBaseOper.insert(tableName, gpsDataBean.getGpsid(), etcFamily, msgMap);
+                    }
                 }
             });
         });
@@ -89,6 +118,32 @@ public class SparkMain {
         await();
         stop();
     }
+
+//    /**
+//     * 进行规则判断
+//     *
+//     * @param lon
+//     * @param lat
+//     * @return
+//     */
+//    private String ruleCheck(String lon, String lat) {
+//        String msg;
+//        //进行规则判断
+//        StringBuilder stringBuilder = new StringBuilder();
+//        try {
+//            List<CarStatusRuturn> mList = Monitor.getMonitorAndData(lon, lat);
+//            for (CarStatusRuturn statusRuturn : mList) {
+//                String dataStr = "{\"ruleid\":" + statusRuturn.getwLID()
+//                        + "\"status\":" + "\"" + statusRuturn.getcStatus() + "\""
+//                        + "},";
+//                stringBuilder.append(dataStr);
+//            }
+//        } catch (SQLException e) {
+//            e.printStackTrace();
+//        }
+//        msg = "[" + stringBuilder.substring(0, stringBuilder.length() - 1).toString() + "]";
+//        return msg;
+//    }
 
     private void start() {
         javaStreamingContext.start();
