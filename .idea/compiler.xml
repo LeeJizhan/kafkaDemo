@@ -12,7 +12,7 @@
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="helloKafka" target="1.5" />
-      <module name="kafkaDemo" target="1.5" />
+      <module name="kafkaDemo" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>
