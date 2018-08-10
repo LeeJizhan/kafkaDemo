@@ -62,7 +62,7 @@ public class HBaseOper {
             //5.将每一个家族簇加入到HTableDescriptor对象实例中
             for (String s : series) {
                 HColumnDescriptor hColumnDescriptor = new HColumnDescriptor(s.getBytes());
-                hColumnDescriptor.setMaxVersions(2500);
+                hColumnDescriptor.setMaxVersions(3000);
                 tableDescriptor.addFamily(hColumnDescriptor);
             }
             //6.创建该表
@@ -318,10 +318,10 @@ public class HBaseOper {
         String[] family = families.split(",");
         String gpsFamily = family[0];
         String ususlFamily = family[1];
-        String finalFamily = family[2];
+        String etcFamily = family[2];
         HBaseOper hBaseOper = new HBaseOper();
-//        hBaseOper.dropTable(tableName);
-//        hBaseOper.create(tableName, families);
+        hBaseOper.dropTable(tableName);
+        hBaseOper.create(tableName, families);
         //hBaseOper.dropTable(tableName);
         //创建表gpsdata
         //hBaseOper.create(tableName, serFamily);
@@ -333,7 +333,7 @@ public class HBaseOper {
 //        map.put("name", "tony");
 //        map.put("sex", "girl");
 //        hBaseOper.insert(tableName, "1", "userinfo", map);
-//        Map<String, List<String>> map = hBaseOper.getAllDataByRowKeyAndFamily(tableName, "2", ususlFamily);
+//        Map<String, List<String>> map = hBaseOper.getAllDataByRowKeyAndFamily(tableName, "1066", etcFamily);
 //        for (Map.Entry entry : map.entrySet()) {
 //            String key = (String) entry.getKey();
 //            List<String> list = (List<String>) entry.getValue();
