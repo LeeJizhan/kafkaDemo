@@ -36,7 +36,6 @@ public class SparkMain {
     //HBase
     private static String tableName;
     private static String gpsFamily;
-    private static String usualFamily;
     private static String etcFamily;
     private static HBaseOper hBaseOper;
 
@@ -53,7 +52,6 @@ public class SparkMain {
         String families = tableProperties.getFamilies();
         String[] family = families.split(",");
         gpsFamily = family[0];
-        usualFamily = family[1];
         etcFamily = family[2];
     }
 
@@ -118,32 +116,6 @@ public class SparkMain {
         await();
         stop();
     }
-
-//    /**
-//     * 进行规则判断
-//     *
-//     * @param lon
-//     * @param lat
-//     * @return
-//     */
-//    private String ruleCheck(String lon, String lat) {
-//        String msg;
-//        //进行规则判断
-//        StringBuilder stringBuilder = new StringBuilder();
-//        try {
-//            List<CarStatusRuturn> mList = Monitor.getMonitorAndData(lon, lat);
-//            for (CarStatusRuturn statusRuturn : mList) {
-//                String dataStr = "{\"ruleid\":" + statusRuturn.getwLID()
-//                        + "\"status\":" + "\"" + statusRuturn.getcStatus() + "\""
-//                        + "},";
-//                stringBuilder.append(dataStr);
-//            }
-//        } catch (SQLException e) {
-//            e.printStackTrace();
-//        }
-//        msg = "[" + stringBuilder.substring(0, stringBuilder.length() - 1).toString() + "]";
-//        return msg;
-//    }
 
     private void start() {
         javaStreamingContext.start();
