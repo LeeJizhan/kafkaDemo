@@ -22,16 +22,13 @@ public class LngAndLatDistance {
         if (dis < 1) {
             nFormat.setMaximumFractionDigits(1);
             dis *= 1000;
-
             //return  nFormat.format(dis)+"m";
             return dis;
-
         } else {
             nFormat.setMaximumFractionDigits(2);
             //return nFormat.format(dis)+"km";
             dis *= 1000;
             return dis;
         }
-
     }
 }

@@ -69,6 +69,6 @@ public class Main {
         };
         ScheduledExecutorService service = Executors.newSingleThreadScheduledExecutor();
         //从执行开始的时间起，24小时更新一次，initialDelay表示延迟一天后开始第一次执行
-        service.scheduleAtFixedRate(runnable, 3600 * 24, 3600 * 24, TimeUnit.SECONDS);
+        service.scheduleAtFixedRate(runnable, 5, 3600 * 24, TimeUnit.SECONDS);
     }
 }

@@ -317,14 +317,15 @@ public class HBaseOper {
         String families = tableProperties.getFamilies();
         String[] family = families.split(",");
         String gpsFamily = family[0];
-        String ususlFamily = family[1];
+        String usualFamily = family[1];
         String etcFamily = family[2];
         HBaseOper hBaseOper = new HBaseOper();
-        hBaseOper.dropTable(tableName);
-        hBaseOper.create(tableName, families);
-        //hBaseOper.dropTable(tableName);
-        //创建表gpsdata
-        //hBaseOper.create(tableName, serFamily);
+//        for (int i = 1; i <= 2350; i++) {
+//            hBaseOper.delete(tableName, usualFamily, String.valueOf(i));
+//        }
+//        hBaseOper.dropTable(tableName);
+//        hBaseOper.create(tableName, families);
+
         //使用键值对进行数据保存，插入
 //        Map<String, Object> map = new HashMap<String, Object>();
 //        map.put("lon", "121.4");
@@ -333,7 +334,7 @@ public class HBaseOper {
 //        map.put("name", "tony");
 //        map.put("sex", "girl");
 //        hBaseOper.insert(tableName, "1", "userinfo", map);
-//        Map<String, List<String>> map = hBaseOper.getAllDataByRowKeyAndFamily(tableName, "1066", etcFamily);
+//        Map<String, List<String>> map = hBaseOper.getAllDataByRowKeyAndFamily(tableName, "1066", usualFamily);
 //        for (Map.Entry entry : map.entrySet()) {
 //            String key = (String) entry.getKey();
 //            List<String> list = (List<String>) entry.getValue();
