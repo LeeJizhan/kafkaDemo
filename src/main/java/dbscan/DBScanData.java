@@ -65,7 +65,18 @@ public class DBScanData {
         return points;
     }
 
-    public static List<List<Point>> getAllCarData() {
+    public static List<Point> getAllCarData() {
+        List<Point> pointList = new ArrayList<>();
+        for (int i = 0; i < count; i++) {
+            List<Point> points = getOneCarData(i + 1);
+            for (Point point : points) {
+                pointList.add(point);
+            }
+        }
+        return pointList;
+    }
+
+    public static List<List<Point>> getEveryCarData() {
         List<List<Point>> allData = new ArrayList<>();
         for (int i = 0; i < count; i++) {
             List<Point> points = getOneCarData(i + 1);
