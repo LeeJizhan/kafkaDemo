@@ -4,6 +4,7 @@ package dbscan;
  * Created by Asus- on 2018/8/14.
  */
 public class Point {
+
     private double lon;
     private double lat;
     private boolean isVisited;  //是否被访问
@@ -33,6 +34,14 @@ public class Point {
 
         dis *= 1000;
         return dis;
+    }
+
+    public double getLon() {
+        return lon;
+    }
+
+    public double getLat() {
+        return lat;
     }
 
     public void setVisit(boolean isVisited) {

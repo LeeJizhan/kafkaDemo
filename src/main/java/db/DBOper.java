@@ -18,8 +18,8 @@ import java.util.List;
 public class DBOper {
 
     private DBCon dbCon;
-    private List<String> carIDList = new ArrayList<String>();
-    private List<String> gpsIDList = new ArrayList<String>();
+    private List<String> carIDList = new ArrayList<>();
+    private List<String> gpsIDList = new ArrayList<>();
     private Connection conn;
 
     public DBOper() {
