@@ -1,7 +1,5 @@
 package dbscan;
 
-import utils.LoggerUtil;
-
 import java.util.ArrayList;
 import java.util.List;
 
