@@ -62,13 +62,22 @@ public class Main {
         SparkMain sparkMain = new SparkMain();
         sparkMain.doWork();
 
-        //定时任务，进行常驻点分析
+        //定时任务，进行停车点分析
         Runnable runnable = () -> {
             SparkOper oper = new SparkOper();
             oper.doWork();
         };
         ScheduledExecutorService service = Executors.newSingleThreadScheduledExecutor();
         //从执行开始的时间起，24小时更新一次，initialDelay表示延迟一天后开始第一次执行
-        service.scheduleAtFixedRate(runnable, 5, 3600 * 24, TimeUnit.SECONDS);
+        service.scheduleAtFixedRate(runnable, 3600 * 12, 3600 * 24, TimeUnit.SECONDS);
+
+        //定时任务，DBScan聚类，进行常驻点分析
+        Runnable runnable2 = () -> {
+            SparkOper oper = new SparkOper();
+            oper.doWork();
+        };
+        ScheduledExecutorService service2 = Executors.newSingleThreadScheduledExecutor();
+        //从执行开始的时间起，24小时更新一次，initialDelay表示延迟一天后开始第一次执行
+        service2.scheduleAtFixedRate(runnable2, 3600 * 24, 3600 * 24, TimeUnit.SECONDS);
     }
 }
