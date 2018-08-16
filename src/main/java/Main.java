@@ -67,9 +67,10 @@ public class Main {
             SparkOper oper = new SparkOper();
             oper.doWork();
         };
+
         ScheduledExecutorService service = Executors.newSingleThreadScheduledExecutor();
-        //从执行开始的时间起，24小时更新一次，initialDelay表示延迟一天后开始第一次执行
-        service.scheduleAtFixedRate(runnable, 3600 * 12, 3600 * 24, TimeUnit.SECONDS);
+        //从执行开始的时间起，12小时更新一次，initialDelay表示延迟12小时后开始第一次执行
+        service.scheduleAtFixedRate(runnable, 3600 * 12, 3600 * 12, TimeUnit.SECONDS);
 
         //定时任务，DBScan聚类，进行常驻点分析
         Runnable runnable2 = () -> {

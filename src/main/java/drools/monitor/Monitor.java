@@ -116,49 +116,51 @@ public class Monitor extends Thread {
      * 更新缓存中的规则
      */
     private void updateRules() {
-        if (!map.isEmpty()) {
-            map.clear();
-            LoggerUtil.info("map清除成功");
-        }
-        if (nodeStatus.getNodeChange().equals("TRUE")) {
-            /**
-             * 将数据库中的规则写入缓存中
-             */
-            //连接数据库
-            try {
-                connection.setAutoCommit(false);
-                PreparedStatement preparedStatement = connection.prepareStatement("");
-                String querySql = "select * from fenceinfo";
-                ResultSet resultSet = preparedStatement.executeQuery(querySql);
-                if (resultSet != null) {
-                    while (resultSet.next()) {
-                        //获取MYSQL中规则id数据
-                        int id = resultSet.getInt("RuleId");
-                        //获取MYSQL中围栏名称数据
-                        String weiLanName = resultSet.getString("fencename");
-                        double lon = resultSet.getDouble("centerlon");
-                        double lat = resultSet.getDouble("centerlat");
-                        double radius = resultSet.getDouble("radius");
-                        Map<String, String> strMap = new HashMap<>();
-                        strMap.put("name", weiLanName);
-                        strMap.put("lon", Double.toString(lon));
-                        strMap.put("lat", Double.toString(lat));
-                        strMap.put("radius", Double.toString(radius));
+        synchronized (Monitor.class) {
+            if (!map.isEmpty()) {
+                map.clear();
+                LoggerUtil.info("map清除成功");
+            }
+            if (nodeStatus.getNodeChange().equals("TRUE")) {
+                /**
+                 * 将数据库中的规则写入缓存中
+                 */
+                //连接数据库
+                try {
+                    connection.setAutoCommit(false);
+                    PreparedStatement preparedStatement = connection.prepareStatement("");
+                    String querySql = "select * from fenceinfo";
+                    ResultSet resultSet = preparedStatement.executeQuery(querySql);
+                    if (resultSet != null) {
+                        while (resultSet.next()) {
+                            //获取MYSQL中规则id数据
+                            int id = resultSet.getInt("RuleId");
+                            //获取MYSQL中围栏名称数据
+                            String weiLanName = resultSet.getString("fencename");
+                            double lon = resultSet.getDouble("centerlon");
+                            double lat = resultSet.getDouble("centerlat");
+                            double radius = resultSet.getDouble("radius");
+                            Map<String, String> strMap = new HashMap<>();
+                            strMap.put("name", weiLanName);
+                            strMap.put("lon", Double.toString(lon));
+                            strMap.put("lat", Double.toString(lat));
+                            strMap.put("radius", Double.toString(radius));
 //                        String str = weiLanName + ","
 //                                + lon + ","
 //                                + lat + ","
 //                                + radius;
-                        map.put(id, strMap);
-                        LoggerUtil.info("更新规则：" + id);
+                            map.put(id, strMap);
+                            LoggerUtil.info("更新规则：" + id);
+                        }
+                        LoggerUtil.info("更新规则成功!");
+                    } else {
+                        LoggerUtil.info("没有规则!");
                     }
-                    LoggerUtil.info("更新规则成功!");
-                } else {
-                    LoggerUtil.info("没有规则!");
+                } catch (SQLException e) {
+                    e.printStackTrace();
                 }
-            } catch (SQLException e) {
-                e.printStackTrace();
+                nodeStatus.setNodeChange("FALSE");
             }
-            nodeStatus.setNodeChange("FALSE");
         }
     }
 
@@ -197,10 +199,6 @@ public class Monitor extends Thread {
 
                 double distance = LngAndLatDistance.getLngAndLat(weiLan, carData.cardata(carLon, carLat));
                 car.setDistance(distance);
-                //调用规则引擎
-//                if (kieSession == null) {
-//                    kieSession = kieContainer.newKieSession("weiLan");
-//                }
                 KieSession kieSession = kieContainer.newKieSession("weiLan");
                 kieSession.insert(weiLan);
                 kieSession.insert(car);
